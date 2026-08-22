@@ -4,4 +4,4 @@ Corresponde al primer contenido básico del curso: introducción a la analítica
 
 ## Materiales
 
-- [`1.0_Comencemos_con_una_pregunta.pdf`](1.0_Comencemos_con_una_pregunta.pdf)
+- [`1.0_Motivacion.pdf`](1.0_Motivacion.pdf)
