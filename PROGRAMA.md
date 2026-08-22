@@ -48,11 +48,11 @@ Clases magistrales acompañadas de simulaciones en **Orange Data Mining** y **Py
 
 | Componente | Peso | Entregas |
 |---|---|---|
-| Laboratorios de simulación | 45% | Definidas con los estudiante |
+| Laboratorios de simulación | 45% | Definidas con los estudiantes |
 | Proyecto integrador | 45% | Idea del proyecto: semana 8 · Presentación final: semana 16 |
 | Asistencia | 10% | Mínimo 85% de asistencia (ver [`asistencia/`](asistencia/)) |
 
-**Proyecto integrador:** aplicación integral de las técnicas y conocimientos del curso en la solución de un problema real de analítica de datos. Puede desarrollarse en grupos de hasta 3 personas, con datos reales (propios de empresas, negocios o proyectos de los estudiantes, bajo acuerdo de confidencialidad si aplica) o artificiales.
+**Proyecto integrador:** aplicación integral de las técnicas y conocimientos del curso en la solución de un problema real de analítica de datos. Puede desarrollarse en grupos de hasta 2 personas, con datos reales (propios de empresas, negocios o proyectos de los estudiantes, bajo acuerdo de confidencialidad si aplica) o artificiales.
 
 ## Contenidos básicos
 
