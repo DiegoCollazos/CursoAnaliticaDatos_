@@ -71,12 +71,13 @@ Clases magistrales acompañadas de simulaciones en **Orange Data Mining** y **Py
 |---|---|---|---|
 | 1 | 24-08-2026 | Introducción a la analítica de datos | — |
 | 1 | 26-08-2026 | Repaso de manejo de datos en Python | — |
-| 2 | 26-08-2026 | Introducción de manejo de datos en Orange Data Mining | — |
+| 1 | 26-08-2026 | Introducción de manejo de datos en Orange Data Mining | — |
 | 2 | 31-08-2026 | Bases de datos y tipos de variables | — |
 |---|---|---|---|
-| 3 | 07-09-2026 | Transformación de variables | — |
-| 3 | 26-08-2026 | preproceso de datos | — |
-| 4 | | Visualización de datos | — |
+| 2 | 02-09-2026 | Transformación de variables | — |
+| 3 | 07-08-2026 | Preproceso de datos | — |
+| 4 | 07-08-2026 | Visualización de datos | — |
+|---|---|---|---|
 | 5 | | Correlación, selección y extracción de características | — |
 | 6 | | Reducción de dimensión; agrupamiento de datos | Laboratorios de simulación — Entrega 1 |
 | 7 | | Aprendizaje supervisado: modelos de predicción, métricas y validación, KNN | — |
