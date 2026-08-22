@@ -8,8 +8,8 @@
 |---|---|
 | Código | 4200729 |
 | Nombre de la asignatura | Analítica de datos (Aprendizaje de máquina) |
-| Docente | *(completar)* |
-| Correo | *(completar)* |
+| Docente | Diego Fabián Collazos Huertas |
+| Correo | dfcollazosh@unal.edu.co |
 | Sede | Manizales |
 | Facultad | Ingeniería y Arquitectura |
 | Unidad académica | Departamento de Ingeniería Eléctrica, Electrónica y Computación — Manizales |
@@ -46,7 +46,7 @@ Clases magistrales acompañadas de simulaciones en **Orange Data Mining** y **Py
 
 ## Evaluación
 
-| Componente | Peso | Entregas |
+| Componente | Peso | Entregas proyecto integrador |
 |---|---|---|
 | Laboratorios de simulación | 45% | Entrega 1: semana 6 · Entrega 2: semana 15 |
 | Proyecto integrador | 45% | Idea del proyecto: semana 8 · Presentación final: semana 16 |
