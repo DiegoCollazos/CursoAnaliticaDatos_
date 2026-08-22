@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Asistencia — Analítica de Datos</title>
+<style>
+  :root {
+    --bg: #f4f6f8;
+    --panel: #ffffff;
+    --border: #dde3ea;
+    --text: #1f2933;
+    --text-muted: #64748b;
+    --brand: #1f4e78;
+    --brand-dark: #163a5a;
+    --green: #1a7f37;
+    --green-bg: #d9f3e1;
+    --red: #b3261e;
+    --red-bg: #fbdcd9;
+    --amber: #92620a;
+    --amber-bg: #fdedc8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+  }
+  header {
+    background: var(--brand);
+    color: white;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  header h1 { font-size: 1.25rem; margin: 0; }
+  header .sub { font-size: 0.85rem; opacity: 0.85; }
+  #status-pill {
+    font-size: 0.8rem;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.15);
+  }
+  main { max-width: 1100px; margin: 0 auto; padding: 20px 16px 80px; }
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 18px;
+  }
+  .panel h2 { margin-top: 0; font-size: 1.05rem; }
+  .config-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  label { display: block; font-size: 0.82rem; color: var(--text-muted); margin-bottom: 4px; }
+  input[type=text], input[type=password], input[type=date] {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-family: inherit;
+  }
+  button {
+    font-family: inherit;
+    font-size: 0.88rem;
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    cursor: pointer;
+    color: var(--text);
+  }
+  button:hover { background: #eef2f6; }
+  button.primary {
+    background: var(--brand);
+    color: white;
+    border-color: var(--brand);
+    font-weight: bold;
+  }
+  button.primary:hover { background: var(--brand-dark); }
+  button.danger { color: var(--red); border-color: var(--red-bg); }
+  button.danger:hover { background: var(--red-bg); }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+  .tabs { display: flex; gap: 4px; margin-bottom: 16px; border-bottom: 2px solid var(--border); }
+  .tab-btn {
+    border: none;
+    background: none;
+    padding: 10px 16px;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    border-radius: 0;
+  }
+  .tab-btn.active { color: var(--brand); border-bottom-color: var(--brand); font-weight: bold; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.85rem; }
+  th, td { border: 1px solid var(--border); padding: 6px 8px; text-align: center; }
+  th { background: var(--brand); color: white; font-weight: 600; white-space: nowrap; }
+  td.nombre, th.nombre { text-align: left; min-width: 200px; }
+  .table-scroll { overflow-x: auto; border-radius: 6px; }
+  .mark-btn {
+    width: 34px; height: 30px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    font-weight: bold;
+    background: #fafbfc;
+  }
+  .mark-P { background: var(--green-bg); color: var(--green); border-color: var(--green); }
+  .mark-A { background: var(--red-bg); color: var(--red); border-color: var(--red); }
+  .mark-E { background: var(--amber-bg); color: var(--amber); border-color: var(--amber); }
+  .col-header-btn {
+    background: none; border: none; color: white; font-size: 0.8rem;
+    padding: 0; margin-top: 2px; opacity: 0.75; cursor: pointer;
+  }
+  .col-header-btn:hover { opacity: 1; text-decoration: underline; }
+  .actions-row { display: flex; gap: 10px; align-items: center; margin-bottom: 14px; flex-wrap: wrap; }
+  .pct-badge { padding: 2px 8px; border-radius: 999px; font-weight: bold; }
+  .pct-ok { background: var(--green-bg); color: var(--green); }
+  .pct-bad { background: var(--red-bg); color: var(--red); }
+  .add-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-top: 14px; }
+  .add-form button { grid-column: 1 / -1; justify-self: start; }
+  .msg { font-size: 0.85rem; padding: 8px 12px; border-radius: 6px; margin-top: 10px; }
+  .msg.ok { background: var(--green-bg); color: var(--green); }
+  .msg.err { background: var(--red-bg); color: var(--red); }
+  .save-bar {
+    position: sticky; bottom: 0; background: var(--panel);
+    border-top: 1px solid var(--border); padding: 12px 16px;
+    display: flex; justify-content: space-between; align-items: center;
+    margin: 0 -16px -80px; flex-wrap: wrap; gap: 10px;
+  }
+  .hint { font-size: 0.78rem; color: var(--text-muted); margin-top: 6px; }
+  details summary { cursor: pointer; font-size: 0.9rem; color: var(--brand); }
+  .empty-note { color: var(--text-muted); font-style: italic; padding: 10px 0; }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>Registro de asistencia — Analítica de Datos</h1>
+    <div class="sub" id="repo-label">DiegoCollazos/CursoAnaliticaDatos_</div>
+  </div>
+  <span id="status-pill">Sin cargar</span>
+</header>
+
+<main>
+
+  <div class="panel">
+    <details id="config-details">
+      <summary>⚙️ Configuración de GitHub (clic para abrir/cerrar)</summary>
+      <div style="margin-top:12px;" class="config-grid">
+        <div>
+          <label for="cfg-owner">Propietario del repositorio</label>
+          <input type="text" id="cfg-owner" value="DiegoCollazos">
+        </div>
+        <div>
+          <label for="cfg-repo">Nombre del repositorio</label>
+          <input type="text" id="cfg-repo" value="CursoAnaliticaDatos_">
+        </div>
+        <div>
+          <label for="cfg-branch">Rama</label>
+          <input type="text" id="cfg-branch" value="main">
+        </div>
+        <div>
+          <label for="cfg-path">Ruta del archivo de datos</label>
+          <input type="text" id="cfg-path" value="asistencia/datos.json">
+        </div>
+        <div style="grid-column:1/-1;">
+          <label for="cfg-token">Token de acceso personal (Personal Access Token) de GitHub</label>
+          <input type="password" id="cfg-token" placeholder="ghp_... o github_pat_...">
+          <div class="hint">
+            Se guarda solo en este navegador (localStorage) y se usa únicamente para hablar con la API de GitHub. Crea uno en
+            <strong>GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens</strong>,
+            limitado a este repositorio, con permiso <strong>Contents: Read and write</strong>. Trátalo como una contraseña:
+            no lo compartas ni lo uses en computadores públicos.
+          </div>
+        </div>
+      </div>
+      <div class="actions-row" style="margin-top:12px;">
+        <button class="primary" onclick="guardarConfig()">Guardar configuración</button>
+        <button onclick="cargarDesdeGitHub(true)">Cargar / recargar datos desde GitHub</button>
+      </div>
+      <div id="config-msg"></div>
+    </details>
+  </div>
+
+  <div id="app" style="display:none;">
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="asistencia" onclick="cambiarTab('asistencia')">Asistencia</button>
+      <button class="tab-btn" data-tab="estudiantes" onclick="cambiarTab('estudiantes')">Estudiantes</button>
+      <button class="tab-btn" data-tab="resumen" onclick="cambiarTab('resumen')">Resumen</button>
+    </div>
+
+    <div class="tab-panel active" id="tab-asistencia">
+      <div class="panel">
+        <div class="actions-row">
+          <button class="primary" onclick="agregarSesion()">+ Nueva sesión</button>
+          <span class="hint">Clic en una celda para cambiar el estado: en blanco → P (presente) → A (ausente) → E (excusa) → en blanco.</span>
+        </div>
+        <div class="table-scroll">
+          <table id="tabla-asistencia"></table>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-estudiantes">
+      <div class="panel">
+        <div class="table-scroll">
+          <table id="tabla-estudiantes"></table>
+        </div>
+        <details>
+          <summary>➕ Agregar estudiante</summary>
+          <div class="add-form">
+            <div><label>Nombre completo</label><input type="text" id="new-nombre"></div>
+            <div><label>Documento</label><input type="text" id="new-documento"></div>
+            <div><label>Plan</label><input type="text" id="new-plan"></div>
+            <div><label>Correo</label><input type="text" id="new-correo"></div>
+            <button class="primary" onclick="agregarEstudiante()">Agregar estudiante</button>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="tab-resumen">
+      <div class="panel">
+        <div class="table-scroll">
+          <table id="tabla-resumen"></table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="save-bar" id="save-bar" style="display:none;">
+    <span id="dirty-indicator" class="hint">Sin cambios pendientes</span>
+    <button class="primary" id="btn-guardar" onclick="guardarEnGitHub()">💾 Guardar cambios en GitHub</button>
+  </div>
+
+</main>
+
+<script>
+const UMBRAL_ASISTENCIA = 0.85; // 85% según ficha oficial de la asignatura
+
+let cfg = { owner: '', repo: '', branch: 'main', path: 'asistencia/datos.json', token: '' };
+let datos = { estudiantes: [], sesiones: [], asistencia: {} };
+let currentSha = null;
+let dirty = false;
+
+function cargarConfigLocal() {
+  const saved = localStorage.getItem('asistencia_cfg');
+  if (saved) {
+    try { cfg = { ...cfg, ...JSON.parse(saved) }; } catch (e) {}
+  }
+  document.getElementById('cfg-owner').value = cfg.owner || 'DiegoCollazos';
+  document.getElementById('cfg-repo').value = cfg.repo || 'CursoAnaliticaDatos_';
+  document.getElementById('cfg-branch').value = cfg.branch || 'main';
+  document.getElementById('cfg-path').value = cfg.path || 'asistencia/datos.json';
+  document.getElementById('cfg-token').value = cfg.token || '';
+  document.getElementById('repo-label').textContent = `${cfg.owner || 'DiegoCollazos'}/${cfg.repo || 'CursoAnaliticaDatos_'}`;
+}
+
+function guardarConfig() {
+  cfg.owner = document.getElementById('cfg-owner').value.trim();
+  cfg.repo = document.getElementById('cfg-repo').value.trim();
+  cfg.branch = document.getElementById('cfg-branch').value.trim() || 'main';
+  cfg.path = document.getElementById('cfg-path').value.trim();
+  cfg.token = document.getElementById('cfg-token').value.trim();
+  localStorage.setItem('asistencia_cfg', JSON.stringify(cfg));
+  document.getElementById('repo-label').textContent = `${cfg.owner}/${cfg.repo}`;
+  showConfigMsg('Configuración guardada en este navegador.', 'ok');
+}
+
+function showConfigMsg(text, kind) {
+  const el = document.getElementById('config-msg');
+  el.innerHTML = `<div class="msg ${kind}">${text}</div>`;
+}
+
+function setStatus(text) {
+  document.getElementById('status-pill').textContent = text;
+}
+
+function toBase64Utf8(str) {
+  const bytes = new TextEncoder().encode(str);
+  let binary = '';
+  bytes.forEach(b => binary += String.fromCharCode(b));
+  return btoa(binary);
+}
+function fromBase64Utf8(b64) {
+  const binary = atob(b64.replace(/\n/g, ''));
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+  return new TextDecoder().decode(bytes);
+}
+
+function apiUrl() {
+  return `https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${cfg.path}`;
+}
+
+async function cargarDesdeGitHub(manual) {
+  guardarConfig();
+  if (dirty && manual) {
+    if (!confirm('Tienes cambios sin guardar. Si recargas, se perderán. ¿Continuar?')) return;
+  }
+  setStatus('Cargando…');
+  try {
+    const headers = { 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' };
+    if (cfg.token) headers['Authorization'] = 'Bearer ' + cfg.token;
+    const res = await fetch(`${apiUrl()}?ref=${encodeURIComponent(cfg.branch)}`, { headers });
+    if (res.status === 404) {
+      currentSha = null;
+      showConfigMsg('El archivo de datos no existe aún en GitHub. Se creará al guardar por primera vez.', 'ok');
+      setStatus('Sin datos remotos');
+      document.getElementById('app').style.display = 'block';
+      document.getElementById('save-bar').style.display = 'flex';
+      renderAll();
+      return;
+    }
+    if (!res.ok) throw new Error(`GitHub respondió ${res.status}: ${(await res.json()).message || res.statusText}`);
+    const json = await res.json();
+    currentSha = json.sha;
+    datos = JSON.parse(fromBase64Utf8(json.content));
+    if (!datos.estudiantes) datos.estudiantes = [];
+    if (!datos.sesiones) datos.sesiones = [];
+    if (!datos.asistencia) datos.asistencia = {};
+    dirty = false;
+    updateDirtyIndicator();
+    setStatus('Datos cargados ✓');
+    document.getElementById('app').style.display = 'block';
+    document.getElementById('save-bar').style.display = 'flex';
+    document.getElementById('config-details').open = false;
+    showConfigMsg('Datos cargados correctamente desde GitHub.', 'ok');
+    renderAll();
+  } catch (e) {
+    setStatus('Error al cargar');
+    showConfigMsg('No se pudo cargar: ' + e.message, 'err');
+  }
+}
+
+async function guardarEnGitHub() {
+  if (!cfg.token) { showConfigMsg('Configura primero tu token de GitHub.', 'err'); document.getElementById('config-details').open = true; return; }
+  const btn = document.getElementById('btn-guardar');
+  btn.disabled = true;
+  btn.textContent = 'Guardando…';
+  try {
+    const headers = { 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28', 'Authorization': 'Bearer ' + cfg.token };
+    // Vuelve a consultar el sha más reciente por si hubo cambios desde otra sesión.
+    const check = await fetch(`${apiUrl()}?ref=${encodeURIComponent(cfg.branch)}`, { headers });
+    if (check.ok) { currentSha = (await check.json()).sha; }
+    else if (check.status === 404) { currentSha = null; }
+    else { throw new Error(`No se pudo verificar el archivo actual (${check.status})`); }
+
+    const body = {
+      message: `Actualizar registro de asistencia — ${new Date().toISOString().slice(0, 16).replace('T', ' ')}`,
+      content: toBase64Utf8(JSON.stringify(datos, null, 2)),
+      branch: cfg.branch,
+    };
+    if (currentSha) body.sha = currentSha;
+
+    const res = await fetch(apiUrl(), {
+      method: 'PUT',
+      headers: { ...headers, 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    if (!res.ok) {
+      const errJson = await res.json().catch(() => ({}));
+      throw new Error(errJson.message || `GitHub respondió ${res.status}`);
+    }
+    const resJson = await res.json();
+    currentSha = resJson.content.sha;
+    dirty = false;
+    updateDirtyIndicator();
+    setStatus('Guardado ✓');
+    showConfigMsg('Cambios guardados en GitHub correctamente.', 'ok');
+  } catch (e) {
+    showConfigMsg('Error al guardar: ' + e.message, 'err');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '💾 Guardar cambios en GitHub';
+  }
+}
+
+function marcarDirty() {
+  dirty = true;
+  updateDirtyIndicator();
+}
+function updateDirtyIndicator() {
+  const el = document.getElementById('dirty-indicator');
+  el.textContent = dirty ? '● Cambios sin guardar' : 'Sin cambios pendientes';
+  el.style.color = dirty ? 'var(--red)' : 'var(--text-muted)';
+}
+
+function cambiarTab(name) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'tab-' + name));
+}
+
+// ---------- Asistencia ----------
+const ESTADOS = ['', 'P', 'A', 'E'];
+
+function siguienteEstado(actual) {
+  const idx = ESTADOS.indexOf(actual || '');
+  return ESTADOS[(idx + 1) % ESTADOS.length];
+}
+
+function toggleMarca(idEst, fecha) {
+  const key = String(idEst);
+  if (!datos.asistencia[key]) datos.asistencia[key] = {};
+  const actual = datos.asistencia[key][fecha] || '';
+  const next = siguienteEstado(actual);
+  if (next === '') delete datos.asistencia[key][fecha];
+  else datos.asistencia[key][fecha] = next;
+  marcarDirty();
+  renderAsistencia();
+  renderResumen();
+}
+
+function agregarSesion() {
+  const fecha = prompt('Fecha de la nueva sesión (AAAA-MM-DD):', new Date().toISOString().slice(0, 10));
+  if (!fecha) return;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(fecha)) { alert('Formato de fecha inválido. Usa AAAA-MM-DD.'); return; }
+  if (datos.sesiones.includes(fecha)) { alert('Ya existe una sesión con esa fecha.'); return; }
+  datos.sesiones.push(fecha);
+  datos.sesiones.sort();
+  marcarDirty();
+  renderAsistencia();
+  renderResumen();
+}
+
+function eliminarSesion(fecha) {
+  if (!confirm(`¿Eliminar la sesión del ${fecha}? Se perderán las marcas de asistencia de ese día.`)) return;
+  datos.sesiones = datos.sesiones.filter(f => f !== fecha);
+  Object.keys(datos.asistencia).forEach(k => delete datos.asistencia[k][fecha]);
+  marcarDirty();
+  renderAsistencia();
+  renderResumen();
+}
+
+function renderAsistencia() {
+  const tabla = document.getElementById('tabla-asistencia');
+  if (datos.estudiantes.length === 0) {
+    tabla.innerHTML = '<tr><td class="empty-note">No hay estudiantes registrados. Agrégalos en la pestaña "Estudiantes".</td></tr>';
+    return;
+  }
+  let html = '<thead><tr><th class="nombre">Estudiante</th>';
+  datos.sesiones.forEach(f => {
+    html += `<th>${f}<br><button class="col-header-btn" onclick="eliminarSesion('${f}')">eliminar</button></th>`;
+  });
+  if (datos.sesiones.length === 0) html += '<th style="background:none;color:var(--text-muted);font-weight:normal;">Sin sesiones aún</th>';
+  html += '</tr></thead><tbody>';
+  datos.estudiantes.forEach(est => {
+    html += `<tr><td class="nombre">${est.nombre}</td>`;
+    datos.sesiones.forEach(f => {
+      const val = (datos.asistencia[String(est.id)] || {})[f] || '';
+      const cls = val ? 'mark-' + val : '';
+      html += `<td><button class="mark-btn ${cls}" onclick="toggleMarca(${est.id}, '${f}')">${val || '—'}</button></td>`;
+    });
+    html += '</tr>';
+  });
+  html += '</tbody>';
+  tabla.innerHTML = html;
+}
+
+// ---------- Estudiantes ----------
+function agregarEstudiante() {
+  const nombre = document.getElementById('new-nombre').value.trim();
+  if (!nombre) { alert('El nombre es obligatorio.'); return; }
+  const documento = document.getElementById('new-documento').value.trim();
+  const plan = document.getElementById('new-plan').value.trim();
+  const correo = document.getElementById('new-correo').value.trim();
+  const nextId = datos.estudiantes.reduce((max, e) => Math.max(max, e.id), 0) + 1;
+  datos.estudiantes.push({ id: nextId, nombre, documento, plan, correo });
+  ['new-nombre', 'new-documento', 'new-plan', 'new-correo'].forEach(id => document.getElementById(id).value = '');
+  marcarDirty();
+  renderEstudiantes();
+  renderAsistencia();
+  renderResumen();
+}
+
+function eliminarEstudiante(id) {
+  const est = datos.estudiantes.find(e => e.id === id);
+  if (!est) return;
+  if (!confirm(`¿Eliminar a "${est.nombre}"? También se eliminará su historial de asistencia.`)) return;
+  datos.estudiantes = datos.estudiantes.filter(e => e.id !== id);
+  delete datos.asistencia[String(id)];
+  marcarDirty();
+  renderEstudiantes();
+  renderAsistencia();
+  renderResumen();
+}
+
+function renderEstudiantes() {
+  const tabla = document.getElementById('tabla-estudiantes');
+  let html = '<thead><tr><th class="nombre">Nombre</th><th>Documento</th><th>Plan</th><th>Correo</th><th></th></tr></thead><tbody>';
+  if (datos.estudiantes.length === 0) {
+    html += '<tr><td colspan="5" class="empty-note">No hay estudiantes registrados todavía.</td></tr>';
+  }
+  datos.estudiantes.forEach(est => {
+    html += `<tr>
+      <td class="nombre">${est.nombre}</td>
+      <td>${est.documento || ''}</td>
+      <td>${est.plan || ''}</td>
+      <td>${est.correo || ''}</td>
+      <td><button class="danger" onclick="eliminarEstudiante(${est.id})">Eliminar</button></td>
+    </tr>`;
+  });
+  html += '</tbody>';
+  tabla.innerHTML = html;
+}
+
+// ---------- Resumen ----------
+function renderResumen() {
+  const tabla = document.getElementById('tabla-resumen');
+  let html = '<thead><tr><th class="nombre">Estudiante</th><th>Sesiones registradas</th><th>Presentes</th><th>Ausencias</th><th>Excusas</th><th>% Asistencia</th></tr></thead><tbody>';
+  if (datos.estudiantes.length === 0) {
+    html += '<tr><td colspan="6" class="empty-note">No hay estudiantes registrados todavía.</td></tr>';
+  }
+  let sumaPct = 0;
+  datos.estudiantes.forEach(est => {
+    const marcas = datos.asistencia[String(est.id)] || {};
+    const valores = Object.values(marcas);
+    const registradas = valores.length;
+    const presentes = valores.filter(v => v === 'P').length;
+    const ausencias = valores.filter(v => v === 'A').length;
+    const excusas = valores.filter(v => v === 'E').length;
+    const pct = registradas > 0 ? (presentes + excusas) / registradas : 0;
+    sumaPct += pct;
+    const pctClass = pct >= UMBRAL_ASISTENCIA ? 'pct-ok' : 'pct-bad';
+    html += `<tr>
+      <td class="nombre">${est.nombre}</td>
+      <td>${registradas}</td>
+      <td>${presentes}</td>
+      <td>${ausencias}</td>
+      <td>${excusas}</td>
+      <td><span class="pct-badge ${pctClass}">${(pct * 100).toFixed(1)}%</span></td>
+    </tr>`;
+  });
+  if (datos.estudiantes.length > 0) {
+    const promedio = (sumaPct / datos.estudiantes.length) * 100;
+    html += `<tr style="font-weight:bold;background:#f4f6f8;"><td class="nombre">Promedio del curso</td><td colspan="4"></td><td>${promedio.toFixed(1)}%</td></tr>`;
+  }
+  html += '</tbody>';
+  tabla.innerHTML = html;
+}
+
+function renderAll() {
+  renderAsistencia();
+  renderEstudiantes();
+  renderResumen();
+}
+
+window.addEventListener('beforeunload', (e) => {
+  if (dirty) { e.preventDefault(); e.returnValue = ''; }
+});
+
+cargarConfigLocal();
+if (cfg.token) { cargarDesdeGitHub(false); } else { setStatus('Configura tu token para empezar'); }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "estudiantes": [
+    { "id": 1, "nombre": "AGUDELO BURGOS, JUAN ESTEBAN", "documento": "1056120138", "plan": "4034 - CIENCIAS DE LA COMPUTACIÓN", "correo": "juagudelobu@unal.edu.co" },
+    { "id": 2, "nombre": "ARBOLEDA HERNANDEZ, THOMAS", "documento": "1053872933", "plan": "4022 - INGENIERIA ELECTRICA", "correo": "tarboleda@unal.edu.co" },
+    { "id": 3, "nombre": "ESTRADA OCAMPO, MIGUEL ANGEL", "documento": "1109291838", "plan": "4028 - INGENIERIA ELECTRONICA", "correo": "mestradao@unal.edu.co" },
+    { "id": 4, "nombre": "GRANADA CARDONA, JUAN ESTEBAN", "documento": "1002653804", "plan": "4028 - INGENIERIA ELECTRONICA", "correo": "jugranada@unal.edu.co" },
+    { "id": 5, "nombre": "HERNÁNDEZ TULCÁN, EVER DANIEL", "documento": "1192891902", "plan": "4028 - INGENIERIA ELECTRONICA", "correo": "evhernandezt@unal.edu.co" },
+    { "id": 6, "nombre": "MENDIETA DILBERT, JOHAN SEBASTIAN", "documento": "1123890896", "plan": "4028 - INGENIERIA ELECTRONICA", "correo": "jomendietad@unal.edu.co" },
+    { "id": 7, "nombre": "MORA RIASCOS, MARLYN NATHALIA", "documento": "1004728270", "plan": "4028 - INGENIERIA ELECTRONICA", "correo": "mmorari@unal.edu.co" },
+    { "id": 8, "nombre": "NOVOA GIRALDO, JERONIMO", "documento": "1054858413", "plan": "4028 - INGENIERIA ELECTRONICA", "correo": "jenovoag@unal.edu.co" },
+    { "id": 9, "nombre": "PRIETO ORTEGA, MARIA DE LOS ANGELES", "documento": "1062278202", "plan": "4028 - INGENIERIA ELECTRONICA", "correo": "maprietoo@unal.edu.co" },
+    { "id": 10, "nombre": "SILVA RENDON, ANDRES ESTEBAN", "documento": "1193573403", "plan": "4034 - CIENCIAS DE LA COMPUTACIÓN", "correo": "asilvare@unal.edu.co" },
+    { "id": 11, "nombre": "VILLADA ARIAS, SERGIO ALEJANDRO", "documento": "1002635986", "plan": "4034 - CIENCIAS DE LA COMPUTACIÓN", "correo": "svilladaa@unal.edu.co" },
+    { "id": 12, "nombre": "ZULUAGA YEPES, MARIANA", "documento": "1055751503", "plan": "4028 - INGENIERIA ELECTRONICA", "correo": "mzuluagay@unal.edu.co" }
+  ],
+  "sesiones": [],
+  "asistencia": {}
+}
