@@ -56,7 +56,7 @@ Clases magistrales acompañadas de simulaciones en **Orange Data Mining** y **Py
 
 ## Contenidos básicos
 
-1. **Introducción a la analítica de datos** — conceptos clave de ciencia de datos; introducción al manejo de Orange Data Mining; repaso de manejo de datos en Python.
+1. **Introducción a la analítica de datos** — conceptos clave de ciencia de datos; introducción al manejo de Orange Data Mining; repaso de manejo de datos en Python. 👉 [`modulo-01-introduccion/`](modulo-01-introduccion/)
 2. **Transformación y visualización de datos** — transformación de variables; preproceso de datos; visualización de datos.
 3. **Modelado y evaluación de enfoques no supervisados** — conceptos básicos de correlación; selección y extracción de características; algoritmos de reducción de dimensión; principios de agrupamiento de datos.
 4. **Modelado y evaluación de enfoques supervisados** — modelos de predicción (clasificación y regresión); evaluación de modelos; clasificadores clásicos (KNN, árboles de decisión, random forest, SVMs, regresión logística); regresión lineal y ensemble learning.
@@ -99,7 +99,7 @@ Clases magistrales acompañadas de simulaciones en **Orange Data Mining** y **Py
 
 ## Recursos y materiales
 
-Los materiales de cada sesión se organizarán en carpetas por semana o módulo dentro de este repositorio (por ejemplo `semana-01/`, `semana-02/`, ...).
+Los materiales de cada módulo se organizan en carpetas propias dentro de este repositorio (por ejemplo [`modulo-01-introduccion/`](modulo-01-introduccion/), `modulo-02-.../`, ...).
 
 ## Asistencia
 
