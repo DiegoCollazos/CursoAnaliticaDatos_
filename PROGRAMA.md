@@ -46,9 +46,9 @@ Clases magistrales acompañadas de simulaciones en **Orange Data Mining** y **Py
 
 ## Evaluación
 
-| Componente | Peso | Entregas proyecto integrador |
+| Componente | Peso | Entregas |
 |---|---|---|
-| Laboratorios de simulación | 45% | Entrega 1: semana 6 · Entrega 2: semana 15 |
+| Laboratorios de simulación | 45% | Definidas con los estudiante |
 | Proyecto integrador | 45% | Idea del proyecto: semana 8 · Presentación final: semana 16 |
 | Asistencia | 10% | Mínimo 85% de asistencia (ver [`asistencia/`](asistencia/)) |
 
