@@ -103,4 +103,4 @@ Los materiales de cada sesión se organizarán en carpetas por semana o módulo 
 
 ## Asistencia
 
-El registro de asistencia se administra en la carpeta [`asistencia/`](asistencia/). Ver [`asistencia/README.md`](asistencia/README.md) para más detalles.
+El registro de asistencia se administra en la carpeta [`asistencia/`](asistencia/). 👉 [Abrir la página de asistencia](https://diegocollazos.github.io/CursoAnaliticaDatos_/asistencia/asistencia.html) — ver [`asistencia/README.md`](asistencia/README.md) para más detalles.
