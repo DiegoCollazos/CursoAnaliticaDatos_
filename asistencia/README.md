@@ -1,32 +1,18 @@
 # Registro de asistencia
 
-Esta carpeta contiene el registro de asistencia del curso, administrado por el docente directamente en el repositorio. Los estudiantes **no** necesitan una cuenta de GitHub para este proceso.
+El registro de asistencia se administra en un único archivo de Excel: **[`asistencia.xlsx`](asistencia.xlsx)**. El docente es quien lo diligencia; los estudiantes **no** necesitan una cuenta de GitHub para este proceso.
 
-## Archivos
+## Cómo usarlo
 
-- **`estudiantes.csv`** — Listado (roster) de estudiantes matriculados. Actualízalo una vez al inicio del curso y cada vez que haya novedades (retiros, adiciones).
-- **`registro_asistencia.csv`** — Registro histórico de asistencia, una fila por estudiante y sesión. Se va agregando después de cada clase.
-- **`resumen_asistencia.py`** — Script en Python que calcula el porcentaje de asistencia de cada estudiante a partir de los dos archivos anteriores.
+1. Descarga `asistencia.xlsx` desde GitHub (botón "Download raw file" ⬇️) y ábrelo en Excel, Google Sheets o LibreOffice.
+2. En la pestaña **Asistencia**, cada sesión de clase es una columna. La columna `C` ("EJEMPLO") ya está diligenciada para mostrarte el formato.
+3. Para cada sesión nueva, escribe la fecha en la fila 1 de la siguiente columna libre y, para cada estudiante, selecciona su estado con la lista desplegable: `P` = Presente, `A` = Ausente, `E` = Excusa.
+4. La pestaña **Resumen** calcula automáticamente, por estudiante, el número de sesiones registradas, presentes, ausencias, excusas y el % de asistencia (ya lo tienes formulado, no hay que tocar nada ahí).
+5. La pestaña **Estudiantes** contiene el listado oficial (documento, plan, correo); actualízala si hay novedades de matrícula.
+6. La pestaña **Instrucciones** trae esta misma guía dentro del archivo.
+7. Cuando termines de actualizarlo, sube el archivo de nuevo a esta carpeta en GitHub (arrastrándolo en la página del repositorio o con el botón "Add file → Upload files") para dejar el registro actualizado con control de versiones.
 
-## Flujo de trabajo sugerido
+## Notas
 
-1. Al iniciar el curso, completa `estudiantes.csv` con el listado oficial.
-2. Después de cada sesión, abre `registro_asistencia.csv` desde GitHub (botón de lápiz ✏️ para editar en el navegador) y agrega una fila por cada estudiante con la fecha, el número de sesión y el estado (`Presente`, `Ausente`, `Excusa`).
-   - También puedes editarlo localmente en Excel/Sheets y luego subir el archivo actualizado (commit).
-3. Cuando quieras un resumen (por ejemplo, para reportar el % de asistencia), ejecuta:
-
-   ```bash
-   python asistencia/resumen_asistencia.py
-   ```
-
-   Esto imprime una tabla con el número de sesiones asistidas y el porcentaje de asistencia por estudiante, y guarda el resultado en `asistencia/resumen_asistencia.csv`.
-
-## Formato de `registro_asistencia.csv`
-
-| Columna | Descripción |
-|---|---|
-| `fecha` | Fecha de la sesión (AAAA-MM-DD) |
-| `sesion` | Número de sesión/semana |
-| `id_estudiante` | Identificador del estudiante (debe coincidir con `estudiantes.csv`) |
-| `estado` | `Presente`, `Ausente` o `Excusa` |
-| `observaciones` | Notas opcionales |
+- El % de asistencia cuenta `Presente` y `Excusa` como sesión atendida, y solo considera las columnas que ya tengan un estado marcado.
+- Según la ficha oficial de la asignatura, se exige un mínimo de **85% de asistencia**.
