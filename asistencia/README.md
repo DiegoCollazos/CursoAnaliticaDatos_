@@ -1,10 +1,14 @@
 # Registro de asistencia
 
-El registro de asistencia se administra con una página web: **[`asistencia.html`](asistencia.html)**. Permite ver la asistencia, agregar o eliminar estudiantes y consultar el resumen con solo hacer clic, y guarda los cambios directamente en este repositorio. Los estudiantes **no** necesitan una cuenta de GitHub; solo la usa el docente.
+El registro de asistencia se administra con una página web. Permite ver la asistencia, agregar o eliminar estudiantes y consultar el resumen con solo hacer clic, y guarda los cambios directamente en este repositorio. Los estudiantes **no** necesitan una cuenta de GitHub; solo la usa el docente.
+
+### 👉 [Abrir la página de asistencia](https://diegocollazos.github.io/CursoAnaliticaDatos_/asistencia/asistencia.html)
+
+(Publicada con GitHub Pages. También puedes abrir el archivo [`asistencia.html`](asistencia.html) localmente en tu navegador si lo prefieres.)
 
 ## Cómo usarla
 
-1. Abre [`asistencia.html`](asistencia.html) (puedes descargarla y abrirla localmente en el navegador, o publicarla con GitHub Pages para tener un enlace fijo — ver más abajo).
+1. Abre la [página de asistencia](https://diegocollazos.github.io/CursoAnaliticaDatos_/asistencia/asistencia.html) (o el archivo [`asistencia.html`](asistencia.html) localmente).
 2. La primera vez, despliega **⚙️ Configuración de GitHub** y pega un *Personal Access Token* de GitHub:
    - Ve a **GitHub → Settings (de tu perfil) → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token**.
    - Limita el token a este repositorio (`CursoAnaliticaDatos_`) con permiso **Contents: Read and write**.
@@ -17,11 +21,11 @@ El registro de asistencia se administra con una página web: **[`asistencia.html
 
 Los datos se guardan en [`datos.json`](datos.json), un archivo plano versionado en Git — puedes revisarlo o editarlo a mano si lo necesitas.
 
-## Publicar con GitHub Pages (opcional, recomendado)
+## Publicación con GitHub Pages
 
-Para tener un enlace fijo (sin descargar el archivo cada vez): ve a **Settings → Pages** en este repositorio, en "Source" elige la rama `main` y carpeta `/ (root)`, y guarda. Unos minutos después la página quedará disponible en algo como:
+La página está publicada con GitHub Pages (Settings → Pages, rama `main`, carpeta `/ (root)`) en:
 
-`https://diegocollazos.github.io/CursoAnaliticaDatos_/asistencia/asistencia.html`
+**https://diegocollazos.github.io/CursoAnaliticaDatos_/asistencia/asistencia.html**
 
 ## Notas
 
