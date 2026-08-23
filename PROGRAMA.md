@@ -73,23 +73,26 @@ Clases magistrales acompañadas de simulaciones en **Orange Data Mining** y **Py
 | 1 | 24-08-2026 | Introducción a la analítica de datos | — |
 | 1 | 26-08-2026 | Repaso de manejo de datos en Python | — |
 | 1 | 26-08-2026 | Introducción de manejo de datos en Orange Data Mining | — |
-| 2 | 31-08-2026 | Bases de datos y tipos de variables | — |
+| 2 | 31-08-2026 | Bases de datos y tipos de variables |Laboratorios de simulación — Entrega 1|
 |---|---|**Módulo 02 - Transformación y visualización de datos**|---|
 | 2 | 02-09-2026 | Transformación de variables | — |
 | 3 | 07-08-2026 | Preproceso de datos | — |
-| 3 | 07-08-2026 | Visualización de datos | — |
-|---|---|---|---|
+| 3 | 07-08-2026 | Visualización de datos | Laboratorios de simulación — Entrega 2 |
+|---|---|**Modelado y evaluación de enfoques no supervisados**|---|
 | 5 | | Correlación, selección y extracción de características | — |
-| 6 | | Reducción de dimensión; agrupamiento de datos | Laboratorios de simulación — Entrega 1 |
+| 6 | | Reducción de dimensión; agrupamiento de datos | Proyecto integrador — Entrega 1 y Laboratorios de simulación — Entrega 3 |
+|---|---|**Modelado y evaluación de enfoques supervisados**|---|
 | 7 | | Aprendizaje supervisado: modelos de predicción, métricas y validación, KNN | — |
-| 8 | | Árboles de decisión y SVMs | Proyecto integrador — idea |
+| 8 | | Árboles de decisión y SVMs | — |
 | 9 | | Regresión logística y redes neuronales | — |
 | 10 | | Random Forest; ensemble learning (boosting y bagging) | — |
-| 11 | | Regresión lineal; métricas de evaluación | — |
+| 11 | | Regresión lineal; métricas de evaluación | Laboratorios de simulación — Entrega 4 |
+|---|---|**Redes neuronales artificiales y Deep Learning**|---|
 | 12 | | Redes neuronales artificiales | — |
-| 13 | | Introducción al deep learning (CNNs) | — |
+| 13 | | Introducción al deep learning (CNNs) |Laboratorios de simulación — Entrega 5 |
+|---|---|**Herramientas de análisis de datos**|---|
 | 14 | | Herramientas para la implementación de EDA | — |
-| 15 | | Herramientas web de visión por computador; manejo de GitHub y Streamlit | Laboratorios de simulación — Entrega 2 |
+| 15 | | Herramientas web de visión por computador; manejo de GitHub y Streamlit | — |
 | 16 | | Presentación final del proyecto integrador | Proyecto integrador — Entrega 2 |
 
 > Puedes editar esta tabla directamente desde GitHub (botón de lápiz ✏️ en la esquina superior derecha del archivo) sin necesidad de clonar el repositorio.
