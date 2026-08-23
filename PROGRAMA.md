@@ -68,6 +68,7 @@ Clases magistrales acompañadas de simulaciones en **Orange Data Mining** y **Py
 > Cronograma tentativo de 16 semanas construido a partir de los contenidos básicos oficiales. Completa la columna **Fecha** con el calendario académico real de 2026-II.
 
 | Semana | Fecha | Tema | Entregable |
+|---|---|---|---|
 |---|---|**Módulo 01 - Introducción**|---|
 | 1 | 24-08-2026 | Introducción a la analítica de datos | — |
 | 1 | 26-08-2026 | Repaso de manejo de datos en Python | — |
