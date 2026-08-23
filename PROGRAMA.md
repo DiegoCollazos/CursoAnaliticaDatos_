@@ -20,7 +20,7 @@
 | Planes asociados | 4028 — Ingeniería Electrónica (también cursada por estudiantes de otros planes como libre elección) |
 | Prerrequisitos | Técnicas de programación; Probabilidad y estadística |
 | Tipología | Asignatura de libre elección — Componente disciplinar |
-| Asistencia mínima | 85% (según ficha oficial; el material de inducción del curso menciona 80% — verificar el porcentaje vigente) |
+| Asistencia mínima | 85% de asistencia que corresponde a 28 de 32 clases |
 
 ## Descripción
 
@@ -94,8 +94,6 @@ Clases magistrales acompañadas de simulaciones en **Orange Data Mining** y **Py
 | 14 | | Herramientas para la implementación de EDA | — |
 | 15 | | Herramientas web de visión por computador; manejo de GitHub y Streamlit | — |
 | 16 | | Presentación final del proyecto integrador | Proyecto integrador — Entrega 2 |
-
-> Puedes editar esta tabla directamente desde GitHub (botón de lápiz ✏️ en la esquina superior derecha del archivo) sin necesidad de clonar el repositorio.
 
 ## Bibliografía básica
 
