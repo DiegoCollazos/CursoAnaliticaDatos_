@@ -106,15 +106,8 @@
 
 {\large \textbf{Curso:} Analítica de Datos (Aprendizaje de máquina) --- Código 4200729}\\[0.3cm]
 {\large \textbf{Módulo:} 1 --- Introducción}\\[0.3cm]
-{\large \textbf{Docente:} Diego Fabián Collazos Huertas}\\[1.5cm]
-
-\begin{tabular}{|p{4cm}|p{9cm}|}
-\hline
-\textbf{Nombre del estudiante} & \\[0.6cm]\hline
-\textbf{Documento} & \\[0.6cm]\hline
-\textbf{Grupo / equipo} & \\[0.6cm]\hline
-\textbf{Fecha de entrega} & \\[0.6cm]\hline
-\end{tabular}
+{\large \textbf{Docente:} Diego Fabián Collazos Huertas}\\[0.3cm]
+{\large \textbf{Modalidad:} trabajo en parejas}\\[1.5cm]
 
 \vfill
 
@@ -145,9 +138,10 @@ Este taller \textbf{no reemplaza} los notebooks de Python; los complementa. La i
 \section{Instrucciones generales}
 
 \begin{enumerate}[leftmargin=1.2cm]
-  \item Trabaja individualmente o en el equipo asignado por el docente.
-  \item Para cada parte del laboratorio, arma el flujo (\textit{workflow}) solicitado en el lienzo de Orange y responde las actividades marcadas con el ícono \faPencil.
-  \item El informe final debe incluir, para cada parte: \textbf{una captura de pantalla del workflow completo} armado en Orange, y las respuestas escritas a cada actividad.
+  \item \textbf{Este laboratorio se desarrolla en parejas} (2 estudiantes), asignadas o conformadas según indique el docente.
+  \item Para cada parte del laboratorio, arma el flujo (\textit{workflow}) solicitado en el lienzo de Orange.
+  \item Cada vez que veas el ícono \faPencil\ \textbf{Actividad}, documenta la respuesta \textbf{directamente sobre el lienzo de Orange}, usando la herramienta de texto (clic derecho sobre un espacio vacío del lienzo $\to$ \textit{Text}, o el ícono ``T'' de la barra de herramientas) para agregar un cuadro de texto junto a los widgets correspondientes. No se entregan respuestas en un documento aparte: el workflow comentado \textbf{es} la respuesta.
+  \item Además, toma una captura de pantalla del resultado de cada actividad (el widget correspondiente ya abierto, mostrando el gráfico o la tabla) para incluirla en el PDF de evidencias.
   \item Consulta la sección \textbf{Entregables} (al final de este documento) para el detalle de qué debes entregar y cómo.
 \end{enumerate}
 
@@ -171,7 +165,7 @@ Esta parte reproduce en Orange lo desarrollado en el notebook \texttt{\seqsplit{
 \end{enumerate}
 
 \begin{actividad}
-Compara el histograma/gráfico de \texttt{quality} que obtuviste en Orange con el resultado de \texttt{vinos['quality'].value\_counts()} del notebook. ¿Coinciden los conteos por nivel de calidad? Adjunta una captura del widget \textit{Distributions}.
+Compara el histograma/gráfico de \texttt{quality} que obtuviste en Orange con el resultado de \texttt{vinos['quality'].value\_counts()} del notebook. En un cuadro de texto junto al widget \textit{Distributions}, escribe si coinciden los conteos por nivel de calidad. Incluye en tu PDF de evidencias una captura de este widget.
 \end{actividad}
 
 \subsection{1.2 Dataset en formato Raw Text --- \textit{Auto MPG}}
@@ -188,7 +182,7 @@ autos_limpio.to_csv('autos_limpio.csv', index=False)
 \end{enumerate}
 
 \begin{actividad}
-Compara el \textit{Scatter Plot} de Orange con el gráfico equivalente hecho con Matplotlib en el notebook (potencia vs. eficiencia, coloreado por cilindros). ¿Se observa la misma tendencia (a mayor potencia, menor eficiencia)? Adjunta una captura del \textit{Scatter Plot}.
+Compara el \textit{Scatter Plot} de Orange con el gráfico equivalente hecho con Matplotlib en el notebook (potencia vs. eficiencia, coloreado por cilindros). En un cuadro de texto junto al \textit{Scatter Plot}, escribe si se observa la misma tendencia (a mayor potencia, menor eficiencia). Incluye en tu PDF de evidencias una captura de este widget.
 \end{actividad}
 
 \begin{nota}
@@ -272,7 +266,7 @@ FROM vinos
 GROUP BY quality
 ORDER BY quality;
 \end{lstlisting}
-Conecta el resultado a un widget \textbf{Bar Chart} (o \textbf{Distributions}) mostrando \texttt{num\_vinos} por \texttt{quality}. ¿El resultado coincide con la tabla \texttt{resumen\_sql} del notebook? Adjunta una captura del workflow completo (SQL Table $\to$ Data Table $\to$ Bar Chart).
+Conecta el resultado a un widget \textbf{Bar Chart} (o \textbf{Distributions}) mostrando \texttt{num\_vinos} por \texttt{quality}. En un cuadro de texto junto a ese widget, escribe si el resultado coincide con la tabla \texttt{resumen\_sql} del notebook. Incluye en tu PDF de evidencias una captura del workflow completo (SQL Table $\to$ Data Table $\to$ Bar Chart).
 \end{actividad}
 
 % ============================================================
@@ -294,12 +288,12 @@ Esta parte reproduce en Orange lo desarrollado en el notebook \texttt{\seqsplit{
 El widget \textbf{File} de Orange detecta automáticamente el tipo de cada columna y lo muestra con un ícono en la vista previa: \textbf{numérico} (círculo), \textbf{categórico} (cuadrado), \textbf{texto} o \textbf{fecha/hora}. Puedes hacer clic sobre el ícono de cada columna para cambiar manualmente su tipo.
 
 \begin{actividad}
-Abre la vista previa de columnas del widget \textit{File} y responde:
+Abre la vista previa de columnas del widget \textit{File} y responde, en un cuadro de texto junto al widget:
 \begin{enumerate}[label=\alph*)]
   \item ¿Qué tipo detectó Orange para la columna \texttt{track\_genre}? ¿Coincide con la clasificación que hicimos en el notebook (cualitativa nominal)?
   \item ¿Qué tipo detectó Orange para las columnas \texttt{key} y \texttt{mode}? Como vimos en el notebook, aunque se almacenan como números, en realidad son variables \textbf{cualitativas nominales} (una nota musical, y modo mayor/menor). Si Orange las detectó como numéricas, cámbialas manualmente a \textit{categorical} y explica por qué es importante hacer esta corrección antes de analizarlas.
 \end{enumerate}
-Adjunta una captura de la vista previa de columnas del widget \textit{File}, mostrando el ajuste que hiciste.
+Incluye en tu PDF de evidencias una captura de la vista previa de columnas del widget \textit{File}, mostrando el ajuste que hiciste.
 \end{actividad}
 
 \subsection{2.3 Visualización según el tipo de variable}
@@ -311,7 +305,7 @@ Adjunta una captura de la vista previa de columnas del widget \textit{File}, mos
 \end{enumerate}
 
 \begin{actividad}
-Compara ambos gráficos con los del notebook (barras de género musical, histograma de tempo). ¿El género más frecuente coincide? ¿La distribución del tempo tiene una forma parecida? Adjunta dos capturas del widget \textit{Distributions}: una con \texttt{track\_genre} seleccionada y otra con \texttt{tempo}.
+Compara ambos gráficos con los del notebook (barras de género musical, histograma de tempo). En un cuadro de texto junto al widget \textit{Distributions}, escribe si el género más frecuente coincide y si la distribución del tempo tiene una forma parecida. Incluye en tu PDF de evidencias dos capturas del widget \textit{Distributions}: una con \texttt{track\_genre} seleccionada y otra con \texttt{tempo}.
 \end{actividad}
 
 % ============================================================
@@ -319,13 +313,18 @@ Compara ambos gráficos con los del notebook (barras de género musical, histogr
 % ============================================================
 \section{Entregables}
 
-Sube al repositorio del curso (o entrega por el medio que indique el docente) un único documento (PDF o Word) que contenga:
+La pareja debe subir al repositorio del curso (o entregar por el medio que indique el docente) \textbf{dos tipos de archivo}:
 
 \begin{enumerate}[leftmargin=1.2cm]
-  \item Los datos de la portada de este documento diligenciados.
-  \item Para cada una de las 5 actividades (\faPencil): la captura de pantalla solicitada y la respuesta escrita.
-  \item Una breve reflexión final (5-8 líneas): ¿en qué escenarios preferirías usar Orange sobre Python, y en cuáles preferirías Python sobre Orange, a partir de lo que experimentaste en este laboratorio?
+  \item \textbf{Los archivos \texttt{.ows} de los workflows armados en Orange} (uno por cada parte del laboratorio, o los que hayas usado), \textbf{comentados con la herramienta de texto de Orange} tal como se indicó en cada actividad. El workflow comentado --- no un documento aparte --- es donde se responden las preguntas de cada actividad.
+  \item \textbf{Un único PDF con las capturas de pantalla} de los resultados obtenidos en cada una de las 5 actividades (\faPencil), claramente identificadas (por ejemplo, ``Actividad 1 --- Distributions de \texttt{quality}'').
 \end{enumerate}
+
+Nombra los archivos con los apellidos de ambos integrantes de la pareja, por ejemplo: \texttt{\seqsplit{apellido1\_apellido2\_parte1.ows}}, \texttt{\seqsplit{apellido1\_apellido2\_parte2.ows}} y \texttt{\seqsplit{apellido1\_apellido2\_evidencias.pdf}}.
+
+\begin{actividad}[title={\faPencil\ Reflexión final}]
+Como cuadro de texto de cierre en el workflow de la \textbf{Parte 2}, escriban en pareja una breve reflexión (5-8 líneas): ¿en qué escenarios preferirían usar Orange sobre Python, y en cuáles preferirían Python sobre Orange, a partir de lo que experimentaron en este laboratorio?
+\end{actividad}
 
 \begin{nota}
 Este laboratorio corresponde a la primera entrega del componente \textbf{Laboratorios de simulación (45\% de la nota)}. Revisa las fechas de entrega vigentes en \texttt{PROGRAMA.md}.
