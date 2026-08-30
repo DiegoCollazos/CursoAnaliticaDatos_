@@ -1,0 +1,334 @@
+\documentclass[11pt,letterpaper]{article}
+
+% ---------- Idioma y codificación ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+
+% ---------- Paquetes generales ----------
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{seqsplit}
+
+% ---------- Colores del curso ----------
+\definecolor{brandblue}{HTML}{1F4E78}
+\definecolor{brandgreen}{HTML}{1DB954}
+\definecolor{lightgray}{HTML}{F4F6F8}
+\definecolor{codebg}{HTML}{F5F5F5}
+
+% ---------- Encabezado y pie de página ----------
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\small Laboratorio de Simulación 1 --- Analítica de Datos}
+\fancyhead[R]{\small Módulo 1: Introducción}
+\fancyfoot[C]{\small\thepage}
+
+% ---------- Estilo de secciones ----------
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{brandblue}}
+  {\thesection}{0.6em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{brandblue}}
+  {\thesubsection}{0.6em}{}
+
+% ---------- Cajas de actividades y notas ----------
+\newtcolorbox{actividad}[1][]{
+  breakable, enhanced, colback=lightgray, colframe=brandblue,
+  boxrule=0.8pt, arc=2pt, left=6pt, right=6pt, top=5pt, bottom=5pt,
+  title={\faPencil\ Actividad}, fonttitle=\bfseries\color{white},
+  colbacktitle=brandblue, #1
+}
+\newtcolorbox{nota}[1][]{
+  breakable, enhanced, colback=white, colframe=brandgreen,
+  boxrule=0.8pt, arc=2pt, left=6pt, right=6pt, top=5pt, bottom=5pt,
+  title={Nota}, fonttitle=\bfseries\color{white},
+  colbacktitle=brandgreen, #1
+}
+
+% ---------- Código / comandos ----------
+\lstset{
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{codebg},
+  breaklines=true,
+  frame=single,
+  framerule=0.3pt,
+  rulecolor=\color{gray!50},
+  columns=fullflexible,
+  keepspaces=true,
+}
+
+% ---------- Metadatos del PDF ----------
+\hypersetup{
+  pdftitle={Laboratorio de Simulación 1 - Analítica de Datos},
+  pdfauthor={Diego Fabián Collazos Huertas},
+  pdfsubject={Curso Analítica de Datos - Módulo 1},
+  colorlinks=true,
+  linkcolor=brandblue,
+  urlcolor=brandblue,
+  citecolor=brandblue,
+}
+
+% Sustituto simple para el icono de lápiz (evita depender de fontawesome)
+\newcommand{\faPencil}{\raisebox{-0.1em}{\textbf{\Large\textbullet}}}
+
+\title{\vspace{-2cm}}
+\date{}
+
+\begin{document}
+
+% ============================================================
+% PORTADA
+% ============================================================
+\begin{titlepage}
+\centering
+\vspace*{1.5cm}
+
+{\Large Universidad Nacional de Colombia --- Sede Manizales}\\[0.2cm]
+{\large Facultad de Ingeniería y Arquitectura}\\[0.2cm]
+{\large Departamento de Ingeniería Eléctrica, Electrónica y Computación}\\[1.2cm]
+
+\rule{\linewidth}{1pt}\\[0.5cm]
+{\huge\bfseries\color{brandblue} Laboratorio de Simulación 1}\\[0.4cm]
+{\Large Implementación en Orange Data Mining}\\[0.5cm]
+\rule{\linewidth}{1pt}\\[1cm]
+
+{\large \textbf{Curso:} Analítica de Datos (Aprendizaje de máquina) --- Código 4200729}\\[0.3cm]
+{\large \textbf{Módulo:} 1 --- Introducción}\\[0.3cm]
+{\large \textbf{Docente:} Diego Fabián Collazos Huertas}\\[1.5cm]
+
+\begin{tabular}{|p{4cm}|p{9cm}|}
+\hline
+\textbf{Nombre del estudiante} & \\[0.6cm]\hline
+\textbf{Documento} & \\[0.6cm]\hline
+\textbf{Grupo / equipo} & \\[0.6cm]\hline
+\textbf{Fecha de entrega} & \\[0.6cm]\hline
+\end{tabular}
+
+\vfill
+
+{\small Este laboratorio hace parte de la nota de \textbf{Laboratorios de simulación (45\% de la evaluación)}, según el programa de la asignatura (\texttt{PROGRAMA.md}).}
+
+\end{titlepage}
+
+% ============================================================
+% OBJETIVOS
+% ============================================================
+\section{Objetivos}
+
+\begin{itemize}[leftmargin=1.2cm]
+  \item Reproducir en \textbf{Orange Data Mining} --- mediante programación visual, sin escribir código --- los mismos análisis que se implementaron en Python en los notebooks \texttt{\seqsplit{1.4\_Bases\_de\_Datos\_y\_Datasets\_Ejemplos.ipynb}} y \texttt{\seqsplit{1.6\_Tipos\_de\_Variables\_y\_Visualizacion\_Ejemplos.ipynb}}.
+  \item Practicar la carga de datos en distintos formatos (CSV, y datos ya preprocesados desde una base de datos SQL) usando los widgets de Orange.
+  \item Configurar una base de datos SQL y conectarla a Orange mediante el widget \textit{SQL Table}.
+  \item Identificar y corregir manualmente el tipo de variable de las columnas de un dataset dentro de Orange.
+  \item Elegir y construir la visualización adecuada (gráfico de barras vs. histograma) según el tipo de cada variable.
+\end{itemize}
+
+\begin{nota}
+Este taller \textbf{no reemplaza} los notebooks de Python; los complementa. La idea es que compares, para el mismo problema, qué tan distinto es resolverlo con código (Pandas/Matplotlib) frente a resolverlo con programación visual (Orange) --- ver \texttt{1.2\_Orange\_Data\_Mining.md} para instalar la herramienta si aún no lo has hecho.
+\end{nota}
+
+% ============================================================
+% INSTRUCCIONES GENERALES
+% ============================================================
+\section{Instrucciones generales}
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item Trabaja individualmente o en el equipo asignado por el docente.
+  \item Para cada parte del laboratorio, arma el flujo (\textit{workflow}) solicitado en el lienzo de Orange y responde las actividades marcadas con el ícono \faPencil.
+  \item El informe final debe incluir, para cada parte: \textbf{una captura de pantalla del workflow completo} armado en Orange, y las respuestas escritas a cada actividad.
+  \item Consulta la sección \textbf{Entregables} (al final de este documento) para el detalle de qué debes entregar y cómo.
+\end{enumerate}
+
+% ============================================================
+% PARTE 1
+% ============================================================
+\section{Parte 1 --- Bases de datos y datasets en Orange}
+
+Esta parte reproduce en Orange lo desarrollado en el notebook \texttt{\seqsplit{1.4\_Bases\_de\_Datos\_y\_Datasets\_Ejemplos.ipynb}}: cargar el mismo dataset en dos formatos distintos (CSV y datos provenientes de una base de datos SQL) y visualizarlo.
+
+\subsection{1.1 Dataset en formato CSV --- \textit{Wine Quality}}
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item Descarga el archivo CSV del repositorio UCI (el mismo que se usó en el notebook):\\
+  \url{https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv}
+  \item Abre Orange y crea un workflow nuevo.
+  \item Arrastra el widget \textbf{File} al lienzo y ábrelo. Selecciona el archivo descargado.
+  \item \textbf{Importante:} este CSV usa punto y coma (\texttt{;}) como separador, no coma. Si Orange no separa las columnas correctamente, revisa la opción de delimitador en el widget \textit{File} (o renombra el archivo con extensión \texttt{.csv} después de verificar el separador; Orange normalmente lo detecta automáticamente).
+  \item Conecta el widget \textbf{Data Table} a \textit{File} para verificar que las 1599 filas y 12 columnas se cargaron correctamente.
+  \item Agrega el widget \textbf{Distributions}, conéctalo a \textit{File}, y selecciona la variable \texttt{quality}.
+\end{enumerate}
+
+\begin{actividad}
+Compara el histograma/gráfico de \texttt{quality} que obtuviste en Orange con el resultado de \texttt{vinos['quality'].value\_counts()} del notebook. ¿Coinciden los conteos por nivel de calidad? Adjunta una captura del widget \textit{Distributions}.
+\end{actividad}
+
+\subsection{1.2 Dataset en formato Raw Text --- \textit{Auto MPG}}
+
+El archivo \texttt{auto-mpg.data} de la UCI viene en \textbf{texto plano sin delimitador fijo} (separado por una cantidad variable de espacios, con \texttt{?} para los valores faltantes y el nombre del carro entre comillas). Orange está diseñado para trabajar con datos ya tabulares, así que --- igual que harías en un proyecto real --- usamos Python/Pandas para la limpieza de este tipo de formato, y Orange para la exploración y visualización posterior:
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item En el notebook \texttt{1.4}, ejecuta hasta la celda que genera \texttt{autos\_limpio} (sección 2) y expórtalo a CSV agregando esta línea:
+  \begin{lstlisting}[language=Python]
+autos_limpio.to_csv('autos_limpio.csv', index=False)
+  \end{lstlisting}
+  \item Carga \texttt{autos\_limpio.csv} en Orange con el widget \textbf{File}, igual que en el punto 1.1.
+  \item Agrega un widget \textbf{Scatter Plot}: en el eje X selecciona \texttt{caballos\_fuerza}, en el eje Y selecciona \texttt{mpg}, y en \textit{Color} selecciona \texttt{cilindros}.
+\end{enumerate}
+
+\begin{actividad}
+Compara el \textit{Scatter Plot} de Orange con el gráfico equivalente hecho con Matplotlib en el notebook (potencia vs. eficiencia, coloreado por cilindros). ¿Se observa la misma tendencia (a mayor potencia, menor eficiencia)? Adjunta una captura del \textit{Scatter Plot}.
+\end{actividad}
+
+\begin{nota}
+Este es un buen ejemplo de cuándo usar cada herramienta: Python/Pandas es más flexible para \textbf{parsear} formatos de texto no estandarizados; Orange es más ágil para \textbf{explorar visualmente} datos que ya están en formato tabular.
+\end{nota}
+
+\subsection{1.3 Base de datos SQL}
+
+A diferencia de Pandas (que puede leer directamente un archivo SQLite con el módulo \texttt{sqlite3}, como se hizo en el notebook), el widget nativo de Orange para bases de datos --- \textbf{SQL Table} --- está diseñado para conectarse a un \textbf{motor cliente-servidor} como PostgreSQL, no a un archivo SQLite local. Por eso, para esta parte del taller vamos a montar la misma información en \textbf{PostgreSQL}.
+
+\subsubsection*{Paso 1 --- Instalar PostgreSQL}
+
+\begin{itemize}[leftmargin=1.2cm]
+  \item \textbf{Windows:} descarga el instalador desde \url{https://www.postgresql.org/download/windows/} y sigue el asistente (recuerda la contraseña que le asignes al usuario \texttt{postgres}).
+  \item \textbf{macOS:} \texttt{brew install postgresql@16} y luego \texttt{brew services start postgresql@16}.
+  \item \textbf{Linux (Ubuntu/Debian):} \texttt{sudo apt install postgresql} y luego \texttt{sudo systemctl start postgresql}.
+\end{itemize}
+
+\subsubsection*{Paso 2 --- Crear la base de datos y cargar los datos}
+
+Abre una terminal y conéctate con el cliente \texttt{psql} (te pedirá la contraseña que configuraste):
+
+\begin{lstlisting}[language=bash]
+psql -U postgres
+\end{lstlisting}
+
+Dentro de \texttt{psql}, crea la base de datos y la tabla, y sal:
+
+\begin{lstlisting}[language=SQL]
+CREATE DATABASE curso_analitica;
+\c curso_analitica
+
+CREATE TABLE vinos (
+    fixed_acidity        NUMERIC,
+    volatile_acidity     NUMERIC,
+    citric_acid          NUMERIC,
+    residual_sugar       NUMERIC,
+    chlorides             NUMERIC,
+    free_sulfur_dioxide   NUMERIC,
+    total_sulfur_dioxide  NUMERIC,
+    density                NUMERIC,
+    pH                     NUMERIC,
+    sulphates              NUMERIC,
+    alcohol                NUMERIC,
+    quality                INTEGER
+);
+
+\q
+\end{lstlisting}
+
+Desde la terminal (no dentro de \texttt{psql}), carga el archivo CSV descargado en el punto 1.1 dentro de la tabla que acabas de crear:
+
+\begin{lstlisting}[language=bash]
+psql -U postgres -d curso_analitica -c "\copy vinos FROM 'winequality-red.csv' WITH (FORMAT csv, HEADER true, DELIMITER ';')"
+\end{lstlisting}
+
+\begin{nota}
+Ajusta la ruta del archivo \texttt{winequality-red.csv} según dónde lo hayas guardado. Si \texttt{psql} no está en el \texttt{PATH} de tu sistema, en Windows normalmente lo encuentras en \texttt{C:\textbackslash Program Files\textbackslash PostgreSQL\textbackslash 16\textbackslash bin\textbackslash psql.exe}.
+\end{nota}
+
+\subsubsection*{Paso 3 --- Conectar Orange a la base de datos}
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item En Orange, arrastra al lienzo el widget \textbf{SQL Table} (categoría \textit{Data}) y ábrelo.
+  \item Completa los campos de conexión:
+  \begin{itemize}
+    \item \textbf{Type:} PostgreSQL
+    \item \textbf{Server:} \texttt{localhost}
+    \item \textbf{Database:} \texttt{curso\_analitica}
+    \item \textbf{User name} / \textbf{Password:} las de tu usuario \texttt{postgres}
+  \end{itemize}
+  \item Una vez conectado, en \textbf{Table} selecciona \texttt{vinos} (o escribe una consulta SQL propia en el campo \textit{Custom SQL}, por ejemplo la misma consulta \texttt{GROUP BY} del notebook).
+  \item Conecta la salida a un widget \textbf{Data Table} para confirmar que los 1599 registros llegaron correctamente.
+\end{enumerate}
+
+\begin{actividad}
+En el campo \textit{Custom SQL} del widget \textit{SQL Table}, escribe la misma consulta que usamos en el notebook:
+\begin{lstlisting}[language=SQL]
+SELECT quality, COUNT(*) AS num_vinos, ROUND(AVG(ph), 2) AS ph_promedio
+FROM vinos
+GROUP BY quality
+ORDER BY quality;
+\end{lstlisting}
+Conecta el resultado a un widget \textbf{Bar Chart} (o \textbf{Distributions}) mostrando \texttt{num\_vinos} por \texttt{quality}. ¿El resultado coincide con la tabla \texttt{resumen\_sql} del notebook? Adjunta una captura del workflow completo (SQL Table $\to$ Data Table $\to$ Bar Chart).
+\end{actividad}
+
+% ============================================================
+% PARTE 2
+% ============================================================
+\section{Parte 2 --- Tipos de variables y visualización en Orange}
+
+Esta parte reproduce en Orange lo desarrollado en el notebook \texttt{\seqsplit{1.6\_Tipos\_de\_Variables\_y\_Visualizacion\_Ejemplos.ipynb}}: identificar el tipo de cada variable de un dataset y elegir la visualización correcta.
+
+\subsection{2.1 Cargar el dataset de Kaggle}
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item Si aún no lo tienes, descarga el \textit{Spotify Tracks Dataset} desde Kaggle (\url{https://www.kaggle.com/datasets/maharshipandya/-spotify-tracks-dataset}), o reutiliza el archivo \texttt{.csv} que ya descargaste con \texttt{kagglehub} al ejecutar el notebook \texttt{1.6} (queda guardado en la ruta que imprime la celda de descarga).
+  \item Carga ese archivo en Orange con el widget \textbf{File}.
+\end{enumerate}
+
+\subsection{2.2 Identificación de tipos de variable}
+
+El widget \textbf{File} de Orange detecta automáticamente el tipo de cada columna y lo muestra con un ícono en la vista previa: \textbf{numérico} (círculo), \textbf{categórico} (cuadrado), \textbf{texto} o \textbf{fecha/hora}. Puedes hacer clic sobre el ícono de cada columna para cambiar manualmente su tipo.
+
+\begin{actividad}
+Abre la vista previa de columnas del widget \textit{File} y responde:
+\begin{enumerate}[label=\alph*)]
+  \item ¿Qué tipo detectó Orange para la columna \texttt{track\_genre}? ¿Coincide con la clasificación que hicimos en el notebook (cualitativa nominal)?
+  \item ¿Qué tipo detectó Orange para las columnas \texttt{key} y \texttt{mode}? Como vimos en el notebook, aunque se almacenan como números, en realidad son variables \textbf{cualitativas nominales} (una nota musical, y modo mayor/menor). Si Orange las detectó como numéricas, cámbialas manualmente a \textit{categorical} y explica por qué es importante hacer esta corrección antes de analizarlas.
+\end{enumerate}
+Adjunta una captura de la vista previa de columnas del widget \textit{File}, mostrando el ajuste que hiciste.
+\end{actividad}
+
+\subsection{2.3 Visualización según el tipo de variable}
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item Conecta el widget \textbf{Distributions} al widget \textit{File}.
+  \item Selecciona la variable \texttt{track\_genre}: al ser categórica, Orange debe mostrar automáticamente un \textbf{gráfico de barras} con la frecuencia de cada género.
+  \item Ahora selecciona la variable \texttt{tempo}: al ser continua, Orange debe mostrar automáticamente un \textbf{histograma}.
+\end{enumerate}
+
+\begin{actividad}
+Compara ambos gráficos con los del notebook (barras de género musical, histograma de tempo). ¿El género más frecuente coincide? ¿La distribución del tempo tiene una forma parecida? Adjunta dos capturas del widget \textit{Distributions}: una con \texttt{track\_genre} seleccionada y otra con \texttt{tempo}.
+\end{actividad}
+
+% ============================================================
+% ENTREGABLES
+% ============================================================
+\section{Entregables}
+
+Sube al repositorio del curso (o entrega por el medio que indique el docente) un único documento (PDF o Word) que contenga:
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item Los datos de la portada de este documento diligenciados.
+  \item Para cada una de las 5 actividades (\faPencil): la captura de pantalla solicitada y la respuesta escrita.
+  \item Una breve reflexión final (5-8 líneas): ¿en qué escenarios preferirías usar Orange sobre Python, y en cuáles preferirías Python sobre Orange, a partir de lo que experimentaste en este laboratorio?
+\end{enumerate}
+
+\begin{nota}
+Este laboratorio corresponde a la primera entrega del componente \textbf{Laboratorios de simulación (45\% de la nota)}. Revisa las fechas de entrega vigentes en \texttt{PROGRAMA.md}.
+\end{nota}
+
+\end{document}
