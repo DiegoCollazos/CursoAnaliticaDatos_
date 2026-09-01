@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entregas — Analítica de Datos</title>
+<style>
+  :root {
+    --bg: #f4f6f8;
+    --panel: #ffffff;
+    --border: #dde3ea;
+    --text: #1f2933;
+    --text-muted: #64748b;
+    --brand: #1f4e78;
+    --brand-dark: #163a5a;
+    --green: #1a7f37;
+    --green-bg: #d9f3e1;
+    --red: #b3261e;
+    --red-bg: #fbdcd9;
+    --amber: #92620a;
+    --amber-bg: #fdedc8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+  }
+  header {
+    background: var(--brand);
+    color: white;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  header h1 { font-size: 1.25rem; margin: 0; }
+  header .sub { font-size: 0.85rem; opacity: 0.85; }
+  main { max-width: 780px; margin: 0 auto; padding: 20px 16px 60px; }
+  .panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 18px;
+  }
+  .panel h2 { margin-top: 0; font-size: 1.05rem; }
+  .config-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  label { display: block; font-size: 0.82rem; color: var(--text-muted); margin-bottom: 4px; }
+  input[type=text], input[type=password], select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    background: white;
+  }
+  input[type=file] {
+    width: 100%;
+    padding: 10px;
+    border: 1px dashed var(--border);
+    border-radius: 6px;
+    background: #fafbfc;
+    font-size: 0.85rem;
+  }
+  button {
+    font-family: inherit;
+    font-size: 0.88rem;
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    cursor: pointer;
+    color: var(--text);
+  }
+  button:hover { background: #eef2f6; }
+  button.primary {
+    background: var(--brand);
+    color: white;
+    border-color: var(--brand);
+    font-weight: bold;
+  }
+  button.primary:hover { background: var(--brand-dark); }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+  .field { margin-bottom: 14px; }
+  .msg { font-size: 0.85rem; padding: 8px 12px; border-radius: 6px; margin-top: 10px; }
+  .msg.ok { background: var(--green-bg); color: var(--green); }
+  .msg.err { background: var(--red-bg); color: var(--red); }
+  .msg.info { background: #e5edf5; color: var(--brand); }
+  .hint { font-size: 0.78rem; color: var(--text-muted); margin-top: 6px; }
+  details summary { cursor: pointer; font-size: 0.9rem; color: var(--brand); }
+  .log {
+    font-family: ui-monospace, Consolas, monospace;
+    font-size: 0.78rem;
+    background: #0f172a;
+    color: #cbd5e1;
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin-top: 12px;
+    max-height: 220px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    display: none;
+  }
+  .log.visible { display: block; }
+  .log .line-ok { color: #86efac; }
+  .log .line-err { color: #fca5a5; }
+  .file-list { font-size: 0.82rem; color: var(--text-muted); margin-top: 6px; }
+  .step-badge {
+    display: inline-block; font-size: 0.75rem; padding: 2px 8px;
+    border-radius: 999px; background: var(--green-bg); color: var(--green); font-weight: bold;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>Entrega de trabajos — Analítica de Datos</h1>
+    <div class="sub" id="repo-label">DiegoCollazos/CursoAnaliticaDatos_</div>
+  </div>
+  <span class="step-badge">Sube tu entrega directo a GitHub</span>
+</header>
+
+<main>
+
+  <div class="panel">
+    <details id="config-details">
+      <summary>⚙️ Configuración de GitHub (clic para abrir/cerrar)</summary>
+      <div style="margin-top:12px;" class="config-grid">
+        <div>
+          <label for="cfg-owner">Propietario del repositorio</label>
+          <input type="text" id="cfg-owner" value="DiegoCollazos">
+        </div>
+        <div>
+          <label for="cfg-repo">Nombre del repositorio</label>
+          <input type="text" id="cfg-repo" value="CursoAnaliticaDatos_">
+        </div>
+        <div>
+          <label for="cfg-branch">Rama base (a la que se dirige el Pull Request)</label>
+          <input type="text" id="cfg-branch" value="main">
+        </div>
+        <div style="grid-column:1/-1;">
+          <label for="cfg-token">Tu token de acceso personal (Personal Access Token) de GitHub</label>
+          <input type="password" id="cfg-token" placeholder="github_pat_...">
+          <div class="hint">
+            Se guarda solo en este navegador (localStorage) y se usa únicamente para hablar con la API de GitHub, nunca se comparte con nadie más.
+            Crea el tuyo en <strong>GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token</strong>,
+            limitado a <strong>este repositorio únicamente</strong>, con permisos <strong>Contents: Read and write</strong> y
+            <strong>Pull requests: Read and write</strong>. Trátalo como una contraseña: no lo compartas ni lo uses en computadores públicos.
+          </div>
+        </div>
+      </div>
+      <div class="actions-row" style="margin-top:12px;">
+        <button class="primary" onclick="guardarConfig()">Guardar configuración</button>
+      </div>
+      <div id="config-msg"></div>
+    </details>
+  </div>
+
+  <div class="panel">
+    <h2>Datos de la entrega</h2>
+
+    <div class="field">
+      <label for="categoria">¿Qué estás entregando?</label>
+      <select id="categoria">
+        <option value="Laboratorio de Simulación 1">Laboratorio de Simulación 1</option>
+        <option value="Laboratorio de Simulación 2">Laboratorio de Simulación 2</option>
+        <option value="Laboratorio de Simulación 3">Laboratorio de Simulación 3</option>
+        <option value="Laboratorio de Simulación 4">Laboratorio de Simulación 4</option>
+        <option value="Laboratorio de Simulación 5">Laboratorio de Simulación 5</option>
+        <option value="Proyecto Integrador - Idea">Proyecto Integrador — Idea</option>
+        <option value="Proyecto Integrador - Entrega final">Proyecto Integrador — Entrega final</option>
+        <option value="Otra">Otra (especificar abajo)</option>
+      </select>
+    </div>
+
+    <div class="field" id="categoria-otra-field" style="display:none;">
+      <label for="categoria-otra">Nombre de la entrega</label>
+      <input type="text" id="categoria-otra" placeholder="Ej. Taller 3 — Clustering">
+    </div>
+
+    <div class="field">
+      <label for="apellidos">Apellidos de los integrantes (así se nombra tu carpeta de entrega)</label>
+      <input type="text" id="apellidos" placeholder="Ej. Perez_Gomez">
+      <div class="hint">Si el trabajo es en pareja, separa los dos apellidos con un guion bajo, ej. <code>Perez_Gomez</code>.</div>
+    </div>
+
+    <div class="field">
+      <label for="archivos">Archivo(s) a entregar</label>
+      <input type="file" id="archivos" multiple>
+      <div class="hint">Puedes seleccionar varios archivos a la vez (por ejemplo, el <code>.ows</code> y el <code>.pdf</code> de evidencias). Tamaño recomendado: menor a 20&nbsp;MB por archivo.</div>
+      <div class="file-list" id="file-list"></div>
+    </div>
+
+    <button class="primary" id="btn-subir" onclick="subirEntrega()">📤 Subir entrega y crear Pull Request</button>
+
+    <div id="log" class="log"></div>
+    <div id="submit-msg"></div>
+  </div>
+
+  <div class="panel">
+    <h2>¿Cómo funciona?</h2>
+    <p class="hint">
+      Tu entrega <strong>no se sube directamente</strong> a la rama principal del curso. Esta página crea una rama nueva solo para tu entrega,
+      sube ahí tus archivos, y abre un <strong>Pull Request</strong> para que el docente lo revise y lo fusione. Si vuelves a subir archivos
+      con la misma categoría y los mismos apellidos (por ejemplo, para corregir algo antes de la fecha límite), se agregan al mismo
+      Pull Request en vez de crear uno nuevo.
+    </p>
+  </div>
+
+</main>
+
+<script>
+let cfg = { owner: '', repo: '', branch: 'main', token: '' };
+
+function cargarConfigLocal() {
+  const saved = localStorage.getItem('entregas_cfg');
+  if (saved) {
+    try { cfg = { ...cfg, ...JSON.parse(saved) }; } catch (e) {}
+  }
+  document.getElementById('cfg-owner').value = cfg.owner || 'DiegoCollazos';
+  document.getElementById('cfg-repo').value = cfg.repo || 'CursoAnaliticaDatos_';
+  document.getElementById('cfg-branch').value = cfg.branch || 'main';
+  document.getElementById('cfg-token').value = cfg.token || '';
+  document.getElementById('repo-label').textContent = `${cfg.owner || 'DiegoCollazos'}/${cfg.repo || 'CursoAnaliticaDatos_'}`;
+}
+
+function guardarConfig() {
+  cfg.owner = document.getElementById('cfg-owner').value.trim();
+  cfg.repo = document.getElementById('cfg-repo').value.trim();
+  cfg.branch = document.getElementById('cfg-branch').value.trim() || 'main';
+  cfg.token = document.getElementById('cfg-token').value.trim();
+  localStorage.setItem('entregas_cfg', JSON.stringify(cfg));
+  document.getElementById('repo-label').textContent = `${cfg.owner}/${cfg.repo}`;
+  showConfigMsg('Configuración guardada en este navegador.', 'ok');
+}
+
+function showConfigMsg(text, kind) {
+  document.getElementById('config-msg').innerHTML = `<div class="msg ${kind}">${text}</div>`;
+}
+function showSubmitMsg(html, kind) {
+  document.getElementById('submit-msg').innerHTML = `<div class="msg ${kind}">${html}</div>`;
+}
+
+document.getElementById('categoria').addEventListener('change', (e) => {
+  document.getElementById('categoria-otra-field').style.display = e.target.value === 'Otra' ? 'block' : 'none';
+});
+
+document.getElementById('archivos').addEventListener('change', (e) => {
+  const files = Array.from(e.target.files);
+  const lista = document.getElementById('file-list');
+  if (files.length === 0) { lista.textContent = ''; return; }
+  lista.innerHTML = files.map(f => `• ${f.name} (${(f.size / 1024).toFixed(0)} KB)`).join('<br>');
+});
+
+function slugify(texto) {
+  return texto
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+}
+
+function log(text, kind) {
+  const el = document.getElementById('log');
+  el.classList.add('visible');
+  const cls = kind === 'ok' ? 'line-ok' : kind === 'err' ? 'line-err' : '';
+  const span = document.createElement('div');
+  if (cls) span.className = cls;
+  span.textContent = text;
+  el.appendChild(span);
+  el.scrollTop = el.scrollHeight;
+}
+function clearLog() {
+  const el = document.getElementById('log');
+  el.innerHTML = '';
+  el.classList.remove('visible');
+}
+
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      // reader.result es "data:<mime>;base64,AAAA..." — nos quedamos solo con la parte base64
+      const base64 = reader.result.split(',')[1];
+      resolve(base64);
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+function apiHeaders() {
+  return {
+    'Accept': 'application/vnd.github+json',
+    'X-GitHub-Api-Version': '2022-11-28',
+    'Authorization': 'Bearer ' + cfg.token,
+  };
+}
+function apiBase() {
+  return `https://api.github.com/repos/${cfg.owner}/${cfg.repo}`;
+}
+
+async function subirEntrega() {
+  guardarConfig();
+  clearLog();
+  showSubmitMsg('', '');
+
+  const categoriaSel = document.getElementById('categoria').value;
+  const categoria = categoriaSel === 'Otra'
+    ? document.getElementById('categoria-otra').value.trim()
+    : categoriaSel;
+  const apellidos = document.getElementById('apellidos').value.trim();
+  const archivos = Array.from(document.getElementById('archivos').files);
+
+  if (!cfg.token) { showSubmitMsg('Configura primero tu token de GitHub (arriba).', 'err'); document.getElementById('config-details').open = true; return; }
+  if (!categoria) { showSubmitMsg('Indica qué estás entregando.', 'err'); return; }
+  if (!apellidos) { showSubmitMsg('Indica los apellidos de los integrantes.', 'err'); return; }
+  if (archivos.length === 0) { showSubmitMsg('Selecciona al menos un archivo.', 'err'); return; }
+
+  const btn = document.getElementById('btn-subir');
+  btn.disabled = true;
+  btn.textContent = 'Subiendo…';
+
+  const catSlug = slugify(categoria);
+  const apeSlug = slugify(apellidos);
+  const branchName = `entrega/${catSlug}/${apeSlug}`;
+  const carpeta = `entregas/${catSlug}/${apeSlug}`;
+
+  try {
+    log(`Preparando entrega "${categoria}" de "${apellidos}"...`);
+
+    // 1) Sha de la rama base (main)
+    const baseRefRes = await fetch(`${apiBase()}/git/ref/heads/${encodeURIComponent(cfg.branch)}`, { headers: apiHeaders() });
+    if (!baseRefRes.ok) throw new Error(`No se pudo leer la rama base "${cfg.branch}" (${baseRefRes.status}). Revisa el nombre de la rama en Configuración.`);
+    const baseSha = (await baseRefRes.json()).object.sha;
+
+    // 2) Verificar si la rama de esta entrega ya existe (entregas anteriores del mismo equipo)
+    let branchExists = false;
+    const branchRefRes = await fetch(`${apiBase()}/git/ref/heads/${encodeURIComponent(branchName)}`, { headers: apiHeaders() });
+    if (branchRefRes.ok) {
+      branchExists = true;
+      log(`Ya existe una entrega previa para "${apellidos}" en esta categoría: se agregarán los archivos a esa misma entrega.`, 'ok');
+    } else if (branchRefRes.status === 404) {
+      const createRes = await fetch(`${apiBase()}/git/refs`, {
+        method: 'POST',
+        headers: { ...apiHeaders(), 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ref: `refs/heads/${branchName}`, sha: baseSha }),
+      });
+      if (!createRes.ok) throw new Error(`No se pudo crear la rama de la entrega (${createRes.status}).`);
+      log('Rama de entrega creada.', 'ok');
+    } else {
+      throw new Error(`No se pudo verificar si la entrega ya existía (${branchRefRes.status}).`);
+    }
+
+    // 3) Subir cada archivo como un commit en esa rama
+    for (const file of archivos) {
+      const path = `${carpeta}/${file.name}`;
+      log(`Subiendo ${file.name}...`);
+      const contentB64 = await fileToBase64(file);
+
+      // Si el archivo ya existe en esa rama (reentrega), hay que mandar su sha actual para poder sobreescribirlo
+      let existingSha = null;
+      const existingRes = await fetch(`${apiBase()}/contents/${encodeURIComponent(path)}?ref=${encodeURIComponent(branchName)}`, { headers: apiHeaders() });
+      if (existingRes.ok) existingSha = (await existingRes.json()).sha;
+
+      const putBody = {
+        message: `Entrega: ${categoria} — ${apellidos} — ${file.name}`,
+        content: contentB64,
+        branch: branchName,
+      };
+      if (existingSha) putBody.sha = existingSha;
+
+      const putRes = await fetch(`${apiBase()}/contents/${encodeURIComponent(path)}`, {
+        method: 'PUT',
+        headers: { ...apiHeaders(), 'Content-Type': 'application/json' },
+        body: JSON.stringify(putBody),
+      });
+      if (!putRes.ok) {
+        const errJson = await putRes.json().catch(() => ({}));
+        throw new Error(`Error subiendo ${file.name}: ${errJson.message || putRes.status}`);
+      }
+      log(`${file.name} subido correctamente.`, 'ok');
+    }
+
+    // 4) Crear el Pull Request si no existía uno abierto ya para esta entrega
+    let prUrl = null;
+    const prListRes = await fetch(`${apiBase()}/pulls?head=${cfg.owner}:${branchName}&state=open`, { headers: apiHeaders() });
+    if (prListRes.ok) {
+      const prs = await prListRes.json();
+      if (prs.length > 0) prUrl = prs[0].html_url;
+    }
+
+    if (!prUrl) {
+      log('Creando Pull Request...');
+      const prRes = await fetch(`${apiBase()}/pulls`, {
+        method: 'POST',
+        headers: { ...apiHeaders(), 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: `Entrega: ${categoria} — ${apellidos}`,
+          head: branchName,
+          base: cfg.branch,
+          body: `Entrega automática vía la página de entregas.\n\n- **Categoría:** ${categoria}\n- **Integrantes:** ${apellidos}\n- **Archivos:** ${archivos.map(f => f.name).join(', ')}`,
+        }),
+      });
+      if (!prRes.ok) {
+        const errJson = await prRes.json().catch(() => ({}));
+        throw new Error(`Los archivos se subieron, pero no se pudo crear el Pull Request: ${errJson.message || prRes.status}`);
+      }
+      prUrl = (await prRes.json()).html_url;
+      log('Pull Request creado.', 'ok');
+    } else {
+      log('Se actualizó el Pull Request existente con los nuevos archivos.', 'ok');
+    }
+
+    showSubmitMsg(`✅ ¡Entrega subida correctamente! Revisa tu Pull Request aquí: <a href="${prUrl}" target="_blank" rel="noopener">${prUrl}</a>`, 'ok');
+  } catch (e) {
+    log('Error: ' + e.message, 'err');
+    showSubmitMsg('❌ ' + e.message, 'err');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '📤 Subir entrega y crear Pull Request';
+  }
+}
+
+cargarConfigLocal();
+</script>
+
+</body>
+</html>
