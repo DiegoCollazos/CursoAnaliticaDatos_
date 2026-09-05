@@ -21,8 +21,9 @@ De esta forma ningún estudiante puede escribir directamente sobre el contenido 
 
 1. Abre la [página de entregas](https://diegocollazos.github.io/CursoAnaliticaDatos_/entregas/entregas.html).
 2. La primera vez, despliega **⚙️ Configuración de GitHub** y crea tu propio *Personal Access Token*:
-   - **GitHub → Settings (de tu perfil) → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token**.
-   - Limítalo a este repositorio (`CursoAnaliticaDatos_`) con permisos **Contents: Read and write** y **Pull requests: Read and write**.
+   - **GitHub → Settings (de tu perfil) → Developer settings → Personal access tokens → Tokens (classic) → Generate new token (classic)**.
+   - Marca el permiso **repo** (acceso completo a repositorios).
+   - ⚠️ **Debe ser un token clásico ("classic"), no un "fine-grained token"** — como este repositorio es de una cuenta personal (no una organización), los fine-grained tokens de un colaborador nunca van a poder verlo como "Resource owner", así que jamás van a funcionar aquí. Este es un límite conocido de GitHub, no un error de configuración.
    - Pega el token en la página y haz clic en **Guardar configuración**. Queda guardado solo en tu navegador; trátalo como una contraseña y no lo compartas.
 3. Elige qué estás entregando, escribe los apellidos del equipo, selecciona el o los archivos, y haz clic en **Subir entrega y crear Pull Request**.
 4. Guarda el enlace al Pull Request que te muestra la página — ahí puedes ver el estado de tu entrega y agregar comentarios si el docente te pide algo.
@@ -44,9 +45,10 @@ El flujo de rama + Pull Request de esta página existe justamente para que, aun 
 
 ### 🩹 Error 403 al subir ("no se pudo crear la rama")
 
-La página ahora verifica el permiso de escritura *antes* de intentar nada (llamando a la API de GitHub) y muestra un mensaje específico en vez de solo "403". Si un estudiante ve este error, casi siempre es una de estas dos causas, en este orden de probabilidad:
+La página ahora verifica el permiso de escritura *antes* de intentar nada (llamando a la API de GitHub) y muestra un mensaje específico en vez de solo "403". Causas posibles, en este orden de probabilidad:
 
-1. **Su token se creó antes de aceptar la invitación de colaborador**, o se creó con el permiso **Contents** en modo "Read-only" en vez de "Read and write". Solución: aceptar primero la invitación en `https://github.com/DiegoCollazos/CursoAnaliticaDatos_/invitations`, y **generar un token nuevo** después de aceptar, con Contents: Read and write y Pull requests: Read and write.
+1. **El estudiante generó un token "fine-grained" en vez de un token clásico.** Este es la causa más común y **un límite real de GitHub, no un error de configuración**: al crear un fine-grained token, el campo "Resource owner" solo permite elegir la propia cuenta del estudiante o una organización a la que pertenezca — nunca la cuenta de otra persona (como `DiegoCollazos`), aunque el estudiante ya sea colaborador aceptado. Por eso, si a un estudiante "no le aparece DiegoCollazos en Resource owner, solo su usuario", es totalmente normal y esperado con un fine-grained token: **no hay ninguna forma de arreglar eso, el estudiante tiene que usar un token clásico (classic) con el permiso `repo`** (ver instrucciones arriba). Más detalle en la [discusión de la comunidad de GitHub sobre este límite](https://github.com/orgs/community/discussions/53641).
 2. **La invitación de colaborador sigue pendiente** (no la ha aceptado, aunque ya se le haya agregado). El estudiante debe revisar su correo o `https://github.com/DiegoCollazos/CursoAnaliticaDatos_/invitations` y aceptar.
+3. El token clásico no tiene marcado el permiso **repo**, o se generó antes de aceptar la invitación (en ese caso, genera uno nuevo después de aceptar).
 
-Si un estudiante ya aceptó la invitación (aparece en Settings → Collaborators con rol Write) y ya generó el token después de aceptar, y el error persiste, revisa si el repositorio tiene alguna regla de protección de rama (Settings → Rules/Branches) que esté bloqueando la creación de ramas `entrega/*`.
+Si un estudiante ya aceptó la invitación (aparece en Settings → Collaborators con rol Write), ya generó un token **clásico** con permiso `repo` después de aceptar, y el error persiste, revisa si el repositorio tiene alguna regla de protección de rama (Settings → Rules/Branches) que esté bloqueando la creación de ramas `entrega/*`.
