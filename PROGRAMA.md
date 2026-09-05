@@ -75,9 +75,9 @@ Clases magistrales acompañadas de simulaciones en **Orange Data Mining** y **Py
 | 1 | 26-08-2026 | Introducción de manejo de datos en Orange Data Mining | — |
 | 2 | 31-08-2026 | Bases de datos y tipos de variables |Laboratorios de simulación — Entrega 1|
 |---|---|**Módulo 02 - Transformación y visualización de datos**|---|
-| 2 | 02-09-2026 | Transformación de variables | — |
-| 3 | 07-08-2026 | Preproceso de datos | — |
-| 3 | 07-08-2026 | Visualización de datos | Laboratorios de simulación — Entrega 2 |
+| 2 | 07-09-2026 | Transformación de variables | — |
+| 3 | 09-09-2026 | Preproceso de datos | — |
+| 3 | 14-09-2026 | Visualización de datos | Laboratorios de simulación — Entrega 2 |
 |---|---|**Modelado y evaluación de enfoques no supervisados**|---|
 | 5 | | Correlación, selección y extracción de características | — |
 | 6 | | Reducción de dimensión; agrupamiento de datos | Proyecto integrador — Entrega 1 y Laboratorios de simulación — Entrega 3 |
