@@ -153,9 +153,10 @@
           <input type="password" id="cfg-token" placeholder="github_pat_...">
           <div class="hint">
             Se guarda solo en este navegador (localStorage) y se usa únicamente para hablar con la API de GitHub, nunca se comparte con nadie más.
-            Crea el tuyo en <strong>GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token</strong>,
-            limitado a <strong>este repositorio únicamente</strong>, con permisos <strong>Contents: Read and write</strong> y
-            <strong>Pull requests: Read and write</strong>. Trátalo como una contraseña: no lo compartas ni lo uses en computadores públicos.
+            Crea el tuyo en <strong>GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic) → Generate new token (classic)</strong>
+            y marca el permiso <strong>repo</strong>. <em>Importante: usa un token clásico ("classic"), no un "fine-grained token" — los fine-grained
+            solo dejan elegir como "Resource owner" tu propia cuenta o una organización a la que pertenezcas, así que nunca van a funcionar como
+            colaborador de un repositorio de otra persona.</em> Trátalo como una contraseña: no lo compartas ni lo uses en computadores públicos.
           </div>
         </div>
       </div>
@@ -347,7 +348,7 @@ async function subirEntrega() {
     }
     const repoInfo = await repoInfoRes.json();
     if (!repoInfo.permissions || !repoInfo.permissions.push) {
-      throw new Error('Tu token no tiene permiso de escritura sobre este repositorio todavía. Esto pasa si: (1) aún no aceptaste la invitación como colaborador (revisa https://github.com/' + cfg.owner + '/' + cfg.repo + '/invitations), o (2) creaste el token de acceso ANTES de aceptar la invitación o SIN marcar "Contents: Read and write" para este repositorio. Genera un token nuevo después de aceptar la invitación y vuelve a intentar.');
+      throw new Error('Tu token no tiene permiso de escritura sobre este repositorio todavía. Las causas más comunes son: (1) usaste un token "fine-grained" — estos NO funcionan como colaborador de un repositorio de otra persona, tiene que ser un token clásico ("classic") con el permiso "repo"; (2) aún no aceptaste la invitación como colaborador (revisa https://github.com/' + cfg.owner + '/' + cfg.repo + '/invitations); o (3) el token clásico no tiene marcado el permiso "repo". Genera un token clásico nuevo y vuelve a intentar.');
     }
 
     // 1) Sha de la rama base (main)
