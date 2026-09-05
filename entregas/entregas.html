@@ -339,9 +339,23 @@ async function subirEntrega() {
   try {
     log(`Preparando entrega "${categoria}" de "${apellidos}"...`);
 
+    // 0) Verificar que el token tenga permiso de escritura sobre el repositorio
+    const repoInfoRes = await fetch(apiBase(), { headers: apiHeaders() });
+    if (!repoInfoRes.ok) {
+      const errJson = await repoInfoRes.json().catch(() => ({}));
+      throw new Error(`No se pudo acceder al repositorio "${cfg.owner}/${cfg.repo}" (${repoInfoRes.status}: ${errJson.message || 'sin detalle'}). Revisa el propietario/nombre del repositorio y tu token en Configuración.`);
+    }
+    const repoInfo = await repoInfoRes.json();
+    if (!repoInfo.permissions || !repoInfo.permissions.push) {
+      throw new Error('Tu token no tiene permiso de escritura sobre este repositorio todavía. Esto pasa si: (1) aún no aceptaste la invitación como colaborador (revisa https://github.com/' + cfg.owner + '/' + cfg.repo + '/invitations), o (2) creaste el token de acceso ANTES de aceptar la invitación o SIN marcar "Contents: Read and write" para este repositorio. Genera un token nuevo después de aceptar la invitación y vuelve a intentar.');
+    }
+
     // 1) Sha de la rama base (main)
     const baseRefRes = await fetch(`${apiBase()}/git/ref/heads/${encodeURIComponent(cfg.branch)}`, { headers: apiHeaders() });
-    if (!baseRefRes.ok) throw new Error(`No se pudo leer la rama base "${cfg.branch}" (${baseRefRes.status}). Revisa el nombre de la rama en Configuración.`);
+    if (!baseRefRes.ok) {
+      const errJson = await baseRefRes.json().catch(() => ({}));
+      throw new Error(`No se pudo leer la rama base "${cfg.branch}" (${baseRefRes.status}: ${errJson.message || 'sin detalle'}). Revisa el nombre de la rama y el token en Configuración.`);
+    }
     const baseSha = (await baseRefRes.json()).object.sha;
 
     // 2) Verificar si la rama de esta entrega ya existe (entregas anteriores del mismo equipo)
@@ -356,10 +370,14 @@ async function subirEntrega() {
         headers: { ...apiHeaders(), 'Content-Type': 'application/json' },
         body: JSON.stringify({ ref: `refs/heads/${branchName}`, sha: baseSha }),
       });
-      if (!createRes.ok) throw new Error(`No se pudo crear la rama de la entrega (${createRes.status}).`);
+      if (!createRes.ok) {
+        const errJson = await createRes.json().catch(() => ({}));
+        throw new Error(`No se pudo crear la rama de la entrega (${createRes.status}: ${errJson.message || 'sin detalle'}). Si el error es 403, verifica que tu token tenga permiso "Contents: Read and write" sobre este repositorio y que hayas aceptado la invitación como colaborador.`);
+      }
       log('Rama de entrega creada.', 'ok');
     } else {
-      throw new Error(`No se pudo verificar si la entrega ya existía (${branchRefRes.status}).`);
+      const errJson = await branchRefRes.json().catch(() => ({}));
+      throw new Error(`No se pudo verificar si la entrega ya existía (${branchRefRes.status}: ${errJson.message || 'sin detalle'}).`);
     }
 
     // 3) Subir cada archivo como un commit en esa rama
