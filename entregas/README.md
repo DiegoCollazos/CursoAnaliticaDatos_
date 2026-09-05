@@ -41,3 +41,12 @@ Para que el token de un estudiante pueda crear una rama y un Pull Request, GitHu
 3. Cada estudiante debe aceptar la invitación (le llega por correo o aparece en su cuenta de GitHub) antes de poder usar la página.
 
 El flujo de rama + Pull Request de esta página existe justamente para que, aun con ese permiso de escritura, ningún estudiante pueda modificar `main` directamente sin que tú lo revises y apruebes primero — pero **si prefieres no dar permiso de escritura a los estudiantes**, la alternativa es el flujo clásico de GitHub (fork del repositorio + Pull Request), que no requiere agregarlos como colaboradores; avísame si en algún momento quieres cambiar a ese modelo.
+
+### 🩹 Error 403 al subir ("no se pudo crear la rama")
+
+La página ahora verifica el permiso de escritura *antes* de intentar nada (llamando a la API de GitHub) y muestra un mensaje específico en vez de solo "403". Si un estudiante ve este error, casi siempre es una de estas dos causas, en este orden de probabilidad:
+
+1. **Su token se creó antes de aceptar la invitación de colaborador**, o se creó con el permiso **Contents** en modo "Read-only" en vez de "Read and write". Solución: aceptar primero la invitación en `https://github.com/DiegoCollazos/CursoAnaliticaDatos_/invitations`, y **generar un token nuevo** después de aceptar, con Contents: Read and write y Pull requests: Read and write.
+2. **La invitación de colaborador sigue pendiente** (no la ha aceptado, aunque ya se le haya agregado). El estudiante debe revisar su correo o `https://github.com/DiegoCollazos/CursoAnaliticaDatos_/invitations` y aceptar.
+
+Si un estudiante ya aceptó la invitación (aparece en Settings → Collaborators con rol Write) y ya generó el token después de aceptar, y el error persiste, revisa si el repositorio tiene alguna regla de protección de rama (Settings → Rules/Branches) que esté bloqueando la creación de ramas `entrega/*`.
