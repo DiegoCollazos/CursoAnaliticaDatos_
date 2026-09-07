@@ -97,6 +97,13 @@
       "documento": "1113859938",
       "plan": "4028 - INGENIERIA ELECTRONICA",
       "correo": "sbustamantem@unal.edu.co"
+    },
+    {
+      "id": 15,
+      "nombre": "OTERO, TOMAS",
+      "documento": "1002655438",
+      "plan": "4034 - CIENCIAS DE LA  COMPUTACIÓN",
+      "correo": "totero@unal.edu.co"
     }
   ],
   "sesiones": [
