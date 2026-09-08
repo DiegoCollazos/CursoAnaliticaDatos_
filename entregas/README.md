@@ -6,6 +6,17 @@ Los estudiantes suben sus entregables (laboratorios, proyecto integrador, etc.) 
 
 (Publicada con GitHub Pages, igual que la página de asistencia. También puedes abrir el archivo [`entregas.html`](entregas.html) localmente en tu navegador.)
 
+## 📅 Fechas de entrega programadas
+
+Estas son las fechas límite acordadas con el curso. Cada estudiante debe seleccionar exactamente esta **categoría** en la página de entregas (así todas las entregas de un mismo trabajo quedan agrupadas igual):
+
+| Categoría (selecciónala así en la página) | Fecha límite |
+|---|---|
+| `Repaso de Python` | Miércoles 9 de septiembre de 2026, 11:59 p. m. |
+| `Laboratorio de Simulación 1` | Miércoles 16 de septiembre de 2026, 11:59 p. m. |
+
+> Esta tabla se actualiza a medida que se acuerdan nuevas fechas con el curso. Las entregas después de la fecha límite quedan a criterio del docente.
+
 ## Cómo funciona
 
 La entrega **no se escribe directamente en `main`**. La página:
