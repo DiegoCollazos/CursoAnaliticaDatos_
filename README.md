@@ -8,5 +8,6 @@ Curso de analítica de datos - teórico práctico
 - [`entregas/`](entregas/) — Entrega de trabajos (laboratorios, proyecto integrador) por parte de los estudiantes. 👉 [Abrir la página de entregas](https://diegocollazos.github.io/CursoAnaliticaDatos_/entregas/entregas.html)
 - [`modulo-01-introduccion/`](modulo-01-introduccion/) — Materiales del Módulo 1: Introducción.
 - [`modulo-02-transformacion-visualizacion/`](modulo-02-transformacion-visualizacion/) — Materiales del Módulo 2: Transformación y visualización de datos.
+- [`modulo-03-no-supervisado/`](modulo-03-no-supervisado/) — Materiales del Módulo 3: Modelado y evaluación de enfoques no supervisados.
 
 Los materiales de cada módulo se irán agregando en carpetas propias (`modulo-01-introduccion/`, `modulo-02-.../`, ...) a medida que avance el curso.
