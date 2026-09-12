@@ -1,0 +1,274 @@
+\documentclass[11pt,letterpaper]{article}
+
+% ---------- Idioma y codificación ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+
+% ---------- Paquetes generales ----------
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{seqsplit}
+
+% ---------- Colores del curso ----------
+\definecolor{brandblue}{HTML}{1F4E78}
+\definecolor{brandgreen}{HTML}{1DB954}
+\definecolor{lightgray}{HTML}{F4F6F8}
+\definecolor{codebg}{HTML}{F5F5F5}
+
+% ---------- Encabezado y pie de página ----------
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\small Laboratorio de Simulación 2 --- Analítica de Datos}
+\fancyhead[R]{\small Módulo 2: Transformación y visualización de datos}
+\fancyfoot[C]{\small\thepage}
+
+% ---------- Estilo de secciones ----------
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{brandblue}}
+  {\thesection}{0.6em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{brandblue}}
+  {\thesubsection}{0.6em}{}
+
+% ---------- Cajas de actividades y notas ----------
+\newtcolorbox{actividad}[1][]{
+  breakable, enhanced, colback=lightgray, colframe=brandblue,
+  boxrule=0.8pt, arc=2pt, left=6pt, right=6pt, top=5pt, bottom=5pt,
+  title={\faPencil\ Actividad}, fonttitle=\bfseries\color{white},
+  colbacktitle=brandblue, #1
+}
+\newtcolorbox{nota}[1][]{
+  breakable, enhanced, colback=white, colframe=brandgreen,
+  boxrule=0.8pt, arc=2pt, left=6pt, right=6pt, top=5pt, bottom=5pt,
+  title={Nota}, fonttitle=\bfseries\color{white},
+  colbacktitle=brandgreen, #1
+}
+
+% ---------- Código / comandos ----------
+\lstset{
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{codebg},
+  breaklines=true,
+  frame=single,
+  framerule=0.3pt,
+  rulecolor=\color{gray!50},
+  columns=fullflexible,
+  keepspaces=true,
+}
+
+% ---------- Metadatos del PDF ----------
+\hypersetup{
+  pdftitle={Laboratorio de Simulación 2 - Analítica de Datos},
+  pdfauthor={Diego Fabián Collazos Huertas},
+  pdfsubject={Curso Analítica de Datos - Módulo 2},
+  colorlinks=true,
+  linkcolor=brandblue,
+  urlcolor=brandblue,
+  citecolor=brandblue,
+}
+
+% Sustituto simple para el icono de lápiz (evita depender de fontawesome)
+\newcommand{\faPencil}{\raisebox{-0.1em}{\textbf{\Large\textbullet}}}
+
+\title{\vspace{-2cm}}
+\date{}
+
+\begin{document}
+
+% ============================================================
+% PORTADA
+% ============================================================
+\begin{titlepage}
+\centering
+\vspace*{1.5cm}
+
+{\Large Universidad Nacional de Colombia --- Sede Manizales}\\[0.2cm]
+{\large Facultad de Ingeniería y Arquitectura}\\[0.2cm]
+{\large Departamento de Ingeniería Eléctrica, Electrónica y Computación}\\[1.2cm]
+
+\rule{\linewidth}{1pt}\\[0.5cm]
+{\huge\bfseries\color{brandblue} Laboratorio de Simulación 2}\\[0.4cm]
+{\Large Implementación en Orange Data Mining}\\[0.5cm]
+\rule{\linewidth}{1pt}\\[1cm]
+
+{\large \textbf{Curso:} Analítica de Datos (Aprendizaje de máquina) --- Código 4200729}\\[0.3cm]
+{\large \textbf{Módulo:} 2 --- Transformación y visualización de datos}\\[0.3cm]
+{\large \textbf{Docente:} Diego Fabián Collazos Huertas}\\[0.3cm]
+{\large \textbf{Modalidad:} trabajo en parejas}\\[1.5cm]
+
+\vfill
+
+{\small Este laboratorio hace parte de la nota de \textbf{Laboratorios de simulación (45\% de la evaluación)}, según el programa de la asignatura (\texttt{PROGRAMA.md}).}
+
+\end{titlepage}
+
+% ============================================================
+% OBJETIVOS
+% ============================================================
+\section{Objetivos}
+
+\begin{itemize}[leftmargin=1.2cm]
+  \item Reproducir en \textbf{Orange Data Mining} --- mediante programación visual, sin escribir código --- los mismos análisis que se implementaron en Python en los notebooks \texttt{\seqsplit{2.2\_Preprocesamiento\_Transformacion\_Ejemplos.ipynb}} y \texttt{\seqsplit{2.4\_Visualizacion\_Datos\_Ejemplos.ipynb}}.
+  \item Diagnosticar datos faltantes y aplicar el tratamiento adecuado (excluir, imputar) usando los widgets de preprocesamiento de Orange.
+  \item Dividir un dataset en entrenamiento/prueba y aplicar la \textbf{misma} transformación aprendida en entrenamiento sobre la prueba, evitando la fuga de información.
+  \item Discretizar una variable numérica de las tres formas vistas en clase (ancho uniforme, frecuencia uniforme, supervisada) y codificar variables categóricas.
+  \item Elegir y construir las visualizaciones adecuadas (histograma, diagrama de caja, barras, dispersión, serie temporal) para responder preguntas sobre un dataset real.
+\end{itemize}
+
+\begin{nota}
+Este taller \textbf{no reemplaza} los notebooks de Python; los complementa. La idea es que compares, para el mismo problema, qué tan distinto es resolverlo con código (Pandas/scikit-learn/Matplotlib) frente a resolverlo con programación visual (Orange) --- ver \texttt{1.2\_Orange\_Data\_Mining.md} para instalar la herramienta si aún no lo has hecho.
+\end{nota}
+
+% ============================================================
+% INSTRUCCIONES GENERALES
+% ============================================================
+\section{Instrucciones generales}
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item \textbf{Este laboratorio se desarrolla en parejas} (2 estudiantes), asignadas o conformadas según indique el docente.
+  \item Para cada parte del laboratorio, arma el flujo (\textit{workflow}) solicitado en el lienzo de Orange.
+  \item Cada vez que veas el ícono \faPencil\ \textbf{Actividad}, documenta la respuesta \textbf{directamente sobre el lienzo de Orange}, usando la herramienta de texto (clic derecho sobre un espacio vacío del lienzo $\to$ \textit{Text}, o el ícono ``T'' de la barra de herramientas) para agregar un cuadro de texto junto a los widgets correspondientes. No se entregan respuestas en un documento aparte: el workflow comentado \textbf{es} la respuesta.
+  \item Además, toma una captura de pantalla del resultado de cada actividad (el widget correspondiente ya abierto, mostrando el gráfico o la tabla) para incluirla en el PDF de evidencias.
+  \item Consulta la sección \textbf{Entregables} (al final de este documento) para el detalle de qué debes entregar y cómo.
+\end{enumerate}
+
+\begin{nota}
+Algunos widgets de este laboratorio (\textit{Group By}, \textit{Line Plot}) son relativamente recientes en Orange. Si no los encuentras en tu barra de widgets, actualiza Orange a la versión más reciente (\textit{Help $\to$ Check for Updates}, o reinstalando desde \url{https://orangedatamining.com/download/}).
+\end{nota}
+
+% ============================================================
+% PARTE 1
+% ============================================================
+\section{Parte 1 --- Preprocesamiento y transformación en Orange}
+
+Esta parte reproduce en Orange lo desarrollado en el notebook \texttt{\seqsplit{2.2\_Preprocesamiento\_Transformacion\_Ejemplos.ipynb}}, usando el mismo dataset: el \textbf{Titanic}.
+
+\subsection{1.1 Cargar el dataset y diagnosticar datos faltantes}
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item Reutiliza el archivo \texttt{.csv} del Titanic que ya descargaste con \texttt{kagglehub} al ejecutar el notebook \texttt{2.2} (queda guardado en la ruta que imprime la celda de descarga), o descárgalo directamente desde \url{https://www.kaggle.com/datasets/yasserh/titanic-dataset}.
+  \item Abre Orange y crea un workflow nuevo. Arrastra el widget \textbf{File} al lienzo y carga el archivo.
+  \item En el editor de columnas del widget \textit{File}, marca la columna \texttt{Survived} con el rol \textbf{target} (clase) --- la necesitaremos más adelante para la discretización supervisada.
+  \item Agrega el widget \textbf{Feature Statistics} (categoría \textit{Data}) y conéctalo a \textit{File}. Esta tabla muestra, entre otras cosas, el porcentaje de valores faltantes de cada columna.
+\end{enumerate}
+
+\begin{actividad}
+Compara la columna de faltantes de \textit{Feature Statistics} con el diagnóstico del notebook (\texttt{Cabin} $\approx$ 77\%, \texttt{Age} $\approx$ 20\%, \texttt{Embarked} $\approx$ 0.2\%). En un cuadro de texto junto al widget, escribe si los porcentajes coinciden. Incluye en tu PDF de evidencias una captura de \textit{Feature Statistics}.
+\end{actividad}
+
+\subsection{1.2 Dividir train/test y tratar los datos sin fuga de información}
+
+Como en el notebook (sección 3), \textbf{dividimos antes de calcular cualquier estadístico de imputación}, para que ningún dato de prueba influya en los valores usados para imputar.
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item Agrega el widget \textbf{Select Columns} conectado a \textit{File}, y mueve la columna \texttt{Cabin} al grupo \textit{Excluded} (equivalente a \texttt{drop(columns=['Cabin'])}).
+  \item Agrega el widget \textbf{Data Sampler}, conéctalo a \textit{Select Columns}. Configúralo con \textbf{Fixed proportion of data: 80\%} y activa la casilla \textbf{Stratify sample}. Esto reparte los datos en dos salidas: \textit{Data Sample} (entrenamiento) y \textit{Remaining Data} (prueba) --- equivalente a \texttt{train\_test\_split(..., stratify=titanic['Survived'])}.
+  \item Agrega un primer widget \textbf{Preprocess} y conéctale la salida \textit{Data Sample} (entrenamiento). Configúralo con \textbf{Impute Missing Values}: \texttt{Age} $\to$ \textit{Median}, y las variables categóricas (incluida \texttt{Embarked}) $\to$ \textit{Most frequent value}.
+  \item Este primer \textit{Preprocess} tiene dos salidas: \textbf{Preprocessed Data} (el entrenamiento ya tratado) y \textbf{Preprocessor} (la ``receta'' aprendida: la mediana de \texttt{Age} y la moda de \texttt{Embarked}, calculadas \textbf{solo} con el entrenamiento).
+  \item Agrega un \textbf{segundo} widget \textbf{Preprocess}. Conéctale la salida \textit{Remaining Data} (prueba) de \textit{Data Sampler} como \textbf{Data}, y la salida \textit{Preprocessor} del primer \textit{Preprocess} como \textbf{Preprocessor}. Este segundo widget \textbf{no vuelve a calcular nada}: solo aplica al conjunto de prueba la misma mediana y moda aprendidas en entrenamiento.
+\end{enumerate}
+
+\begin{nota}
+Este par de widgets \textit{Preprocess} conectados entre sí es el equivalente visual exacto de ``ajustar (\textit{fit}) en entrenamiento y transformar (\textit{transform}) en prueba con los mismos parámetros'', que en el notebook se resuelve calculando \texttt{mediana\_age} y \texttt{moda\_embarked} solo con \texttt{train} y aplicándolas también a \texttt{test}.
+\end{nota}
+
+\begin{actividad}
+Conecta un widget \textbf{Data Table} a cada una de las dos salidas \textit{Preprocessed Data} (la del entrenamiento y la de la prueba) y verifica que ninguna de las dos columnas tratadas (\texttt{Age}, \texttt{Embarked}) tenga valores faltantes. En un cuadro de texto junto al segundo \textit{Preprocess}, anota el valor con el que quedó imputada \texttt{Age} y compáralo con la mediana que calculó el notebook ($\approx$ 28.5 años). Incluye en tu PDF de evidencias una captura del workflow completo de esta sección (\textit{Select Columns} $\to$ \textit{Data Sampler} $\to$ los dos \textit{Preprocess} $\to$ las dos \textit{Data Table}).
+\end{actividad}
+
+\subsection{1.3 Discretización de la edad y codificación de categóricas}
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item Agrega el widget \textbf{Discretize} (categoría \textit{Data}) conectado a la salida \textit{Preprocessed Data} del entrenamiento. Selecciona la variable \texttt{Age} y prueba, uno a la vez, los tres métodos de discretización disponibles:
+  \begin{itemize}
+    \item \textbf{Equal frequency} (frecuencia uniforme) --- equivalente a \texttt{pd.qcut} en el notebook.
+    \item \textbf{Equal width} (ancho uniforme) --- equivalente a \texttt{pd.cut} con bordes fijos.
+    \item \textbf{Entropy-MDL} --- discretización \textbf{supervisada}: usa la variable objetivo (\texttt{Survived}, que ya marcaste como \textit{target} en el punto 1.1) para elegir el corte que mejor separa las clases, igual que la búsqueda por entropía del notebook.
+  \end{itemize}
+  \item Agrega un widget \textbf{Continuize} (categoría \textit{Data}) conectado también a la salida del entrenamiento. Selecciona \texttt{Embarked} y prueba las opciones \textbf{One feature per value} (equivalente a \textit{one-hot}) y \textbf{One feature per value, ignore the first value} (equivalente a \textit{dummy}, la codificación $N-1$).
+\end{enumerate}
+
+\begin{actividad}
+En un cuadro de texto junto al widget \textit{Discretize}, anota el corte que encontró el método \textbf{Entropy-MDL} para \texttt{Age} y compáralo con el umbral que encontró el notebook ($\approx$ 5--6.5 años, el patrón de ``mujeres y niños primero''). Junto al widget \textit{Continuize}, anota cuántas columnas nuevas genera cada opción para \texttt{Embarked} y compáralas con las columnas \texttt{Embarked\_C/Q/S} (one-hot) y \texttt{Embarked\_Q/S} (dummy) del notebook. Incluye en tu PDF de evidencias una captura de cada widget con el método/opción que mejor haya reproducido el resultado del notebook.
+\end{actividad}
+
+% ============================================================
+% PARTE 2
+% ============================================================
+\section{Parte 2 --- Visualización en Orange}
+
+Esta parte reproduce en Orange lo desarrollado en el notebook \texttt{\seqsplit{2.4\_Visualizacion\_Datos\_Ejemplos.ipynb}}, usando el mismo dataset: \textbf{Video Game Sales}.
+
+\subsection{2.1 Cargar el dataset y explorar la distribución}
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item Reutiliza el archivo \texttt{.csv} de Video Game Sales que ya descargaste con \texttt{kagglehub} al ejecutar el notebook \texttt{2.4}, o descárgalo directamente desde \url{https://www.kaggle.com/datasets/gregorut/videogamesales}.
+  \item Carga el archivo en un nuevo workflow con el widget \textbf{File}.
+  \item Agrega el widget \textbf{Distributions}, conéctalo a \textit{File}, y selecciona la variable \texttt{Global\_Sales}. Prueba distintos valores del control de número de intervalos (\textit{Bin width} / número de \textit{bins}), igual que en el notebook.
+  \item Agrega el widget \textbf{Feature Statistics} conectado a \textit{File}: muestra directamente la \textbf{media}, la \textbf{mediana} y la \textbf{asimetría (skewness)} de \texttt{Global\_Sales}.
+\end{enumerate}
+
+\begin{actividad}
+Compara el histograma de \textit{Distributions} con los del notebook (¿también se ve una cola larga hacia la derecha con pocos \textit{bins} y se nota mejor con más \textit{bins}?). En un cuadro de texto junto a \textit{Feature Statistics}, compara los valores de media, mediana y asimetría con los que calculó el notebook (media $\approx 0.54$, mediana $\approx 0.17$, asimetría muy alta y positiva) y explica en una frase qué significa que la media sea mucho mayor que la mediana. Incluye en tu PDF de evidencias una captura de cada widget.
+\end{actividad}
+
+\subsection{2.2 Diagrama de caja, valores atípicos y variables categóricas}
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item Agrega el widget \textbf{Box Plot} conectado a \textit{File}, y selecciona \texttt{Global\_Sales}. Orange dibuja la caja, la mediana y marca los valores atípicos según la misma regla del IQR usada en el notebook.
+  \item Agrega el widget \textbf{Bar Plot} conectado a \textit{File}, y selecciona \texttt{Genre} para ver el conteo de juegos por género.
+\end{enumerate}
+
+\begin{actividad}
+En un cuadro de texto junto al \textit{Box Plot}, anota cuántos valores atípicos identifica Orange y compáralos con el conteo de la regla del IQR del notebook ($\approx$ 11\% de los juegos). Junto al \textit{Bar Plot}, indica si el género más frecuente coincide con el del notebook (\textit{Action}). Incluye en tu PDF de evidencias una captura de cada widget.
+\end{actividad}
+
+\subsection{2.3 Relaciones entre variables y serie temporal}
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item Agrega el widget \textbf{Scatter Plot} conectado a \textit{File}: en el eje X selecciona \texttt{NA\_Sales}, en el eje Y selecciona \texttt{EU\_Sales}.
+  \item Agrega el widget \textbf{Correlations} conectado a \textit{File}: ordena automáticamente todos los pares de variables numéricas según su coeficiente de correlación --- es el equivalente a leer el mapa de calor de correlaciones del notebook, pero en forma de tabla.
+  \item Agrega el widget \textbf{Group By} (categoría \textit{Transform}) conectado a \textit{File}: agrupa por \texttt{Year} y agrega \texttt{Global\_Sales} con la función \textit{Sum} --- es el equivalente visual de \texttt{\seqsplit{groupby('Year')['Global\_Sales'].sum()}} en el notebook.
+  \item Conecta la salida de \textit{Group By} a un widget \textbf{Line Plot} para ver la serie temporal de ventas globales por año.
+\end{enumerate}
+
+\begin{actividad}
+En un cuadro de texto junto al \textit{Scatter Plot}, describe la dirección y forma de la relación entre \texttt{NA\_Sales} y \texttt{EU\_Sales}, y compárala con la correlación que reporta el widget \textit{Correlations} (el notebook encontró $\approx 0.77$). Junto al \textit{Line Plot}, indica si el año de mayores ventas coincide con el que encontró el notebook (2008). Incluye en tu PDF de evidencias una captura de los cuatro widgets de esta sección.
+\end{actividad}
+
+% ============================================================
+% ENTREGABLES
+% ============================================================
+\section{Entregables}
+
+La pareja debe subir al repositorio del curso (a través de la página de entregas) \textbf{dos tipos de archivo}:
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item \textbf{Los archivos \texttt{.ows} de los workflows armados en Orange} (uno por cada parte del laboratorio), \textbf{comentados con la herramienta de texto de Orange} tal como se indicó en cada actividad. El workflow comentado --- no un documento aparte --- es donde se responden las preguntas de cada actividad.
+  \item \textbf{Un único PDF con las capturas de pantalla} de los resultados obtenidos en cada una de las 6 actividades (\faPencil), claramente identificadas (por ejemplo, ``Actividad 1 --- Feature Statistics del Titanic'').
+\end{enumerate}
+
+Nombra los archivos con los apellidos de ambos integrantes de la pareja, por ejemplo: \texttt{\seqsplit{apellido1\_apellido2\_parte1.ows}}, \texttt{\seqsplit{apellido1\_apellido2\_parte2.ows}} y \texttt{\seqsplit{apellido1\_apellido2\_evidencias.pdf}}. Sube estos archivos desde la página de entregas del curso, seleccionando la categoría \textbf{Laboratorio de Simulación 2}.
+
+\begin{actividad}[title={\faPencil\ Reflexión final}]
+Como cuadro de texto de cierre en el workflow de la \textbf{Parte 1}, escriban en pareja una breve reflexión (5-8 líneas): ¿qué fue más fácil de entender en Orange que en Python (o viceversa) al dividir train/test y evitar la fuga de información? ¿Y al discretizar y codificar variables?
+\end{actividad}
+
+\begin{nota}
+Este laboratorio corresponde a la segunda entrega del componente \textbf{Laboratorios de simulación (45\% de la nota)}. Revisa la fecha de entrega vigente en \texttt{entregas/README.md}.
+\end{nota}
+
+\end{document}
