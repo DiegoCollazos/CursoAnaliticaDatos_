@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='utf-8'?>
+<scheme version="2.0" title="" description="">
+	<nodes>
+		<node id="0" name="File" qualified_name="Orange.widgets.data.owfile.OWFile" project_name="Orange3" version="" title="File" position="(150, 150)" />
+		<node id="1" name="Distributions" qualified_name="Orange.widgets.visualize.owdistributions.OWDistributions" project_name="Orange3" version="" title="Distributions" position="(302.0, 131.0)" />
+	</nodes>
+	<links>
+		<link id="0" source_node_id="0" sink_node_id="1" source_channel="Data" sink_channel="Data" enabled="true" source_channel_id="data" sink_channel_id="data" />
+	</links>
+	<annotations>
+		<arrow id="0" start="(142.0, 209.0)" end="(194.0, 302.0)" fill="#C1272D" />
+		<text id="1" type="text/plain" rect="(27.0, 308.0, 391.0, 364.0)" font-family="Segoe UI" font-size="16">ACTIVIDAD 2.2 – Tipos de variables 
+
+a) track_genre: Orange lo detectó como Text inicialmente. Se cambió a Categorical porque representa categorías de género musical. 
+
+b) key: Orange lo detectó como Numerical, pero se cambió a Categorical porque sus valores son códigos de tonalidad y no cantidades numéricas. 
+
+mode: Orange lo detectó como Categorical. Representa categorías (mayor/menor). 
+
+Estos cambios son importantes para que Orange interprete correctamente el tipo de variable durante el análisis.</text>
+		<arrow id="2" start="(349.0, 134.0)" end="(470.0, 137.0)" fill="#C1272D" />
+		<text id="3" type="text/plain" rect="(495.0, 120.0, 289.0, 186.0)" font-family="Segoe UI" font-size="16">ACTIVIDAD 2.3 – Comparación de gráficas.
+
+El gráfico de track_genre coincide con el del notebook y el género más frecuente también coincide. La distribución de tempo presenta una forma bastante similar a la del notebook. La similitud es mayor utilizando Bin width=10.</text>
+		<text id="4" type="text/plain" rect="(598.0, 493.0, 466.0, 430.0)" font-family="Segoe UI" font-size="16">Reflexión:
+
+Preferiríamos Orange para explorar datos de forma rápida y visual. También facilita cambiar tipos de variables y generar gráficos sin programar. Preferiríamos Python cuando necesitemos mayor control sobre el análisis. Python permite personalizar y automatizar procedimientos mediante código.
+En este laboratorio, Orange hizo más sencilla la exploración visual de los datos. Python, en cambio, permitió realizar el análisis del notebook de manera más flexible.</text>
+		<arrow id="5" start="(471.0, 403.0)" end="(588.0, 491.0)" fill="#C1272D" />
+	</annotations>
+	<thumbnail />
+	<node_properties>
+		<properties node_id="0" format="pickle">gASV1AkAAAAAAAB9lCiMEmNvbnRyb2xBcmVhVmlzaWJsZZSIjAxyZWNlbnRfcGF0aHOUXZQojB5v
+cmFuZ2V3aWRnZXQudXRpbHMuZmlsZWRpYWxvZ3OUjApSZWNlbnRQYXRolJOUKYGUfZQojAdhYnNw
+YXRolIw1QzovVXNlcnMvTEVOT1ZPL0Rlc2t0b3AvUzgvRGF0YSBhbmFseXRpY3MvZGF0YXNldC5j
+c3aUjAZwcmVmaXiUjAdiYXNlZGlylIwHcmVscGF0aJSMC2RhdGFzZXQuY3N2lIwFdGl0bGWUjACU
+jAVzaGVldJRoEIwLZmlsZV9mb3JtYXSUTnViaAYpgZR9lChoCYxYQzovVXNlcnMvTEVOT1ZPL0Fw
+cERhdGEvTG9jYWwvUHJvZ3JhbXMvT3JhbmdlL0xpYi9zaXRlLXBhY2thZ2VzL09yYW5nZS9kYXRh
+c2V0cy9pcmlzLnRhYpRoC4wPc2FtcGxlLWRhdGFzZXRzlGgNjAhpcmlzLnRhYpRoD2gQaBFoEGgS
+TnViaAYpgZR9lChoCYxbQzovVXNlcnMvTEVOT1ZPL0FwcERhdGEvTG9jYWwvUHJvZ3JhbXMvT3Jh
+bmdlL0xpYi9zaXRlLXBhY2thZ2VzL09yYW5nZS9kYXRhc2V0cy90aXRhbmljLnRhYpRoC2gWaA2M
+C3RpdGFuaWMudGFilGgPaBBoEWgQaBJOdWJoBimBlH2UKGgJjFtDOi9Vc2Vycy9MRU5PVk8vQXBw
+RGF0YS9Mb2NhbC9Qcm9ncmFtcy9PcmFuZ2UvTGliL3NpdGUtcGFja2FnZXMvT3JhbmdlL2RhdGFz
+ZXRzL2hvdXNpbmcudGFilGgLaBZoDYwLaG91c2luZy50YWKUaA9oEGgRaBBoEk51YmgGKYGUfZQo
+aAmMYUM6L1VzZXJzL0xFTk9WTy9BcHBEYXRhL0xvY2FsL1Byb2dyYW1zL09yYW5nZS9MaWIvc2l0
+ZS1wYWNrYWdlcy9PcmFuZ2UvZGF0YXNldHMvaGVhcnRfZGlzZWFzZS50YWKUaAtoFmgNjBFoZWFy
+dF9kaXNlYXNlLnRhYpRoD2gQaBFoEGgSTnViaAYpgZR9lChoCYxiQzovVXNlcnMvTEVOT1ZPL0Fw
+cERhdGEvTG9jYWwvUHJvZ3JhbXMvT3JhbmdlL0xpYi9zaXRlLXBhY2thZ2VzL09yYW5nZS9kYXRh
+c2V0cy9icm93bi1zZWxlY3RlZC50YWKUaAtoFmgNjBJicm93bi1zZWxlY3RlZC50YWKUaA9oEGgR
+aBBoEk51YmgGKYGUfZQoaAmMV0M6L1VzZXJzL0xFTk9WTy9BcHBEYXRhL0xvY2FsL1Byb2dyYW1z
+L09yYW5nZS9MaWIvc2l0ZS1wYWNrYWdlcy9PcmFuZ2UvZGF0YXNldHMvem9vLnRhYpRoC2gWaA2M
+B3pvby50YWKUaA9oEGgRaBBoEk51YmWMC3JlY2VudF91cmxzlF2UjBNzYXZlZFdpZGdldEdlb21l
+dHJ5lENCAdnQywADAAAAAAKhAAAACwAABPgAAALSAAACoQAAACkAAAT4AAAC0gAAAAAAAAAABcMA
+AAKhAAAAKQAABPgAAALSlIwLc2hlZXRfbmFtZXOUfZSMBnNvdXJjZZRLAIwDdXJslGgQjA1kb21h
+aW5fZWRpdG9ylH2UjAtfX3ZlcnNpb25fX5RLAYwQY29udGV4dF9zZXR0aW5nc5RdlCiMFW9yYW5n
+ZXdpZGdldC5zZXR0aW5nc5SMB0NvbnRleHSUk5QpgZR9lCiMBnZhbHVlc5R9lCiMCXZhcmlhYmxl
+c5RdlGg0fZRoQF2UKF2UKIwJRmVhdHVyZSAxlIwUT3JhbmdlLmRhdGEudmFyaWFibGWUjBJDb250
+aW51b3VzVmFyaWFibGWUk5RLAGgQiGVdlCiMCnBvcHVsYXJpdHmUaEhLAGgQiGVdlCiMC2R1cmF0
+aW9uX21zlGhISwBoEIhlXZQojAhleHBsaWNpdJRoRowQRGlzY3JldGVWYXJpYWJsZZSTlEsAjAtG
+YWxzZSwgVHJ1ZZSJZV2UKIwMZGFuY2VhYmlsaXR5lGhISwBoEIhlXZQojAZlbmVyZ3mUaEhLAGgQ
+iGVdlCiMA2tleZRoUEsAaBCIZV2UKIwIbG91ZG5lc3OUaEhLAGgQiGVdlCiMBG1vZGWUaFBLAIwE
+MCwgMZSIZV2UKIwLc3BlZWNoaW5lc3OUaEhLAGgQiGVdlCiMDGFjb3VzdGljbmVzc5RoSEsAaBCI
+ZV2UKIwQaW5zdHJ1bWVudGFsbmVzc5RoSEsAaBCIZV2UKIwIbGl2ZW5lc3OUaEhLAGgQiGVdlCiM
+B3ZhbGVuY2WUaEhLAGgQiGVdlCiMBXRlbXBvlGhISwBoEIhlXZQojA50aW1lX3NpZ25hdHVyZZRo
+SEsAaBCIZV2UKIwIdHJhY2tfaWSUaEaMDlN0cmluZ1ZhcmlhYmxllJOUSwJoEIllXZQojAdhcnRp
+c3RzlGhuSwJoEIllXZQojAphbGJ1bV9uYW1llGhuSwJoEIllXZQojAp0cmFja19uYW1llGhuSwJo
+EIllXZQojAt0cmFja19nZW5yZZRoUEsCaBCJZWVzaDZLAXWMCmF0dHJpYnV0ZXOUKGhFSwKGlGhK
+SwKGlGhMSwKGlGhOXZQojAVGYWxzZZSMBFRydWWUZYaUaFNLAoaUaFVLAoaUaFdLAoaUaFlLAoaU
+aFtdlCiMATCUjAExlGWGlGheSwKGlGhgSwKGlGhiSwKGlGhkSwKGlGhmSwKGlGhoSwKGlGhqSwKG
+lHSUjAVtZXRhc5QoaGxLA4aUaHBLA4aUjAphbGJ1bV9uYW1llEsDhpRodEsDhpRodksDhpR0lIwK
+Y2xhc3NfdmFyc5QpjBJtb2RpZmllZF92YXJpYWJsZXOUXZR1Ymg7KYGUfZQoaD59lCiMCXZhcmlh
+Ymxlc5RdlIwNZG9tYWluX2VkaXRvcpR9lGidXZQoXZQojAxzZXBhbCBsZW5ndGiUaEhLAGgQiGVd
+lCiMC3NlcGFsIHdpZHRolGhISwBoEIhlXZQojAxwZXRhbCBsZW5ndGiUaEhLAGgQiGVdlCiMC3Bl
+dGFsIHdpZHRolGhISwBoEIhlXZQojARpcmlzlGhQSwGMLElyaXMtc2V0b3NhLCBJcmlzLXZlcnNp
+Y29sb3IsIElyaXMtdmlyZ2luaWNhlIllZXNoNksBdWh3KGijSwKGlGilSwKGlGinSwKGlGipSwKG
+lHSUaI8paJdoq12UKIwLSXJpcy1zZXRvc2GUjA9JcmlzLXZlcnNpY29sb3KUjA5JcmlzLXZpcmdp
+bmljYZRlhpSFlGiYXZR1YmV1Lg==
+</properties>
+		<properties node_id="1" format="pickle">gASVngMAAAAAAAB9lCiMCmF1dG9fYXBwbHmUiIwSY29udHJvbEFyZWFWaXNpYmxllIiMEGN1bXVs
+YXRpdmVfZGlzdHKUiYwTZml0dGVkX2Rpc3RyaWJ1dGlvbpRLAIwJaGlkZV9iYXJzlImMDWtkZV9z
+bW9vdGhpbmeUSwqME3NhdmVkV2lkZ2V0R2VvbWV0cnmUQ0IB2dDLAAMAAAAAAWoAAADMAAAE+gAA
+AxEAAAFqAAAA6gAABPoAAAMRAAAAAAAAAAAFwwAAAWoAAADqAAAE+gAAAxGUjApzaG93X3Byb2Jz
+lImMDHNvcnRfYnlfZnJlcZSJjA9zdGFja2VkX2NvbHVtbnOUiYwLX192ZXJzaW9uX1+USwKMEGNv
+bnRleHRfc2V0dGluZ3OUXZQojBVvcmFuZ2V3aWRnZXQuc2V0dGluZ3OUjAdDb250ZXh0lJOUKYGU
+fZQojAZ2YWx1ZXOUfZQojARjdmFylE5K/v///4aUjA5udW1iZXJfb2ZfYmluc5RLAUr+////hpSM
+DXNlbGVjdGVkX2JhcnOUj5RK/v///4aUjAN2YXKUjAV0ZW1wb5RLZoaUaAxLAnWMCmF0dHJpYnV0
+ZXOUfZQojAlGZWF0dXJlIDGUSwKMCnBvcHVsYXJpdHmUSwKMC2R1cmF0aW9uX21zlEsCjAhleHBs
+aWNpdJRLAYwMZGFuY2VhYmlsaXR5lEsCjAZlbmVyZ3mUSwKMA2tleZRLAYwIbG91ZG5lc3OUSwKM
+BG1vZGWUSwGMC3NwZWVjaGluZXNzlEsCjAxhY291c3RpY25lc3OUSwKMEGluc3RydW1lbnRhbG5l
+c3OUSwKMCGxpdmVuZXNzlEsCjAd2YWxlbmNllEsCaB5LAowOdGltZV9zaWduYXR1cmWUSwJ1jAVt
+ZXRhc5R9lCiMCHRyYWNrX2lklEsDjAdhcnRpc3RzlEsDjAphbGJ1bV9uYW1llEsDjAp0cmFja19u
+YW1llEsDjAt0cmFja19nZW5yZZRLAXV1YmgRKYGUfZQoaBR9lChoFk5K/v///4aUaBhLAEr+////
+hpRoGo+USv7///+GlGgdaCJLZoaUaAxLAnVoIH2UKGgiSwJoI0sCaCRLAmglSwFoJksCaCdLAmgo
+SwFoKUsCaCpLAWgrSwJoLEsCaC1LAmguSwJoL0sCaB5LAmgwSwJ1aDF9lChoM0sDaDRLA2g1SwNo
+NksDjAt0cmFja19nZW5yZZRLA3V1YmV1Lg==
+</properties>
+	</node_properties>
+	<session_state>
+		<window_groups />
+	</session_state>
+</scheme>
