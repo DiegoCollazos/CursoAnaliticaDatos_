@@ -14,6 +14,7 @@ Estas son las fechas límite acordadas con el curso. Cada estudiante debe selecc
 |---|---|
 | `Repaso de Python` | Miércoles 9 de septiembre de 2026, 11:59 p. m. |
 | `Laboratorio de Simulación 1` | Miércoles 16 de septiembre de 2026, 11:59 p. m. |
+| `Laboratorio de Simulación 2` | Miércoles 23 de septiembre de 2026, 11:59 p. m. |
 
 > Esta tabla se actualiza a medida que se acuerdan nuevas fechas con el curso. Las entregas después de la fecha límite quedan a criterio del docente.
 
