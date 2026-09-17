@@ -79,21 +79,21 @@ Clases magistrales acompañadas de simulaciones en **Orange Data Mining** y **Py
 | 3 | 09-09-2026 | Preproceso de datos | — |
 | 3 | 14-09-2026 | Visualización de datos | Laboratorios de simulación — Entrega 2 |
 |---|---|**Modelado y evaluación de enfoques no supervisados**|---|
-| 5 | | Correlación, selección y extracción de características | — |
-| 6 | | Reducción de dimensión; agrupamiento de datos | Proyecto integrador — Entrega 1 y Laboratorios de simulación — Entrega 3 |
+| 5 | 21-09-2026 | Correlación, selección y extracción de características | — |
+| 6 | 23-09-2026 | Reducción de dimensión; agrupamiento de datos | Proyecto integrador — Entrega 1 y Laboratorios de simulación — Entrega 3 |
 |---|---|**Modelado y evaluación de enfoques supervisados**|---|
-| 7 | | Aprendizaje supervisado: modelos de predicción, métricas y validación, KNN | — |
-| 8 | | Árboles de decisión y SVMs | — |
-| 9 | | Regresión logística y redes neuronales | — |
-| 10 | | Random Forest; ensemble learning (boosting y bagging) | — |
-| 11 | | Regresión lineal; métricas de evaluación | Laboratorios de simulación — Entrega 4 |
+| 7 | 28-09-2026 | Aprendizaje supervisado: modelos de predicción, métricas y validación, KNN | — |
+| 8 | 30-09-2026| Árboles de decisión y SVMs | — |
+| 9 | 05-10-2026 | Regresión logística y redes neuronales | — |
+| 10 | 07-10-2026 | Random Forest; ensemble learning (boosting y bagging) | — |
+| 11 | 14-10-2026 | Regresión lineal; métricas de evaluación | Laboratorios de simulación — Entrega 4 |
 |---|---|**Redes neuronales artificiales y Deep Learning**|---|
-| 12 | | Redes neuronales artificiales | — |
-| 13 | | Introducción al deep learning (CNNs) |Laboratorios de simulación — Entrega 5 |
+| 12 | 19-10-2026 | Redes neuronales artificiales | — |
+| 13 | 21-10-2026| Introducción al deep learning (CNNs) |Laboratorios de simulación — Entrega 5 |
 |---|---|**Herramientas de análisis de datos**|---|
-| 14 | | Herramientas para la implementación de EDA | — |
-| 15 | | Herramientas web de visión por computador; manejo de GitHub y Streamlit | — |
-| 16 | | Presentación final del proyecto integrador | Proyecto integrador — Entrega 2 |
+| 14 | 26-10-2026| Herramientas para la implementación de EDA | — |
+| 15 | 28-10-2026| Herramientas web de visión por computador; manejo de GitHub y Streamlit | — |
+| 16 | 02-11-2026 - 30-11-2026| Implementación de modelos y presentación final del proyecto integrador | Proyecto integrador — Entrega 2 |
 
 ## Bibliografía básica
 
