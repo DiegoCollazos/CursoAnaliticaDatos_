@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='utf-8'?>
+<scheme version="2.0" title="" description="">
+	<nodes>
+		<node id="0" name="File" qualified_name="Orange.widgets.data.owfile.OWFile" project_name="Orange3" version="" title="File" position="(99.0, 122.0)" />
+		<node id="1" name="Distributions" qualified_name="Orange.widgets.visualize.owdistributions.OWDistributions" project_name="Orange3" version="" title="Distributions" position="(176.0, -10.0)" />
+		<node id="2" name="Column Statistics" qualified_name="Orange.widgets.data.owfeaturestatistics.OWFeatureStatistics" project_name="Orange3" version="" title="Column Statistics" position="(275.0, 46.0)" />
+		<node id="3" name="Box Plot" qualified_name="Orange.widgets.visualize.owboxplot.OWBoxPlot" project_name="Orange3" version="" title="Box Plot" position="(464.0, 109.0)" />
+		<node id="4" name="Bar Plot" qualified_name="Orange.widgets.visualize.owbarplot.OWBarPlot" project_name="Orange3" version="" title="Bar Plot" position="(649.0, 183.0)" />
+		<node id="5" name="Scatter Plot" qualified_name="Orange.widgets.visualize.owscatterplot.OWScatterPlot" project_name="Orange3" version="" title="Scatter Plot" position="(627.0, 330.0)" />
+		<node id="6" name="Correlations" qualified_name="Orange.widgets.data.owcorrelations.OWCorrelations" project_name="Orange3" version="" title="Correlations" position="(349.77777777777777, 309.6666666666667)" />
+		<node id="7" name="Group by" qualified_name="Orange.widgets.data.owgroupby.OWGroupBy" project_name="Orange3" version="" title="Group by" position="(251.0, 511.0)" />
+		<node id="8" name="Bar Plot" qualified_name="Orange.widgets.visualize.owbarplot.OWBarPlot" project_name="Orange3" version="" title="Bar Plot (1)" position="(397.0, 521.0)" />
+	</nodes>
+	<links>
+		<link id="0" source_node_id="0" sink_node_id="1" source_channel="Data" sink_channel="Data" enabled="true" source_channel_id="data" sink_channel_id="data" />
+		<link id="1" source_node_id="0" sink_node_id="2" source_channel="Data" sink_channel="Data" enabled="true" source_channel_id="data" sink_channel_id="data" />
+		<link id="2" source_node_id="0" sink_node_id="3" source_channel="Data" sink_channel="Data" enabled="true" source_channel_id="data" sink_channel_id="data" />
+		<link id="3" source_node_id="0" sink_node_id="4" source_channel="Data" sink_channel="Data" enabled="true" source_channel_id="data" sink_channel_id="data" />
+		<link id="4" source_node_id="0" sink_node_id="5" source_channel="Data" sink_channel="Data" enabled="true" source_channel_id="data" sink_channel_id="data" />
+		<link id="5" source_node_id="0" sink_node_id="6" source_channel="Data" sink_channel="Data" enabled="true" source_channel_id="data" sink_channel_id="data" />
+		<link id="6" source_node_id="0" sink_node_id="7" source_channel="Data" sink_channel="Data" enabled="true" source_channel_id="data" sink_channel_id="data" />
+		<link id="7" source_node_id="7" sink_node_id="8" source_channel="Data" sink_channel="Data" enabled="true" source_channel_id="data" sink_channel_id="data" />
+	</links>
+	<annotations>
+		<text id="0" type="text/plain" rect="(238.0, -312.0, 367.0, 254.0)" font-family="Segoe UI" font-size="16">El histograma de Orange muestra una distribución concentrada en valores bajos de Global Sales y una cola larga hacia la derecha, característica de una asimetría positiva. 
+
+Esta cola se aprecia mejor con un Bin Width pequeño. La media es 0,5374 y la mediana 0,17; valores similares a los obtenidos en el notebook. La media es mayor que la mediana debido a que unos pocos videojuegos presentan ventas muy altas y elevan el promedio.</text>
+		<arrow id="1" start="(294.0, 5.0)" end="(353.0, -55.99999999999997)" fill="#C1272D" />
+		<arrow id="2" start="(495.00000000000006, 88.0)" end="(642.0, -35.0)" fill="#C1272D" />
+		<text id="3" type="text/plain" rect="(628.0, -289.0, 404.0, 306.0)" font-family="Segoe UI" font-size="16">Notebook: Identifica 1827 juegos atípicos, lo que equivale al 11.2% del total de los datos, utilizando la regla estándar del IQR.
+
+Orange: Aplica la misma regla matemática de IQR para calcular y representar los diagramas de caja. Al visualizar el widget, Orange marca de manera similar los valores extremos (outliers) extendidos más allá del bigote superior, coincidiendo conceptualmente con la proporción de aproximadamente el 11% de juegos atípicos detectados en el análisis del notebook.</text>
+		<arrow id="4" start="(691.0, 172.0)" end="(885.0, 105.0)" fill="#C1272D" />
+		<text id="5" type="text/plain" rect="(907.0, -17.0, 395.0, 210.0)" font-family="Segoe UI" font-size="16">Notebook: El gráfico de barras muestra que el género con mayor cantidad de registros es Action, acumulando un total de 3253 juegos. 
+
+Orange: Al configurar el widget Bar Plot con la variable categórica correspondiente, el resultado sí coincide plenamente, confirmando que Action sigue siendo el género más frecuente dentro del conjunto de datos de videojuegos.</text>
+		<text id="6" type="text/plain" rect="(851.0, 229.0, 504.0, 333.0)" font-family="Segoe UI" font-size="16">Dirección y forma de la relación: Al analizar el diagrama de dispersión (Scatter Plot) entre las ventas de Norteamérica (NA_Sales) y Europa (EU_Sales), se observa una tendencia ascendente con una forma concentrada principalmente en la esquina inferior izquierda (debido a la gran cantidad de juegos con ventas moderadas o bajas) y una dispersión que se extiende de manera positiva hacia arriba y a la derecha. Esto indica una relación directa o positiva: a mayores ventas en Norteamérica, tienden a registrarse mayores ventas en Europa.
+
+Comparación con el widget Correlations: El coeficiente de correlación que arroja Orange entre ambas variables es de 0.768 (aproximadamente 0.77), lo cual coincide perfectamente con el valor reportado previamente en el notebook. Esta cifra confirma una correlación fuerte y positiva entre los mercados de ambas regiones.</text>
+		<arrow id="7" start="(673.0, 336.0)" end="(836.0, 349.0)" fill="#C1272D" />
+		<text id="8" type="text/plain" rect="(588.888888888889, 587.7777777777778, 543.3333333333334, 144.0)" font-family="Segoe UI" font-size="16">Coincidencia con el notebook: Sí, coincide plenamente. Utilizando el gráfico de barras que generamos en Orange para representar la evolución temporal, se comprueba visualmente que el año 2008 registra la barra más alta de todo el conjunto de datos, alcanzando el pico máximo de ventas globales y validando exactamente el mismo resultado obtenido en el notebook (2008 con aproximadamente 679 millones de copias). </text>
+		<arrow id="9" start="(437.77777777777777, 547.7777777777778)" end="(580.0, 623.3333333333334)" fill="#C1272D" />
+	</annotations>
+	<thumbnail />
+	<node_properties>
+		<properties node_id="0" format="pickle">gASVfAkAAAAAAAB9lCiMEmNvbnRyb2xBcmVhVmlzaWJsZZSIjAxyZWNlbnRfcGF0aHOUXZQojB5v
+cmFuZ2V3aWRnZXQudXRpbHMuZmlsZWRpYWxvZ3OUjApSZWNlbnRQYXRolJOUKYGUfZQojAdhYnNw
+YXRolIw7QzovVXNlcnMvTEVOT1ZPL0Rlc2t0b3AvUzgvRGF0YSBhbmFseXRpY3MvTGFiXzIvdmdz
+YWxlcy5jc3aUjAZwcmVmaXiUjAdiYXNlZGlylIwHcmVscGF0aJSMC3Znc2FsZXMuY3N2lIwFdGl0
+bGWUjACUjAVzaGVldJRoEIwLZmlsZV9mb3JtYXSUTnViaAYpgZR9lChoCYwlQzovVXNlcnMvTEVO
+T1ZPL0Rvd25sb2Fkcy9kYXRhc2V0LmNzdpRoC05oDU5oD2gQaBFoEGgSTnViaAYpgZR9lChoCYxY
+QzovVXNlcnMvTEVOT1ZPL0FwcERhdGEvTG9jYWwvUHJvZ3JhbXMvT3JhbmdlL0xpYi9zaXRlLXBh
+Y2thZ2VzL09yYW5nZS9kYXRhc2V0cy9pcmlzLnRhYpRoC4wPc2FtcGxlLWRhdGFzZXRzlGgNjAhp
+cmlzLnRhYpRoD2gQaBFoEGgSTnViaAYpgZR9lChoCYxbQzovVXNlcnMvTEVOT1ZPL0FwcERhdGEv
+TG9jYWwvUHJvZ3JhbXMvT3JhbmdlL0xpYi9zaXRlLXBhY2thZ2VzL09yYW5nZS9kYXRhc2V0cy90
+aXRhbmljLnRhYpRoC2gZaA2MC3RpdGFuaWMudGFilGgPaBBoEWgQaBJOdWJoBimBlH2UKGgJjFtD
+Oi9Vc2Vycy9MRU5PVk8vQXBwRGF0YS9Mb2NhbC9Qcm9ncmFtcy9PcmFuZ2UvTGliL3NpdGUtcGFj
+a2FnZXMvT3JhbmdlL2RhdGFzZXRzL2hvdXNpbmcudGFilGgLaBloDYwLaG91c2luZy50YWKUaA9o
+EGgRaBBoEk51YmgGKYGUfZQoaAmMYUM6L1VzZXJzL0xFTk9WTy9BcHBEYXRhL0xvY2FsL1Byb2dy
+YW1zL09yYW5nZS9MaWIvc2l0ZS1wYWNrYWdlcy9PcmFuZ2UvZGF0YXNldHMvaGVhcnRfZGlzZWFz
+ZS50YWKUaAtoGWgNjBFoZWFydF9kaXNlYXNlLnRhYpRoD2gQaBFoEGgSTnViaAYpgZR9lChoCYxi
+QzovVXNlcnMvTEVOT1ZPL0FwcERhdGEvTG9jYWwvUHJvZ3JhbXMvT3JhbmdlL0xpYi9zaXRlLXBh
+Y2thZ2VzL09yYW5nZS9kYXRhc2V0cy9icm93bi1zZWxlY3RlZC50YWKUaAtoGWgNjBJicm93bi1z
+ZWxlY3RlZC50YWKUaA9oEGgRaBBoEk51YmgGKYGUfZQoaAmMV0M6L1VzZXJzL0xFTk9WTy9BcHBE
+YXRhL0xvY2FsL1Byb2dyYW1zL09yYW5nZS9MaWIvc2l0ZS1wYWNrYWdlcy9PcmFuZ2UvZGF0YXNl
+dHMvem9vLnRhYpRoC2gZaA2MB3pvby50YWKUaA9oEGgRaBBoEk51YmWMC3JlY2VudF91cmxzlF2U
+jBNzYXZlZFdpZGdldEdlb21ldHJ5lENCAdnQywADAAD/////////+QAABgAAAANgAAAAAAAAABcA
+AAX/AAADXwAAAAACAAAABgAAAAAAAAAAFwAABf8AAANflIwLc2hlZXRfbmFtZXOUfZSMBnNvdXJj
+ZZRLAIwDdXJslGgQjA1kb21haW5fZWRpdG9ylH2UjAtfX3ZlcnNpb25fX5RLAYwQY29udGV4dF9z
+ZXR0aW5nc5RdlIwVb3Jhbmdld2lkZ2V0LnNldHRpbmdzlIwHQ29udGV4dJSTlCmBlH2UKIwGdmFs
+dWVzlH2UKIwJdmFyaWFibGVzlF2UaDd9lGhDXZQoXZQojARSYW5rlIwUT3JhbmdlLmRhdGEudmFy
+aWFibGWUjBJDb250aW51b3VzVmFyaWFibGWUk5RLAGgQiGVdlCiMCFBsYXRmb3JtlGhJjBBEaXNj
+cmV0ZVZhcmlhYmxllJOUSwCMYTNETywgM0RTLCAyNjAwLCBEQywgRFMsIEdCLCBHQkEsIEdDLCBH
+RU4sIEdHLCBONjQsIE5FUywgTkcsIFBDLCBQQ0ZYLCBQUywgUFMyLCBQUzMsIFBTNCwgUFNQLCAu
+Li6UiWVdlCiMBUdlbnJllGhPSwCMcEFjdGlvbiwgQWR2ZW50dXJlLCBGaWdodGluZywgTWlzYywg
+UGxhdGZvcm0sIFB1enpsZSwgUmFjaW5nLCBSb2xlLVBsYXlpbmcsIFNob290ZXIsIFNpbXVsYXRp
+b24sIFNwb3J0cywgU3RyYXRlZ3mUiWVdlCiMCE5BX1NhbGVzlGhLSwBoEIhlXZQojAhFVV9TYWxl
+c5RoS0sAaBCIZV2UKIwISlBfU2FsZXOUaEtLAGgQiGVdlCiMC090aGVyX1NhbGVzlGhLSwBoEIhl
+XZQojAxHbG9iYWxfU2FsZXOUaEtLAGgQiGVdlCiMBE5hbWWUaEmMDlN0cmluZ1ZhcmlhYmxllJOU
+SwJoEIllXZQojARZZWFylGhhSwJoEIllXZQojAlQdWJsaXNoZXKUaGFLAmgQiWVlc2g5SwF1jAph
+dHRyaWJ1dGVzlChoSEsChpRoTV2UKIwDM0RPlIwDM0RTlIwEMjYwMJSMAkRDlIwCRFOUjAJHQpSM
+A0dCQZSMAkdDlIwDR0VOlIwCR0eUjANONjSUjANORVOUjAJOR5SMAlBDlIwEUENGWJSMAlBTlIwD
+UFMylIwDUFMzlIwDUFM0lIwDUFNQlIwDUFNWlIwDU0FUlIwDU0NElIwEU05FU5SMBFRHMTaUjAJX
+U5SMA1dpaZSMBFdpaVWUjARYMzYwlIwCWEKUjARYT25llGWGlGhSXZQojAZBY3Rpb26UjAlBZHZl
+bnR1cmWUjAhGaWdodGluZ5SMBE1pc2OUjAhQbGF0Zm9ybZSMBlB1enpsZZSMBlJhY2luZ5SMDFJv
+bGUtUGxheWluZ5SMB1Nob290ZXKUjApTaW11bGF0aW9ulIwGU3BvcnRzlIwIU3RyYXRlZ3mUZYaU
+aFVLAoaUaFdLAoaUaFlLAoaUaFtLAoaUaF1LAoaUdJSMBW1ldGFzlGhfSwOGlGhjSwOGlGhlSwOG
+lIeUjApjbGFzc192YXJzlCmMEm1vZGlmaWVkX3ZhcmlhYmxlc5RdlHViYXUu
+</properties>
+		<properties node_id="1" format="pickle">gASVOwMAAAAAAAB9lCiMCmF1dG9fYXBwbHmUiIwSY29udHJvbEFyZWFWaXNpYmxllIiMEGN1bXVs
+YXRpdmVfZGlzdHKUiYwTZml0dGVkX2Rpc3RyaWJ1dGlvbpRLAIwJaGlkZV9iYXJzlImMDWtkZV9z
+bW9vdGhpbmeUSwqME3NhdmVkV2lkZ2V0R2VvbWV0cnmUQ0IB2dDLAAMAAAAAAZ0AAADRAAAFLwAA
+AvUAAAGeAAAA7wAABS4AAAL0AAAAAAAAAAAGAAAAAZ4AAADvAAAFLgAAAvSUjApzaG93X3Byb2Jz
+lImMDHNvcnRfYnlfZnJlcZSJjA9zdGFja2VkX2NvbHVtbnOUiYwLX192ZXJzaW9uX1+USwKMEGNv
+bnRleHRfc2V0dGluZ3OUXZQojBVvcmFuZ2V3aWRnZXQuc2V0dGluZ3OUjAdDb250ZXh0lJOUKYGU
+fZQojAZ2YWx1ZXOUfZQojARjdmFylE5K/v///4aUjA5udW1iZXJfb2ZfYmluc5RLAEr+////hpSM
+DXNlbGVjdGVkX2JhcnOUj5RK/v///4aUjAN2YXKUjAxHbG9iYWxfU2FsZXOUS2aGlGgMSwJ1jAph
+dHRyaWJ1dGVzlH2UKIwEUmFua5RLAowIUGxhdGZvcm2USwGMBUdlbnJllEsBjAhOQV9TYWxlc5RL
+AowIRVVfU2FsZXOUSwKMCEpQX1NhbGVzlEsCjAtPdGhlcl9TYWxlc5RLAmgeSwJ1jAVtZXRhc5R9
+lCiMBE5hbWWUSwOMBFllYXKUSwOMCVB1Ymxpc2hlcpRLA3V1YmgRKYGUfZQoaBR9lChoFk5K/v//
+/4aUaBhLAEr+////hpRoGo+USv7///+GlGgdaB5LZoaUaAxLAnVoIH2UKGgiSwJoI0sBaCRLAWgl
+SwJoJksCaCdLAmgoSwJoHksCdWgpfZQoaCtLA2gtSwN1dWJoESmBlH2UKGgUfZQoaBZOSv7///+G
+lGgYSwBK/v///4aUaBqPlEr+////hpRoHWgeS2aGlGgMSwJ1aCB9lChoIksCaCNLAWgkSwFoJUsC
+aCZLAmgnSwJoKEsCaB5LAnVoKX2UKGgrSwNoLEsBaC1LA3V1YmV1Lg==
+</properties>
+		<properties node_id="2" format="pickle">gASV0AIAAAAAAAB9lCiMC2F1dG9fY29tbWl0lIiMEmNvbnRyb2xBcmVhVmlzaWJsZZSIjBNzYXZl
+ZFdpZGdldEdlb21ldHJ5lENCAdnQywADAAD/////////+QAABgAAAANgAAAAAAAAABcAAAX/AAAD
+XwAAAAACAAAABgAAAAAAAAAAFwAABf8AAANflIwHc29ydGluZ5RLAowDc2lwlIwOX3VucGlja2xl
+X2VudW2Uk5SMDFB5UXQ1LlF0Q29yZZSMCVNvcnRPcmRlcpRLAYeUUpSGlIwLX192ZXJzaW9uX1+U
+SwKMEGNvbnRleHRfc2V0dGluZ3OUXZQojBVvcmFuZ2V3aWRnZXQuc2V0dGluZ3OUjAdDb250ZXh0
+lJOUKYGUfZQojAZ2YWx1ZXOUfZQojAljb2xvcl92YXKUjAxHbG9iYWxfU2FsZXOUS2aGlIwNc2Vs
+ZWN0ZWRfdmFyc5RdlGgZS2aGlGFK/f///4aUaA5LAnWMCmF0dHJpYnV0ZXOUfZQojARSYW5rlEsC
+jAhQbGF0Zm9ybZRLAYwFR2VucmWUSwGMCE5BX1NhbGVzlEsCjAhFVV9TYWxlc5RLAowISlBfU2Fs
+ZXOUSwKMC090aGVyX1NhbGVzlEsCaBlLAnWMBW1ldGFzlH2UKIwETmFtZZRLA4wEWWVhcpRLA4wJ
+UHVibGlzaGVylEsDdXViaBMpgZR9lChoFn2UKGgYaBlLZoaUaBtdlGgZS2aGlGFK/f///4aUaA5L
+AnVoH32UKGghSwJoIksBaCNLAWgkSwJoJUsCaCZLAmgnSwJoGUsCdWgofZQoaCpLA2gsSwN1dWJo
+EymBlH2UKGgWfZQoaBhoGUtmhpRoG12UaBlLZoaUYUr9////hpRoDksCdWgffZQoaCFLAmgiSwFo
+I0sBaCRLAmglSwJoJksCaCdLAmgZSwJ1aCh9lChoKksDaCtLAWgsSwN1dWJldS4=
+</properties>
+		<properties node_id="3" format="pickle">gASVLAMAAAAAAAB9lCiMB2NvbXBhcmWUSwKMEmNvbnRyb2xBcmVhVmlzaWJsZZSIjBNvcmRlcl9i
+eV9pbXBvcnRhbmNllImMHG9yZGVyX2dyb3VwaW5nX2J5X2ltcG9ydGFuY2WUiYwTc2F2ZWRXaWRn
+ZXRHZW9tZXRyeZRDQgHZ0MsAAwAA//////////kAAAYAAAADYAAAAAAAAAAXAAAF/wAAA18AAAAA
+AgAAAAYAAAAAAAAAABcAAAX/AAADX5SMEHNob3dfYW5ub3RhdGlvbnOUiIwLc2hvd19sYWJlbHOU
+iIwNc2lnX3RocmVzaG9sZJRHP6mZmZmZmZqMCnNvcnRfZnJlcXOUiYwIc3RhdHRlc3SUSwCMCXN0
+cmV0Y2hlZJSIjAtfX3ZlcnNpb25fX5RLAYwQY29udGV4dF9zZXR0aW5nc5RdlCiMFW9yYW5nZXdp
+ZGdldC5zZXR0aW5nc5SMB0NvbnRleHSUk5QpgZR9lCiMBnZhbHVlc5R9lCiMCWF0dHJpYnV0ZZSM
+DEdsb2JhbF9TYWxlc5RLZoaUjAlncm91cF92YXKUTkr+////hpSMCXNlbGVjdGlvbpQpSv7///+G
+lGgNSwF1jAphdHRyaWJ1dGVzlH2UKIwEUmFua5RLAowIUGxhdGZvcm2USwGMBUdlbnJllEsBjAhO
+QV9TYWxlc5RLAowIRVVfU2FsZXOUSwKMCEpQX1NhbGVzlEsCjAtPdGhlcl9TYWxlc5RLAmgYSwJ1
+jAVtZXRhc5R9lCiMBE5hbWWUSwOMBFllYXKUSwOMCVB1Ymxpc2hlcpRLA3V1YmgSKYGUfZQoaBV9
+lChoF2gYS2aGlGgaTkr+////hpRoHClK/v///4aUaA1LAXVoHn2UKGggSwJoIUsBaCJLAWgjSwJo
+JEsCaCVLAmgmSwJoGEsCdWgnfZQoaClLA2grSwN1dWJoEimBlH2UKGgVfZQoaBdoGEtmhpRoGk5K
+/v///4aUaBwpSv7///+GlGgNSwF1aB59lChoIEsCaCFLAWgiSwFoI0sCaCRLAmglSwJoJksCaBhL
+AnVoJ32UKGgpSwNoKksBaCtLA3V1YmV1Lg==
+</properties>
+		<properties node_id="4" format="pickle">gASV6gIAAAAAAAB9lCiMC2F1dG9fY29tbWl0lIiMEmNvbnRyb2xBcmVhVmlzaWJsZZSIjBNzYXZl
+ZFdpZGdldEdlb21ldHJ5lENCAdnQywADAAD/////////+QAABgAAAANgAAAAAAAAABcAAAX/AAAD
+XwAAAAAAAAAABgAAAAAAAAAAFwAABf8AAANflIwJc2VsZWN0aW9ulE6MD3Zpc3VhbF9zZXR0aW5n
+c5R9lIwFZ3JhcGiUfZSMC19fdmVyc2lvbl9flEsBjBBjb250ZXh0X3NldHRpbmdzlF2UKIwVb3Jh
+bmdld2lkZ2V0LnNldHRpbmdzlIwHQ29udGV4dJSTlCmBlH2UKIwGdmFsdWVzlH2UKIwJYW5ub3Rf
+dmFylE5K/v///4aUjAljb2xvcl92YXKUjAVHZW5yZZRLZYaUjAlncm91cF92YXKUaBdLZYaUjAxz
+ZWxlY3RlZF92YXKUjAxHbG9iYWxfU2FsZXOUS2aGlGgIfZRoCksBdYwKYXR0cmlidXRlc5R9lCiM
+BFJhbmuUSwKMCFBsYXRmb3JtlEsBaBdLAYwITkFfU2FsZXOUSwKMCEVVX1NhbGVzlEsCjAhKUF9T
+YWxlc5RLAowLT3RoZXJfU2FsZXOUSwJoHEsCdYwFbWV0YXOUfZQojAROYW1llEsDjARZZWFylEsD
+jAlQdWJsaXNoZXKUSwN1dWJoDymBlH2UKGgSfZQoaBROSv7///+GlGgWaBdLZYaUaBloF0tlhpRo
+G2gcS2aGlGgIfZRoCksBdWgffZQoaCFLAmgiSwFoF0sBaCNLAmgkSwJoJUsCaCZLAmgcSwJ1aCd9
+lChoKUsDaCtLA3V1YmgPKYGUfZQoaBJ9lChoFE5K/v///4aUaBZoF0tlhpRoGWgXS2WGlGgbaBxL
+ZoaUaAh9lGgKSwF1aB99lChoIUsCaCJLAWgXSwFoI0sCaCRLAmglSwJoJksCaBxLAnVoJ32UKGgp
+SwNoKksBaCtLA3V1YmV1Lg==
+</properties>
+		<properties node_id="5" format="pickle">gASV8gQAAAAAAAB9lCiMDWF0dHJfeF9pc19hYnOUiYwNYXR0cl95X2lzX2Fic5SJjAthdXRvX2Nv
+bW1pdJSIjAthdXRvX3NhbXBsZZSIjBJjb250cm9sQXJlYVZpc2libGWUiIwTc2F2ZWRXaWRnZXRH
+ZW9tZXRyeZRDQgHZ0MsAAwAAAAAA/wAAAHIAAAUAAAAC0AAAAQAAAACQAAAE/wAAAs8AAAAAAAAA
+AAYAAAABAAAAAJAAAAT/AAACz5SMCXNlbGVjdGlvbpROjBF0b29sdGlwX3Nob3dzX2FsbJSIjA92
+aXN1YWxfc2V0dGluZ3OUfZSMBWdyYXBolH2UKIwLYWxwaGFfdmFsdWWUS1yMDWNsYXNzX2RlbnNp
+dHmUiYwRaml0dGVyX2NvbnRpbnVvdXOUiYwLaml0dGVyX3NpemWUSwCME2xhYmVsX29ubHlfc2Vs
+ZWN0ZWSUiYwWb3J0aG9ub3JtYWxfcmVncmVzc2lvbpSJjAtwb2ludF93aWR0aJRLBowMc2hvd19l
+bGxpcHNllImMCXNob3dfZ3JpZJSJjAtzaG93X2xlZ2VuZJSIjA1zaG93X3JlZ19saW5llIl1jAtf
+X3ZlcnNpb25fX5RLBYwQY29udGV4dF9zZXR0aW5nc5RdlCiMFW9yYW5nZXdpZGdldC5zZXR0aW5n
+c5SMB0NvbnRleHSUk5QpgZR9lCiMBnZhbHVlc5R9lCiMCmF0dHJfY29sb3KUTkr+////hpSMCmF0
+dHJfbGFiZWyUTkr+////hpSMCmF0dHJfc2hhcGWUTkr+////hpSMCWF0dHJfc2l6ZZROSv7///+G
+lIwGYXR0cl94lIwITkFfU2FsZXOUS2aGlIwMYXR0cl94X2xvd2VylE5K/v///4aUjAxhdHRyX3hf
+dXBwZXKUTkr+////hpSMBmF0dHJfeZSMCEVVX1NhbGVzlEtmhpSMDGF0dHJfeV9sb3dlcpROSv7/
+//+GlIwMYXR0cl95X3VwcGVylE5K/v///4aUaAx9lGgZSwV1jAphdHRyaWJ1dGVzlH2UKIwEUmFu
+a5RLAowIUGxhdGZvcm2USwGMBUdlbnJllEsBaCxLAmgzSwKMCEpQX1NhbGVzlEsCjAtPdGhlcl9T
+YWxlc5RLAowMR2xvYmFsX1NhbGVzlEsCdYwFbWV0YXOUfZQojAROYW1llEsDjARZZWFylEsDjAlQ
+dWJsaXNoZXKUSwN1dWJoHimBlH2UKGghfZQoaCNOSv7///+GlGglTkr+////hpRoJ05K/v///4aU
+aClOSv7///+GlGgraCxLZoaUaC5OSv7///+GlGgwTkr+////hpRoMmgzS2aGlGg1Tkr+////hpRo
+N05K/v///4aUaAx9lGgZSwV1aDp9lChoPEsCaD1LAWg+SwFoLEsCaDNLAmg/SwJoQEsCaEFLAnVo
+Qn2UKGhESwNoRksDdXViaB4pgZR9lChoIX2UKGgjTkr+////hpRoJU5K/v///4aUaCdOSv7///+G
+lGgpTkr+////hpRoK2gsS2aGlGguTkr+////hpRoME5K/v///4aUaDJoM0tmhpRoNU5K/v///4aU
+aDdOSv7///+GlGgMfZRoGUsFdWg6fZQoaDxLAmg9SwFoPksBaCxLAmgzSwJoP0sCaEBLAmhBSwJ1
+aEJ9lChoREsDaEVLAWhGSwN1dWJldS4=
+</properties>
+		<properties node_id="6" format="pickle">gASVoQEAAAAAAAB9lCiMEmNvbnRyb2xBcmVhVmlzaWJsZZSIjBBjb3JyZWxhdGlvbl90eXBllEsA
+jA5pbXB1dGVfbWlzc2luZ5SIjBNzYXZlZFdpZGdldEdlb21ldHJ5lENCAdnQywADAAAAAAJUAAAA
+bwAAA/8AAAMvAAACVQAAAI0AAAP+AAADLgAAAAAAAAAABgAAAAJVAAAAjQAAA/4AAAMulIwLX192
+ZXJzaW9uX1+USwOMEGNvbnRleHRfc2V0dGluZ3OUXZSMFW9yYW5nZXdpZGdldC5zZXR0aW5nc5SM
+B0NvbnRleHSUk5QpgZR9lCiMBnZhbHVlc5R9lCiMB2ZlYXR1cmWUTkr+////hpSMCXNlbGVjdGlv
+bpRdlCiMDEdsb2JhbF9TYWxlc5RLZoaUjAhOQV9TYWxlc5RLZoaUZUr9////hpRoBksDdYwKYXR0
+cmlidXRlc5R9lCiMBFJhbmuUSwJoFksCjAhFVV9TYWxlc5RLAowISlBfU2FsZXOUSwKMC090aGVy
+X1NhbGVzlEsCaBRLAnWMBW1ldGFzlH2UdWJhdS4=
+</properties>
+		<properties node_id="7" format="pickle">gASVBwQAAAAAAAB9lCiMC2F1dG9fY29tbWl0lIiMEmNvbnRyb2xBcmVhVmlzaWJsZZSIjBNzYXZl
+ZFdpZGdldEdlb21ldHJ5lENCAdnQywADAAAAAAFaAAAAKAAABKUAAAKqAAABWwAAAEYAAASkAAAC
+qQAAAAAAAAAABgAAAAFbAAAARgAABKQAAAKplIwLX192ZXJzaW9uX1+USwGMEGNvbnRleHRfc2V0
+dGluZ3OUXZQojBVvcmFuZ2V3aWRnZXQuc2V0dGluZ3OUjAdDb250ZXh0lJOUKYGUfZQojAZ2YWx1
+ZXOUfZQojAxhZ2dyZWdhdGlvbnOUfZQojARSYW5rlEtmhpSPlIwIUGxhdGZvcm2US2WGlI+UjAVH
+ZW5yZZRLZYaUj5SMCE5BX1NhbGVzlEtmhpSPlIwIRVVfU2FsZXOUS2aGlI+UjAhKUF9TYWxlc5RL
+ZoaUj5SMC090aGVyX1NhbGVzlEtmhpSPlIwMR2xvYmFsX1NhbGVzlEtmhpSPlCiMA1N1bZSQjARO
+YW1llEtnhpSPlIwEWWVhcpRLZ4aUj5SMCVB1Ymxpc2hlcpRLZ4aUj5R1Svz///+GlIwIZ2JfYXR0
+cnOUXZRoLUtnhpRhSv3///+GlGgFSwF1jAphdHRyaWJ1dGVzlH2UKGgRSwJoFEsBaBdLAWgaSwJo
+HUsCaCBLAmgjSwJoJksCdYwFbWV0YXOUfZQoaCpLA2gtSwNoMEsDdXViaAopgZR9lChoDX2UKGgP
+fZQoaBFLZoaUj5QojARNZWFulJBoFEtlhpSPlCiMBE1vZGWUkGgXS2WGlI+UKGhFkGgaS2aGlI+U
+KGhCkGgdS2aGlI+UKGhCkGggS2aGlI+UKGhCkGgjS2aGlI+UKGhCkGgmS2aGlI+UKGhCkGgqS2eG
+lI+UKIwLQ29uY2F0ZW5hdGWUkGgwS2eGlI+UKGhUkHVK/P///4aUaDRdlGgqS2eGlGFK/f///4aU
+aAVLAXVoOH2UKGgRSwJoFEsBaBdLAWgaSwJoHUsCaCBLAmgjSwJoJksCdWg6fZQoaCpLA2gwSwN1
+dWJoCimBlH2UKGgNfZQoaA99lChoEUtmhpSPlChoQpBoFEtlhpSPlChoRZBoF0tlhpSPlChoRZBo
+GktmhpSPlChoQpBoHUtmhpSPlChoQpBoIEtmhpSPlChoQpBoI0tmhpSPlChoQpBoJktmhpSPlCho
+QpBoKktnhpSPlChoVJBoLUtlhpSPlChoRZBoMEtnhpSPlChoVJB1Svz///+GlGg0XZRoLUtlhpRh
+Sv3///+GlGgFSwF1aDh9lChoEUsCaBRLAWgXSwFoGksCaB1LAmggSwJoI0sCaCZLAnVoOn2UKGgq
+SwNoLUsBaDBLA3V1YmV1Lg==
+</properties>
+		<properties node_id="8" format="pickle">gASVoQEAAAAAAAB9lCiMC2F1dG9fY29tbWl0lIiMEmNvbnRyb2xBcmVhVmlzaWJsZZSIjBNzYXZl
+ZFdpZGdldEdlb21ldHJ5lENCAdnQywADAAD/////////+QAABgAAAANgAAAAAAAAABcAAAX/AAAD
+XwAAAAACAAAABgAAAAAAAAAAFwAABf8AAANflIwJc2VsZWN0aW9ulE6MD3Zpc3VhbF9zZXR0aW5n
+c5R9lIwFZ3JhcGiUfZSMC19fdmVyc2lvbl9flEsBjBBjb250ZXh0X3NldHRpbmdzlF2UjBVvcmFu
+Z2V3aWRnZXQuc2V0dGluZ3OUjAdDb250ZXh0lJOUKYGUfZQojAZ2YWx1ZXOUfZQojAlhbm5vdF92
+YXKUjARZZWFylEtnhpSMCWNvbG9yX3ZhcpROSv7///+GlIwJZ3JvdXBfdmFylE5K/v///4aUjAxz
+ZWxlY3RlZF92YXKUjBJHbG9iYWxfU2FsZXMgLSBTdW2US2aGlGgIfZRoCksBdYwKYXR0cmlidXRl
+c5R9lGgcSwJzjAVtZXRhc5R9lGgVSwNzdWJhdS4=
+</properties>
+	</node_properties>
+	<session_state>
+		<window_groups />
+	</session_state>
+</scheme>
