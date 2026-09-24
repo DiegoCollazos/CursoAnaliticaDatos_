@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='utf-8'?>
+<scheme version="2.0" title="" description="">
+	<nodes>
+		<node id="0" name="File" qualified_name="Orange.widgets.data.owfile.OWFile" project_name="Orange3" version="" title="File" position="(14.0, -2.0)" />
+		<node id="1" name="Column Statistics" qualified_name="Orange.widgets.data.owfeaturestatistics.OWFeatureStatistics" project_name="Orange3" version="" title="Column Statistics" position="(195.0, -26.0)" />
+		<node id="2" name="Select Columns" qualified_name="Orange.widgets.data.owselectcolumns.OWSelectAttributes" project_name="Orange3" version="" title="Select Columns" position="(79.0, 74.0)" />
+		<node id="3" name="Data Sampler" qualified_name="Orange.widgets.data.owdatasampler.OWDataSampler" project_name="Orange3" version="" title="Data Sampler" position="(234.0, 135.0)" />
+		<node id="4" name="Preprocess" qualified_name="Orange.widgets.data.owpreprocess.OWPreprocess" project_name="Orange3" version="" title="Preprocess" position="(500.0, 158.0)" />
+		<node id="5" name="Preprocess" qualified_name="Orange.widgets.data.owpreprocess.OWPreprocess" project_name="Orange3" version="" title="Preprocess (1)" position="(319.0, 304.0)" />
+		<node id="6" name="Discretize" qualified_name="Orange.widgets.data.owdiscretize.OWDiscretize" project_name="Orange3" version="" title="Discretize" position="(510.0, 295.0)" />
+		<node id="7" name="Continuize" qualified_name="Orange.widgets.data.owcontinuize.OWContinuize" project_name="Orange3" version="" title="Continuize" position="(503.0, 447.0)" />
+	</nodes>
+	<links>
+		<link id="0" source_node_id="0" sink_node_id="1" source_channel="Data" sink_channel="Data" enabled="true" source_channel_id="data" sink_channel_id="data" />
+		<link id="1" source_node_id="0" sink_node_id="2" source_channel="Data" sink_channel="Data" enabled="true" source_channel_id="data" sink_channel_id="data" />
+		<link id="2" source_node_id="2" sink_node_id="3" source_channel="Data" sink_channel="Data" enabled="true" source_channel_id="data" sink_channel_id="data" />
+		<link id="3" source_node_id="3" sink_node_id="5" source_channel="Data Sample" sink_channel="Data" enabled="true" source_channel_id="data_sample" sink_channel_id="data" />
+		<link id="4" source_node_id="5" sink_node_id="4" source_channel="Preprocessed Data" sink_channel="Data" enabled="true" source_channel_id="preprocessed_data" sink_channel_id="data" />
+		<link id="5" source_node_id="5" sink_node_id="6" source_channel="Preprocessed Data" sink_channel="Data" enabled="true" source_channel_id="preprocessed_data" sink_channel_id="data" />
+		<link id="6" source_node_id="5" sink_node_id="7" source_channel="Preprocessed Data" sink_channel="Data" enabled="true" source_channel_id="preprocessed_data" sink_channel_id="data" />
+	</links>
+	<annotations>
+		<text id="0" type="text/plain" rect="(249.0, -142.0, 441.0, 174.0)" font-family="Segoe UI" font-size="16">Actividad 1 — Diagnóstico de faltantes (Titanic)
+Al revisar los datos, encontré que Cabin tiene 687 datos faltantes (77%), Age tiene 177 (20%) y Embarked tiene 2 (0.2%).
+Estos resultados coinciden con los del notebook 2.2, tanto en las columnas afectadas como en los porcentajes de datos faltantes.</text>
+		<text id="1" type="text/plain" rect="(534.0, 18.0, 412.0, 194.0)" font-family="Segoe UI" font-size="16">Nota sobre imputación (Preprocess 1)
+En esta versión de Orange no está disponible Median, así que Age se completa con el promedio y Embarked con la moda.
+Además, Orange no permite usar una salida Preprocessor para el conjunto de prueba, por lo que se creó otro Preprocess con los mismos parámetros..</text>
+		<text id="2" type="text/plain" rect="(592.0, 207.0, 411.0, 187.0)" font-family="Segoe UI" font-size="16">Actividad 2a — Discretización de Age
+En Orange se usó Entropy-MDL para dividir la variable Age, obteniendo un corte de aproximadamente 6.5 años.
+Este resultado es similar al del notebook, donde el corte estaba entre 5 y 6.5 años. Esto muestra el mismo patrón: los niños pequeños tenían más posibilidades de sobrevivir.</text>
+		<text id="3" type="text/plain" rect="(577.0, 415.0, 511.0, 143.0)" font-family="Segoe UI" font-size="16">Actividad 2b — Codificación de Embarked
+En Continuize se eligió One-hot encoding, que crea tres columnas: Embarked=C, Q y S.
+Esta opción coincide con las tres columnas del notebook (Embarked_C, Embarked_Q y Embarked_S), por eso se dejó seleccionada.</text>
+		<text id="4" type="text/plain" rect="(72.0, 504.0, 373.0, 254.0)" font-family="Segoe UI" font-size="16">Reflexión final — Parte 1
+Para mí, Orange fue más fácil de entender visualmente al separar los datos en train y test. También fue más sencillo hacer la discretización y la codificación, porque solo hay que elegir la opción correspondiente.
+Lo más complicado fue evitar la fuga de información, ya que esta versión de Orange no tiene la salida Preprocessor. En cambio, Python permite tener más control sobre cada paso y repetir el proceso con mayor facilidad.</text>
+	</annotations>
+	<thumbnail />
+	<node_properties>
+		<properties node_id="0" format="pickle">gASVLwgAAAAAAAB9lCiMEmNvbnRyb2xBcmVhVmlzaWJsZZSIjAxyZWNlbnRfcGF0aHOUXZQojB5v
+cmFuZ2V3aWRnZXQudXRpbHMuZmlsZWRpYWxvZ3OUjApSZWNlbnRQYXRolJOUKYGUfZQojAdhYnNw
+YXRolIwpQzovVXNlcnMvbWlndWUvT25lRHJpdmUvRGVza3RvcC90cmFpbi5jc3aUjAZwcmVmaXiU
+TowHcmVscGF0aJROjAV0aXRsZZSMAJSMBXNoZWV0lGgOjAtmaWxlX2Zvcm1hdJROdWJoBimBlH2U
+KGgJjDNDOi9Vc2Vycy9taWd1ZS9PbmVEcml2ZS9EZXNrdG9wL1RpdGFuaWMtRGF0YXNldC5jc3aU
+aAtOaAxOaA1oDmgPaA5oEE51YmgGKYGUfZQoaAmMJEM6L1VzZXJzL21pZ3VlL0Rvd25sb2Fkcy9h
+cmNoaXZlLnppcJRoC05oDE5oDWgOaA9oDmgQTnViaAYpgZR9lChoCYxXQzovVXNlcnMvbWlndWUv
+QXBwRGF0YS9Mb2NhbC9Qcm9ncmFtcy9PcmFuZ2UvTGliL3NpdGUtcGFja2FnZXMvT3JhbmdlL2Rh
+dGFzZXRzL2lyaXMudGFilGgLjA9zYW1wbGUtZGF0YXNldHOUaAyMCGlyaXMudGFilGgNaA5oD2gO
+aBBOdWJoBimBlH2UKGgJjFpDOi9Vc2Vycy9taWd1ZS9BcHBEYXRhL0xvY2FsL1Byb2dyYW1zL09y
+YW5nZS9MaWIvc2l0ZS1wYWNrYWdlcy9PcmFuZ2UvZGF0YXNldHMvdGl0YW5pYy50YWKUaAtoGmgM
+jAt0aXRhbmljLnRhYpRoDWgOaA9oDmgQTnViaAYpgZR9lChoCYxaQzovVXNlcnMvbWlndWUvQXBw
+RGF0YS9Mb2NhbC9Qcm9ncmFtcy9PcmFuZ2UvTGliL3NpdGUtcGFja2FnZXMvT3JhbmdlL2RhdGFz
+ZXRzL2hvdXNpbmcudGFilGgLaBpoDIwLaG91c2luZy50YWKUaA1oDmgPaA5oEE51YmgGKYGUfZQo
+aAmMYEM6L1VzZXJzL21pZ3VlL0FwcERhdGEvTG9jYWwvUHJvZ3JhbXMvT3JhbmdlL0xpYi9zaXRl
+LXBhY2thZ2VzL09yYW5nZS9kYXRhc2V0cy9oZWFydF9kaXNlYXNlLnRhYpRoC2gaaAyMEWhlYXJ0
+X2Rpc2Vhc2UudGFilGgNaA5oD2gOaBBOdWJoBimBlH2UKGgJjGFDOi9Vc2Vycy9taWd1ZS9BcHBE
+YXRhL0xvY2FsL1Byb2dyYW1zL09yYW5nZS9MaWIvc2l0ZS1wYWNrYWdlcy9PcmFuZ2UvZGF0YXNl
+dHMvYnJvd24tc2VsZWN0ZWQudGFilGgLaBpoDIwSYnJvd24tc2VsZWN0ZWQudGFilGgNaA5oD2gO
+aBBOdWJoBimBlH2UKGgJjFZDOi9Vc2Vycy9taWd1ZS9BcHBEYXRhL0xvY2FsL1Byb2dyYW1zL09y
+YW5nZS9MaWIvc2l0ZS1wYWNrYWdlcy9PcmFuZ2UvZGF0YXNldHMvem9vLnRhYpRoC2gaaAyMB3pv
+by50YWKUaA1oDmgPaA5oEE51YmWMC3JlY2VudF91cmxzlF2UjBNzYXZlZFdpZGdldEdlb21ldHJ5
+lENCAdnQywADAAAAAAHTAAAAVQAABCwAAAK+AAAB1AAAAHMAAAQrAAACvQAAAAAAAAAABgAAAAHU
+AAAAcwAABCsAAAK9lIwLc2hlZXRfbmFtZXOUfZSMBnNvdXJjZZRLAIwDdXJslGgOjA1kb21haW5f
+ZWRpdG9ylH2UjAtfX3ZlcnNpb25fX5RLAYwQY29udGV4dF9zZXR0aW5nc5RdlIwVb3Jhbmdld2lk
+Z2V0LnNldHRpbmdzlIwHQ29udGV4dJSTlCmBlH2UKIwGdmFsdWVzlH2UKIwJdmFyaWFibGVzlF2U
+aDh9lGhEXZQoXZQojAtQYXNzZW5nZXJJZJSMFE9yYW5nZS5kYXRhLnZhcmlhYmxllIwSQ29udGlu
+dW91c1ZhcmlhYmxllJOUSwBoDohlXZQojAhTdXJ2aXZlZJRoSowQRGlzY3JldGVWYXJpYWJsZZST
+lEsBjAQwLCAxlIhlXZQojAZQY2xhc3OUaExLAGgOiGVdlCiMA1NleJRoUEsAjAxmZW1hbGUsIG1h
+bGWUiWVdlCiMA0FnZZRoTEsAaA6IZV2UKIwFU2liU3CUaExLAGgOiGVdlCiMBVBhcmNolGhMSwBo
+DohlXZQojARGYXJllGhMSwBoDohlXZQojAhFbWJhcmtlZJRoUEsAjAdDLCBRLCBTlIllXZQojARO
+YW1llGhKjA5TdHJpbmdWYXJpYWJsZZSTlEsCaA6JZV2UKIwGVGlja2V0lGhlSwJoDollXZQojAVD
+YWJpbpRoUEsAaA6JZWVzaDpLAXWMCmF0dHJpYnV0ZXOUKIwLUGFzc2VuZ2VySWSUSwKGlIwIU3Vy
+dml2ZWSUXZQojAEwlIwBMZRlhpSMBlBjbGFzc5RLAoaUjANTZXiUXZQojAZmZW1hbGWUjARtYWxl
+lGWGlIwDQWdllEsChpSMBVNpYlNwlEsChpSMBVBhcmNolEsChpSMBEZhcmWUSwKGlIwIRW1iYXJr
+ZWSUXZQojAFDlIwBUZSMAVOUZYaUdJSMBW1ldGFzlIwETmFtZZRLA4aUjAZUaWNrZXSUSwOGlIwF
+Q2FiaW6USwOGlIeUjApjbGFzc192YXJzlCmMEm1vZGlmaWVkX3ZhcmlhYmxlc5RdlHViYXUu
+</properties>
+		<properties node_id="1" format="pickle">gASVdQIAAAAAAAB9lCiMC2F1dG9fY29tbWl0lIiMEmNvbnRyb2xBcmVhVmlzaWJsZZSIjBNzYXZl
+ZFdpZGdldEdlb21ldHJ5lENCAdnQywADAAAAAAD/AAAAgAAABQAAAAKSAAABAAAAAJ4AAAT/AAAC
+kQAAAAAAAAAABgAAAAEAAAAAngAABP8AAAKRlIwHc29ydGluZ5RLCYwDc2lwlIwOX3VucGlja2xl
+X2VudW2Uk5SMDFB5UXQ1LlF0Q29yZZSMCVNvcnRPcmRlcpRLAIeUUpSGlIwLX192ZXJzaW9uX1+U
+SwKMEGNvbnRleHRfc2V0dGluZ3OUXZQojBVvcmFuZ2V3aWRnZXQuc2V0dGluZ3OUjAdDb250ZXh0
+lJOUKYGUfZQojAZ2YWx1ZXOUfZQojAljb2xvcl92YXKUjAhTdXJ2aXZlZJRLZYaUjA1zZWxlY3Rl
+ZF92YXJzlF2UaA5LAnWMCmF0dHJpYnV0ZXOUfZQojAtQYXNzZW5nZXJJZJRLAowGUGNsYXNzlEsC
+jANTZXiUSwGMA0FnZZRLAowFU2liU3CUSwKMBVBhcmNolEsCjARGYXJllEsCjAhFbWJhcmtlZJRL
+AYwFQ2FiaW6USwGMCFN1cnZpdmVklEsBdYwFbWV0YXOUfZQojAROYW1llEsDjAZUaWNrZXSUSwN1
+dWJoEymBlH2UKGgWfZQojAljb2xvcl92YXKUaChLZYaUjA1zZWxlY3RlZF92YXJzlF2UaA5LAnVo
+HX2UKGgfSwJoIEsCaCFLAWgiSwJoI0sCaCRLAmglSwJoJksBaChLAXVoKX2UKGgrSwNoLEsDjAVD
+YWJpbpRLA3V1YmV1Lg==
+</properties>
+		<properties node_id="2" format="pickle">gASVgAIAAAAAAAB9lCiMC2F1dG9fY29tbWl0lIiMEmNvbnRyb2xBcmVhVmlzaWJsZZSIjBNpZ25v
+cmVfbmV3X2ZlYXR1cmVzlImME3NhdmVkV2lkZ2V0R2VvbWV0cnmUQ0IB2dDLAAMAAAAAAdMAAABO
+AAAELAAAAsQAAAHUAAAAbAAABCsAAALDAAAAAAAAAAAGAAAAAdQAAABsAAAEKwAAAsOUjBJ1c2Vf
+aW5wdXRfZmVhdHVyZXOUiYwLX192ZXJzaW9uX1+USwGMEGNvbnRleHRfc2V0dGluZ3OUXZSMFW9y
+YW5nZXdpZGdldC5zZXR0aW5nc5SMB0NvbnRleHSUk5QpgZR9lCiMBnZhbHVlc5R9lCiMEWRvbWFp
+bl9yb2xlX2hpbnRzlH2UKIwFQ2FiaW6USwGGlIwJYXZhaWxhYmxllEsAhpSMC1Bhc3Nlbmdlcklk
+lEsChpSMCWF0dHJpYnV0ZZRLAIaUjAZQY2xhc3OUSwKGlGgZSwGGlIwDU2V4lEsBhpRoGUsChpSM
+A0FnZZRLAoaUaBlLA4aUjAVTaWJTcJRLAoaUaBlLBIaUjAVQYXJjaJRLAoaUaBlLBYaUjARGYXJl
+lEsChpRoGUsGhpSMCEVtYmFya2VklEsBhpRoGUsHhpSMCFN1cnZpdmVklEsBhpSMBWNsYXNzlEsA
+hpSMBE5hbWWUSwOGlIwEbWV0YZRLAIaUjAZUaWNrZXSUSwOGlGg2SwGGlHVK/v///4aUaAdLAXWM
+CmF0dHJpYnV0ZXOUfZQoaBdLAmgbSwJoHksBaCFLAmgkSwJoJ0sCaCpLAmgtSwFoE0sBaDBLAXWM
+BW1ldGFzlH2UKGg0SwNoOEsDdXViYXUu
+</properties>
+		<properties node_id="3" format="literal">{'compatibility_mode': False, 'controlAreaVisible': True, 'number_of_folds': 10, 'replacement': False, 'sampleSizeNumber': 1, 'sampleSizePercentage': 80, 'sampleSizeSqlPercentage': 0.1, 'sampleSizeSqlTime': 1, 'sampling_type': 0, 'savedWidgetGeometry': b'\x01\xd9\xd0\xcb\x00\x03\x00\x00\x00\x00\x02\x8c\x00\x00\x00\xaf\x00\x00\x03s\x00\x00\x02d\x00\x00\x02\x8d\x00\x00\x00\xcd\x00\x00\x03r\x00\x00\x02c\x00\x00\x00\x00\x00\x00\x00\x00\x06\x00\x00\x00\x02\x8d\x00\x00\x00\xcd\x00\x00\x03r\x00\x00\x02c', 'selectedFold': 1, 'sql_dl': False, 'stratify': True, 'use_seed': True, '__version__': 2}</properties>
+		<properties node_id="4" format="literal">{'autocommit': True, 'controlAreaVisible': True, 'savedWidgetGeometry': b'\x01\xd9\xd0\xcb\x00\x03\x00\x00\x00\x00\x01Z\x00\x00\x00\x80\x00\x00\x04\xa5\x00\x00\x02\x92\x00\x00\x01[\x00\x00\x00\x9e\x00\x00\x04\xa4\x00\x00\x02\x91\x00\x00\x00\x00\x00\x00\x00\x00\x06\x00\x00\x00\x01[\x00\x00\x00\x9e\x00\x00\x04\xa4\x00\x00\x02\x91', 'storedsettings': {'name': '', 'preprocessors': [('orange.preprocess.impute', {})]}, '__version__': 2}</properties>
+		<properties node_id="5" format="literal">{'autocommit': True, 'controlAreaVisible': True, 'savedWidgetGeometry': b'\x01\xd9\xd0\xcb\x00\x03\x00\x00\x00\x00\x01Z\x00\x00\x00\x80\x00\x00\x04\xa5\x00\x00\x02\x92\x00\x00\x01[\x00\x00\x00\x9e\x00\x00\x04\xa4\x00\x00\x02\x91\x00\x00\x00\x00\x00\x00\x00\x00\x06\x00\x00\x00\x01[\x00\x00\x00\x9e\x00\x00\x04\xa4\x00\x00\x02\x91', 'storedsettings': {'name': '', 'preprocessors': [('orange.preprocess.impute', {})]}, '__version__': 2}</properties>
+		<properties node_id="6" format="pickle">gASVAwEAAAAAAAB9lCiMCGF1dG9zZW5klIiMEmNvbnRyb2xBcmVhVmlzaWJsZZSIjBNzYXZlZFdp
+ZGdldEdlb21ldHJ5lENCAdnQywADAAAAAAHIAAAAgAAABDcAAAKSAAAByQAAAJ4AAAQ2AAACkQAA
+AAAAAAAABgAAAAHJAAAAngAABDYAAAKRlIwJdmFyX2hpbnRzlH2UKE6MIE9yYW5nZS53aWRnZXRz
+LmRhdGEub3dkaXNjcmV0aXpllIwHVmFySGludJSTlGgHjAdNZXRob2RzlJOUSwGFlFKUKYaUgZSM
+A0FnZZSJhpRoCWgLSwKFlFKUKYaUgZR1jAtfX3ZlcnNpb25fX5RLA3Uu
+</properties>
+		<properties node_id="7" format="literal">{'autosend': True, 'cont_var_hints': {'': 0}, 'controlAreaVisible': True, 'disc_var_hints': {'': 2, 'Embarked': 1}, 'savedWidgetGeometry': b'\x01\xd9\xd0\xcb\x00\x03\x00\x00\x00\x00\x01\xe3\x00\x00\x00m\x00\x00\x04\x1c\x00\x00\x02\xa6\x00\x00\x01\xe4\x00\x00\x00\x8b\x00\x00\x04\x1b\x00\x00\x02\xa5\x00\x00\x00\x00\x00\x00\x00\x00\x06\x00\x00\x00\x01\xe4\x00\x00\x00\x8b\x00\x00\x04\x1b\x00\x00\x02\xa5', '__version__': 3}</properties>
+	</node_properties>
+	<session_state>
+		<window_groups />
+	</session_state>
+</scheme>
