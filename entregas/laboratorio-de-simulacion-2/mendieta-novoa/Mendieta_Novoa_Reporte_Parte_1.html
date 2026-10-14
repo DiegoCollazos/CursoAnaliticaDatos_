@@ -1,0 +1,1518 @@
+<!DOCTYPE html><html><head>
+    <meta charset="utf-8">
+    <title>Orange Report</title>
+
+    <style>
+    html, body, table {
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 13px;
+        margin:0px;
+        padding:0;
+        border:0 none;
+    }
+
+    h1, h2 , h3, h4, h5 {
+       padding: 1px;
+       font-size:100%;
+    }
+
+    h1 {
+        color: white;
+        background-color: black;
+        padding: 4px;
+        margin-top: 12px;
+        margin-bottom: 6px;
+    }
+
+    h2 {
+        border-bottom: 1px solid black;
+        padding-left: 2px;
+    }
+
+    ul, table, p {
+        padding: 10px;
+    }
+
+    table {
+        margin-left: -6px;
+    }
+
+    span.timestamp {
+        position: absolute;
+        right: 40px;
+        color:#ddd;
+    }
+
+    div.selected, div.normal {
+        margin: 5px;
+    }
+
+    div.selected {
+        background: #ddd;
+    }
+    @media print{
+        div.selected {
+            background: inherit;
+        }
+        ::-webkit-input-placeholder {
+            color: transparent;
+        }
+    }
+
+    div.content {
+        margin-left: 15px;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 2px 6px 2px 6px;
+    }
+
+    th {
+        font-weight: bold;
+    }
+
+    @media screen {
+        td, th {
+            white-space: nowrap;
+        }
+    }
+
+    .caption {
+        text-align: center;
+        font-size: 90%;
+    }
+
+    img {
+        display: block;
+        margin: auto;
+        max-height: 20cm;
+    }
+
+    span.legend-square {
+        width: 1em;
+        height: 1em;
+        margin-right: 6px;
+        display: inline-block;
+    }
+
+    span.legend-item {
+        margin-right: 24px;
+    }
+
+    textarea {
+        border: 1px solid silver;
+        font-style: italic;
+        width: 100%;
+        height: 4em;
+    }
+
+    .textwrapper {
+        padding: 15px;
+    }
+
+    div.normal textarea:invalid {
+        display: none;
+    }
+
+    div.selected textarea {
+        display: block;
+    }
+
+    @media print{
+        section.section, img {
+            page-break-inside: avoid;
+        }
+    }
+    </style>
+    <script>
+    function scrollToId(id) {
+        var sel_el = document.getElementById(id);
+        if (sel_el != undefined) {
+            sel_el.scrollIntoView();
+            return true;
+        }
+        return false;
+    };
+
+    function setSelectedId(id) {
+        var sel_el = document.getElementsByClassName('selected')[0];
+        if (sel_el != undefined && sel_el.id != id) {
+           sel_el.className = 'normal';
+        }
+        sel_el = document.getElementById(id);
+        if (sel_el != undefined) {
+            sel_el.className = 'selected';
+            return true;
+        }
+        return false;
+    };
+    </script>
+
+</head><body onload="(function (id) {     setSelectedId(id); scrollToId(id); }(&quot;2196156188720&quot;));">
+
+ 
+
+<div id="2196156126496" class="normal" onclick="pybridge._select_item(this.id)"><section class="section"><h1>Column Statistics <span class="timestamp">Wed Sep 23 26, 19:48:22</span></h1><div class="content">
+<table>
+<tbody><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;"></th>
+<th style="color:black; background:transparent; text-align:left; vertical-align:middle;">Column</th>
+<th style="color:black; background:transparent; text-align:left; vertical-align:middle;">Distribution</th>
+<th style="color:black; background:transparent; text-align:left; vertical-align:middle;">Mean</th>
+<th style="color:black; background:transparent; text-align:left; vertical-align:middle;">Mode</th>
+<th style="color:black; background:transparent; text-align:left; vertical-align:middle;">Median</th>
+<th style="color:black; background:transparent; text-align:left; vertical-align:middle;">Dispersion</th>
+<th style="color:black; background:transparent; text-align:left; vertical-align:middle;">Min.</th>
+<th style="color:black; background:transparent; text-align:left; vertical-align:middle;">Max.</th>
+<th style="color:black; background:transparent; text-align:left; vertical-align:middle;">Missing</th>
+</tr><tr><td style="color:black; background:transparent; text-align:right; vertical-align:middle;"><img style="display: inline; vertical-align: middle" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABBUlEQVQ4jaWTMU/CUBSFv2fSBEZXWKyUMBEn1PATnDvrJqsLCYM/gKQDMJbV1dnR0QFGNMZo+1xgxFGSRi9DK5QSaIWz3Zd3vnffzbmwp1S8GGJegpgpFr+GvlsDDDh6AVUGMVIAAfB2iq4CHCxfzmIGEENBJfREgLBtMcDGEk3twU6YbCx5pFiPbiPGL3IcA8Sl+S47WNfpvWwAwJfjkmu2yO8K4LnN5L1BqVPdEQBML5rMbnqLf/8bAPd8NHwKt8mBZgYA/R6TlIFuBzBifOWScx0OtwF+UH6UsHU9tfG6OnkaCMqDlSibI6CSIY2BwOsZnycrAAgj/ZewTRKUdx5bpr01BxWJTSDdv1FOAAAAAElFTkSuQmCC"> </td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;">PassengerId</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;"><img style="max-height: 80px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUwAAADnCAIAAAD6oPiRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAFUklEQVR4nO3dz2vXdQDH8ff3u80ZOQ1/QVMCKV2TSEgti3CIgeWgQ3nxMLoKWXToWF36BxKzYxhERtQtpLp46BKi0anU1aVMdyg1lz+25r4dJstDgfZ9j83X9/E4vQ/7vvjAl+f3+/lubGu0Wq0C5GrO9wUAc0vkEE7kEE7kEE7kEE7kEE7kEE7kEE7kEE7kEE7kEE7kEE7kEE7kEE7kEE7kEE7kEE7kEE7kEE7kEE7kEE7kEE7kEE7kEE7kEE7kEE7kEE7kEE7kEE7kEE7kEE7kEE7kEE7kEK67zcfvOvZXlesopWzoaxzccvN6Rsdb+09M1Voe7m++OtA1cz56bvrA6Ru1ll8b6Hqu/+YL5YHTN46em661fGhL90N9jZnz/hNTo+OtWstf7uiZPXv6Zp++YO1GDhnOX2tdmqy2tm5JY3FXtbU2iRxKKeWTn6fn6EZs3uXfq0CHEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmEEzmE657vC8ixeuLSI9f+rLXWM31/KYtqrdHJRF7N88fe23X0s1prSzccKcsGa63RydyuQziRQziRQziRQziRQziRQziRQziRQziRQziRQziRQziRQziRQzi/hdbRPj4wVGuq8eDDZcv7tdaoqN3In7ryY5XrKKWsai4uZV2tNW5H69rVWlNdk9drTVFXu5G/cnBvlesopXRv2FiGPqq1BszwmRzCiRzCiRzCiRzCddyP0Laf+uqJDw7VWut96eXS/2ytNZgLHRd5z/Urk2O/VFubqPYjKJgjbtchXMe9k9+Ndv727baLl+vtPVNv6t/1TYyPjB2vtbZ28ZpSbv4J+rXj50fGfqi1vKZ/sJQ1M+dNF86sGPu11vKSicdL39Jaa20S+V1g5+fvTI1+X21u73fVpv7Dyotndx9+vdZa7/Ce8uQbM+eBn75Ze/jtWsv33vdWGXhh5rz1+KePVvzfGFuPlJULJXK36xBO5BBO5BBO5BBO5BBO5BBO5BBO5BBO5BBO5BBO5BBO5BBO5BBO5BBugf6q6bKJP/ad/brW2uqeB8rAplprcHdZoJEvv3hu6MM3a631Du8pT4ucDuV2HcKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMKJHMJ1z/cFQLhTl1tXp6qtPba8cacPETnMrXfP3Bgdb1WZapTyxY6eO31Uu5HfM7KvzYVZzRWrbz1XXO5ev3H23LV+sOJy1/rB2fOibUPNFatqLTeX/zPVu/vFngvbay3fytM3e567p2+4v/n7ZK3h/6PRatV5jQEWJt94g3Aih3B39pn85MmTc3QdwO3bvHnz7X+xd3II5xtvEM47OYQTOYQTOYQTOYQTOYQTOYQTOYQTOYQTOYQTOYQTOYQTOYQTOYQTOYT7G9gmqkhChRBkAAAAAElFTkSuQmCC"></td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">446</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">1</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">446</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">0.58</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">1</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">891</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">0 (0 %)</td>
+</tr><tr><td style="color:black; background:transparent; text-align:right; vertical-align:middle;"><img style="display: inline; vertical-align: middle" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABBUlEQVQ4jaWTMU/CUBSFv2fSBEZXWKyUMBEn1PATnDvrJqsLCYM/gKQDMJbV1dnR0QFGNMZo+1xgxFGSRi9DK5QSaIWz3Zd3vnffzbmwp1S8GGJegpgpFr+GvlsDDDh6AVUGMVIAAfB2iq4CHCxfzmIGEENBJfREgLBtMcDGEk3twU6YbCx5pFiPbiPGL3IcA8Sl+S47WNfpvWwAwJfjkmu2yO8K4LnN5L1BqVPdEQBML5rMbnqLf/8bAPd8NHwKt8mBZgYA/R6TlIFuBzBifOWScx0OtwF+UH6UsHU9tfG6OnkaCMqDlSibI6CSIY2BwOsZnycrAAgj/ZewTRKUdx5bpr01BxWJTSDdv1FOAAAAAElFTkSuQmCC"> </td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;">Pclass</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;"><img style="max-height: 80px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUwAAADnCAIAAAD6oPiRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAD+klEQVR4nO3dMWtddQCH4ZPeNFRaUCgImVopdWjG4KggUpduFezU3S/gpDgILjr0A3R3dhUHIZMOASkowUXnQKEgDi31HreSbgn33pzDm+eZbiAHfoS8nP8NJ8nWOI4D0HVp6gHAZokc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRzitqceAK85OF5+8/t/U6+Yrx8/vHzWS9zJIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIW57xeu/evJyLTuSHtxY7L25NfUKLrpVI//16biWHUl3d8dhEDkTc1yHOJFDnMghTuQQJ3KIEznEiRziRA5xIoe4VZ9445T++nd89mLqEXP11s7wzlWPBm6KyM/J938vD46XU6+YqQ/evvTF3mLqFVmO6xAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFD3Kq/T377+fFadiRdeXl9GK5MvYKLbtXIv350by07kq59+d2we3fqFVx0jusQJ3KIEznEiRzi/LVW5mUxLK8tn0+9Ys4un/UCkTMv7x39/Pjbz6deMWMf/XbWKxzXIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQ57HWc/Lp0Q/3//xj6hUztf3unWHvk6lXZIn8nOwe/fLi4KepV8zUzvKfYRD5pjiuQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xK36X03fePjZWnYkLW7cevV65/2PT37ISSe/Moubt3xTrdfWOI5TbwA2yHEd4kQOcWd7T354eLihHcDp7e/vn/6T3ckhzg/eIM6dHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQ9z/yoUH5vYUqwwAAAABJRU5ErkJggg=="></td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">2.31</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">3</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">3</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">0.36</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">1</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">3</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">0 (0 %)</td>
+</tr><tr><td style="color:black; background:transparent; text-align:right; vertical-align:middle;"><img style="display: inline; vertical-align: middle" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABBUlEQVQ4jaWTMU/CUBSFv2fSBEZXWKyUMBEn1PATnDvrJqsLCYM/gKQDMJbV1dnR0QFGNMZo+1xgxFGSRi9DK5QSaIWz3Zd3vnffzbmwp1S8GGJegpgpFr+GvlsDDDh6AVUGMVIAAfB2iq4CHCxfzmIGEENBJfREgLBtMcDGEk3twU6YbCx5pFiPbiPGL3IcA8Sl+S47WNfpvWwAwJfjkmu2yO8K4LnN5L1BqVPdEQBML5rMbnqLf/8bAPd8NHwKt8mBZgYA/R6TlIFuBzBifOWScx0OtwF+UH6UsHU9tfG6OnkaCMqDlSibI6CSIY2BwOsZnycrAAgj/ZewTRKUdx5bpr01BxWJTSDdv1FOAAAAAElFTkSuQmCC"> </td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;">Age</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;"><img style="max-height: 80px" src="data:image/png;base64,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"></td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">29.6991</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">28.00</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">0.4888</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">0.42</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">80.00</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">177 (20 %)</td>
+</tr><tr><td style="color:black; background:transparent; text-align:right; vertical-align:middle;"><img style="display: inline; vertical-align: middle" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABBUlEQVQ4jaWTMU/CUBSFv2fSBEZXWKyUMBEn1PATnDvrJqsLCYM/gKQDMJbV1dnR0QFGNMZo+1xgxFGSRi9DK5QSaIWz3Zd3vnffzbmwp1S8GGJegpgpFr+GvlsDDDh6AVUGMVIAAfB2iq4CHCxfzmIGEENBJfREgLBtMcDGEk3twU6YbCx5pFiPbiPGL3IcA8Sl+S47WNfpvWwAwJfjkmu2yO8K4LnN5L1BqVPdEQBML5rMbnqLf/8bAPd8NHwKt8mBZgYA/R6TlIFuBzBifOWScx0OtwF+UH6UsHU9tfG6OnkaCMqDlSibI6CSIY2BwOsZnycrAAgj/ZewTRKUdx5bpr01BxWJTSDdv1FOAAAAAElFTkSuQmCC"> </td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;">SibSp</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;"><img style="max-height: 80px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUwAAADnCAIAAAD6oPiRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEWklEQVR4nO3aP2tddQDH4ZPcVFIkERQbhWRwKChFB0MVRAeH4uBSXZzcFXwD4ubmK1AXR2fBpYNQ6CAoZha1g6BY4j+w1KTQG69DRR1EEm97mvvxeaYz5Ob7u5AP5+YkS7PZbAC6lu/0AYDbS+QQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BC3Mufrn7t445ac4/DOby6/enoy8igsLndyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIW5nz9e9efP2WnOPwJmefHk6fH3kUFte8ka9/8tEtOcfhrT54auRFWGg+rkOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xK3c6QPM5fOrs09/+m3k0Rc3J2snRt6E/26xI//y6uz9r8eO/NwDy2snlkYe/Ue712cf/zAbefSp+5c2Vo/F2+eQFjvy/7lv9oZ3Lh+MPLp198rG6sibzGWxI9+8duWl7y+PPLo6fXIY/vgxf+2z6ZX9Ue+lj9+7/MaZyZiLLLrFjvzMF5ceeu+tkUfveebDYW3r5vXedLg2HXV9/2Dsz+csusWO/I574btLN37dG3NxfXpqGJ64eb06vf7Y/u6Y68MwrE43huHkyKPH09tfHXzw7aiPhJaG4cKzR37qO2/kJ19+Zc7vcFQrDz/69+vxD7C8tv7n9bnJ7mzplzHXJ5O//ur5yPTHN3++MOb6MAx3TZ8fhq2RR4+ns/cdl0ew/25pNvPxD8r8MwzEiRzijvY7+c7Ozm06B3B429vbh/9id3KI8+AN4tzJIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xvwP2ll8OKKQJHQAAAABJRU5ErkJggg=="></td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">0.52</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">2.11</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">8</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">0 (0 %)</td>
+</tr><tr><td style="color:black; background:transparent; text-align:right; vertical-align:middle;"><img style="display: inline; vertical-align: middle" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABBUlEQVQ4jaWTMU/CUBSFv2fSBEZXWKyUMBEn1PATnDvrJqsLCYM/gKQDMJbV1dnR0QFGNMZo+1xgxFGSRi9DK5QSaIWz3Zd3vnffzbmwp1S8GGJegpgpFr+GvlsDDDh6AVUGMVIAAfB2iq4CHCxfzmIGEENBJfREgLBtMcDGEk3twU6YbCx5pFiPbiPGL3IcA8Sl+S47WNfpvWwAwJfjkmu2yO8K4LnN5L1BqVPdEQBML5rMbnqLf/8bAPd8NHwKt8mBZgYA/R6TlIFuBzBifOWScx0OtwF+UH6UsHU9tfG6OnkaCMqDlSibI6CSIY2BwOsZnycrAAgj/ZewTRKUdx5bpr01BxWJTSDdv1FOAAAAAElFTkSuQmCC"> </td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;">Parch</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;"><img style="max-height: 80px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUwAAADnCAIAAAD6oPiRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEiUlEQVR4nO3dv2ucdRzA8Sc/2hqkgVKwEm06FYpiVULBQSq46KZLB0EFNwX9FwTRRdxddXBxctDJxclJikJFqA4FNa0SQaVq1ZicQ0vpmPTSJ9yb12v6Djk+X3K883xz93A3N5lMBqBrfr83ANxZIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEih7jFKR//1Gebe7KPnXv2/vlXTi6MPBRmlys5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOIWp3z8Bx8+vyf72Ln5s08PJ18aeSjMrmkjX7h0cU/2sXN3Pbw28kSYaY7rECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xE37XWj7a2sybG6PPfTQwjA39ky4fbMd+Sfr2+9+tzXy0PceW1xZkjkzw3Ed4kQOcSKHOJFDnMghTuQQJ3KIEznEzfbNMPvu0p+TzXFvxrn7wHCfW3HYDZFP5c0LW+vXJmNOPHN07q3TnjV2wXEd4kQOcbN98Dtx9ccXf7o48tClzceHpaWRh8Jtm+3IT337+er7b488dPmJj4fl4yMPhdvmuA5xIoc4kUOcyCFO5BA326+u77t3Pnp12Lgy5sS5B9eG06+POZFZJ/KpLG5c3lr/fsyJB1a8e8fuOK5DnMghTuQQJ3KIEznEiRziRA5x3iefYZd//vXLL74ZeeijZx5YOXbk+vrTK9s//DXqp18tH5g7t3rjyvTLP5M3vh776y7PHZ8/e8+MXRqnjXzphZf3ZB87t3jqoVvX429g/vDyzfWhZ56bXP19zOkLK6s318e2/njytwtjTh+G4eDW6jDciHxxfji0MOqnSh68pa/D2/++du2rMacPw3D0vxPDcO/19fq1ycbfI88fHjmy61/43GQy6l9iYGQzdvAAdkvkELe7/8nPnz9/h/YB7Nza2trOf9iVHOK88AZxruQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEih7j/Aa7eZfNXnqWtAAAAAElFTkSuQmCC"></td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">0.38</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">2.11</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">0</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">6</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">0 (0 %)</td>
+</tr><tr><td style="color:black; background:transparent; text-align:right; vertical-align:middle;"><img style="display: inline; vertical-align: middle" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABBUlEQVQ4jaWTMU/CUBSFv2fSBEZXWKyUMBEn1PATnDvrJqsLCYM/gKQDMJbV1dnR0QFGNMZo+1xgxFGSRi9DK5QSaIWz3Zd3vnffzbmwp1S8GGJegpgpFr+GvlsDDDh6AVUGMVIAAfB2iq4CHCxfzmIGEENBJfREgLBtMcDGEk3twU6YbCx5pFiPbiPGL3IcA8Sl+S47WNfpvWwAwJfjkmu2yO8K4LnN5L1BqVPdEQBML5rMbnqLf/8bAPd8NHwKt8mBZgYA/R6TlIFuBzBifOWScx0OtwF+UH6UsHU9tfG6OnkaCMqDlSibI6CSIY2BwOsZnycrAAgj/ZewTRKUdx5bpr01BxWJTSDdv1FOAAAAAElFTkSuQmCC"> </td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;">Fare</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;"><img style="max-height: 80px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUwAAADnCAIAAAD6oPiRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAEbklEQVR4nO3bv4vXdQDH8c/9yMvEvAqlDCoqNUUq8Mfi4BQRDdHQ2Bj0Z0hTu9jeWEtFkaMI0lJGBFGNlRCZWBZEmt23oTgiGpR7H57Pezymz3CfF+/l+f18f3Bzs9lsArrmb/UBgPUlcogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiFtc4/3PnvljyDmmadq7fe7k4bWeB/gPT3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcYtrvP/Nd18Zco5pmqbdj0yHTwxbA6ZpWnvkW776bMg5pmlaXLk2agpY5e06xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoe4xVt9gP936ersvQsro9aeuHvu2E4vZ2xSGzTyn65Nb387LPLnd88f2zlqDG4znm8QJ3KIEznEiRziRA5xG/Tb9ft/+f7UuTdGrS08eWTa98KoNbi9bNDIt/72873nPhi1trTjzmkSOZuUt+sQJ3KIEznEiRziRA5xIoe4DfoT2vr58srs7MVh/992fNf8/h1zo9ZgPWy6yO/5+uNnTr8zam3bcy9OR4+OWoP1sPkiv/Tdlo9Oj1rbdvTINImcDW3TRb5+zl5c+eLKbNTaSw/N71z654PAp5dnv14ftnx8ly9iNheRD/P0+6cOnvlw1Nr2105Ojz7+9/XyW6eWf7gwank68fqwKW7Anxe+ma7+Pmpt4bF9N3vLWiPf+vKra1xYNX/frn9fD1xe3HNg9Xph74GBywt79q9e33XwqetLd4xaXlxeXr1+8OEHVrZ7Ob5dXf/8k5XLP45a23rzkc/NZsPeBwIbkI9nECdyiLu5T3rnz59fp3MAN+7QoUM3/see5BDnizeI8ySHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcT9BbLVX5txzrjKAAAAAElFTkSuQmCC"></td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">32.204208</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">8.0500</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">14.4542</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">1.542206</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">0.00</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">512.3292</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">0 (0 %)</td>
+</tr><tr><td style="color:black; background:transparent; text-align:right; vertical-align:middle;"><img style="display: inline; vertical-align: middle" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABP0lEQVQ4jaWSwUoCURiFv3vJB5BWMRAYE7aJHqDVSBL4AFIbW7nQZ5h2voISuQoX+gRBBGMh7tpIRAWjC0FcDfMAg/4tZip1VMy+1X8v55z/wj3wT9TswahaBdGSWmcQ9GBcchqxgL1a5k3DoSCJ9TslUPA5Kj8dA+jvzRrZwAygEijSRtUqAOwAiJYUohbMJvbFLaVkdPSb5Fp1eoCISoA6+AmIsVukk79k8JjBcH/vbBN67rx0SYCJnQ3NV7Nir07Fi6t1fLvFebLLvRsXLyMeAOAP+djMvyIguc/R1gFemwf/lJy59QtcKi9dzrIOd7Mh0S8sEvYAPVBMA4i64F5j+EU6eYdRNlL6TXKtcFRIMNXTfjhHGDXrFSQtLBZqHqUkQNT7qNw+mQsAMG6sgkzChq1C9KQ/Lj031mn+xBdgUWVMX+2cqAAAAABJRU5ErkJggg=="> </td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;">Sex</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;"><img style="max-height: 80px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUwAAADnCAIAAAD6oPiRAAAACXBIWXMAAAsTAAALEwEAmpwYAAADVUlEQVR4nO3dsU0bYQCGYYxMQccu7pFcJV0mCDUMEaVlg0yQFaJQoVRUniJjUBwrcLrz/dLr56n9S59kvbrfLuzdNE1XQNf16AHAeYkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRzi9qMHMNKX1/fRE5jn5Xgz94gnOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIW6/8Py0ygo2tBs9gI0tjfzr6/sqO9jMy/Fm9AQ25boOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xC393fWn/39W2cGGvo0ewKaWRn7/++cqO9jOg8gvi+s6xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoe4/egBjPTr34/RE5jp+Dz3hMgv2t3b39ETmGt25K7rECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFD3NL/J7/9/rjKDobw9l2C3TRNozcAZ+S6DnEih7h5n8lPp9OZdgCfdzgcPv9iT3KI88UbxHmSQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziPgDVSx+He1PNagAAAABJRU5ErkJggg=="></td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">male</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">0.649</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">0 (0 %)</td>
+</tr><tr><td style="color:black; background:transparent; text-align:right; vertical-align:middle;"><img style="display: inline; vertical-align: middle" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABP0lEQVQ4jaWSwUoCURiFv3vJB5BWMRAYE7aJHqDVSBL4AFIbW7nQZ5h2voISuQoX+gRBBGMh7tpIRAWjC0FcDfMAg/4tZip1VMy+1X8v55z/wj3wT9TswahaBdGSWmcQ9GBcchqxgL1a5k3DoSCJ9TslUPA5Kj8dA+jvzRrZwAygEijSRtUqAOwAiJYUohbMJvbFLaVkdPSb5Fp1eoCISoA6+AmIsVukk79k8JjBcH/vbBN67rx0SYCJnQ3NV7Nir07Fi6t1fLvFebLLvRsXLyMeAOAP+djMvyIguc/R1gFemwf/lJy59QtcKi9dzrIOd7Mh0S8sEvYAPVBMA4i64F5j+EU6eYdRNlL6TXKtcFRIMNXTfjhHGDXrFSQtLBZqHqUkQNT7qNw+mQsAMG6sgkzChq1C9KQ/Lj031mn+xBdgUWVMX+2cqAAAAABJRU5ErkJggg=="> </td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;">Embarked</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;"><img style="max-height: 80px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUwAAADnCAIAAAD6oPiRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAD80lEQVR4nO3cMWvUdwDH4ZyXBJVCaSGOWsgkLXTIVknBxZfgZJx9A07tmrfgGyiVvoEOHQolxakNVIp0bBEKNYU6KSia6ybJlnCX/I6PzzMlcAdfwn3u/8vdcZPZbLYCdF0YPQA4WyKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoe41dED4Ji9g8PdJ29Hr1heP9xcO+1dXMkhTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiFsdPQCOuf7syYOfvxu9Yond3D3tPUTOcvnw+T/TR9+PXrHMTh254zrEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnHzfnb91/9mC9mRtPnB5KP10SN4780b+VeP3yxkR9LXn023N5yVGMxDEOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoe4eb/j7eE3txeyI+nivfsrG1+MXsH7bt7IJ3//uZAdSWuvXoyeAI7rUCdyiJv3uM4JPfr38OnL0SOW1dXLKzd8Qf2ZEfk5+elgtndwOHrFkvryyoUbG6NHdHn6hDiRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghzmfXz8nOb9/e+ePx6BVLanL985VP745ekSXyc/LxX7+//uXH0SuW1Pql6egJZY7rECdyiBM5xIkc4kQOcSKHuHnfQru0c28hO5Km1zbf/by+fevorxx19C8z/WTTg2qxJrPZbPQG4Aw5rkOcyCHudP+T7+/vn9EO4OS2trZOfmNXcojzwhvEuZJDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOL+BxjKQInbCJ3nAAAAAElFTkSuQmCC"></td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">S</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">0.76</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">2 (0 %)</td>
+</tr><tr><td style="color:black; background:transparent; text-align:right; vertical-align:middle;"><img style="display: inline; vertical-align: middle" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABP0lEQVQ4jaWSwUoCURiFv3vJB5BWMRAYE7aJHqDVSBL4AFIbW7nQZ5h2voISuQoX+gRBBGMh7tpIRAWjC0FcDfMAg/4tZip1VMy+1X8v55z/wj3wT9TswahaBdGSWmcQ9GBcchqxgL1a5k3DoSCJ9TslUPA5Kj8dA+jvzRrZwAygEijSRtUqAOwAiJYUohbMJvbFLaVkdPSb5Fp1eoCISoA6+AmIsVukk79k8JjBcH/vbBN67rx0SYCJnQ3NV7Nir07Fi6t1fLvFebLLvRsXLyMeAOAP+djMvyIguc/R1gFemwf/lJy59QtcKi9dzrIOd7Mh0S8sEvYAPVBMA4i64F5j+EU6eYdRNlL6TXKtcFRIMNXTfjhHGDXrFSQtLBZqHqUkQNT7qNw+mQsAMG6sgkzChq1C9KQ/Lj031mn+xBdgUWVMX+2cqAAAAABJRU5ErkJggg=="> </td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;">Name</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;"><img style="max-height: 80px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAADgwAAADnCAIAAAD34gv3AAAACXBIWXMAAAsTAAALEwEAmpwYAAAO4klEQVR4nO3cPY4cRRiAYf9B4px0JTiCc0sEcCliUlJOwQEgJCBzyCU4AhIMgSULCa3YcddX3X71PNHI2vnZmu7qqvarfX673Z4BAAAAAAAAAAAA0PLi7A8AAAAAAAAAAAAAwHoiUQAAAAAAAAAAAIAgkSgAAAAAAAAAAABAkEgUAAAAAAAAAAAAIEgkCgAAAAAAAAAAABAkEgUAAAAAAAAAAAAIEokCAAAAAAAAAAAABIlEAQAAAAAAAAAAAIJEogAAAAAAAAAAAABBIlEAAAAAAAAAAACAIJEoAAAAAAAAAAAAQJBIFAAAAAAAAAAAACBIJAoAAAAAAAAAAAAQJBIFAAAAAAAAAAAACBKJAgAAAAAAAAAAAASJRAEAAAAAAAAAAACCRKIAAAAAAAAAAAAAQSJRAAAAAAAAAAAAgCCRKAAAAAAAAAAAAECQSBQAAAAAAAAAAAAgSCQKAAAAAAAAAAAAECQSBQAAAAAAAAAAAAgSiQIAAAAAAAAAAAAEiUQBAAAAAAAAAAAAgkSiAAAAAAAAAAAAAEEiUQAAAAAAAAAAAIAgkSgAAAAAAAAAAABAkEgUAAAAAAAAAAAAIEgkCgAAAAAAAAAAABAkEgUAAAAAAAAAAAAIEokCAAAAAAAAAAAABIlEAQAAAAAAAAAAAIJEogAAAAAAAAAAAABBIlEAAAAAAAAAAACAoFcf8Zzvf//r1z/+fv/47RcvPjz+6bfv/vz1l/ePf/zh3f/++7+f+9jrfP7227uee7XPc+S9jvz8qjF8yjg89vix97r3e7n3fVd9R0/5LiaO1Xt/ryPjM/GZj3y26WN457wxcZ6eNRetOsdXfRdHxvYpx9vEubBqnCeOpYnv6N75YeeYr7oerTpPJ9YJR87fs47PVWN+ZB4465ryKa5bds6BE+uWnc/defxMnF9nranOGvMr7LMm5vZVc+mRuWXV+b5zTTt9Tdy5Jp8ez4n976pzf+K9rnaPaOdrTswJE2u/T+XaceTcnD62p+e06bXHzvtdq+5trnr9s/Yd0/c2p+9pT+8Rdu5Hpu/JrNrfrdrj71w/T9zLnZjzd67xrrCX2XlNv8Jnm/hdpl9zYh901t5hei85vRa98liddZ3dOW9fYT6ZuJbtHOed6+2z7kWfdc06a664wv3M6eN/1b3Te4/V6X3Bzn3rxFx05ccTY1LaU5z1fzFXvpf189efPXsyf0kUAAAAAAAAAAAAIEgkCgAAAAAAAAAAABAkEgUAAAAAAAAAAAAIEokCAAAAAAAAAAAABIlEAQAAAAAAAAAAAIJEogAAAAAAAAAAAABBIlEAAAAAAAAAAACAIJEoAAAAAAAAAAAAQJBIFAAAAAAAAAAAACBIJAoAAAAAAAAAAAAQJBIFAAAAAAAAAAAACBKJAgAAAAAAAAAAAASJRAEAAAAAAAAAAACCRKIAAAAAAAAAAAAAQSJRAAAAAAAAAAAAgCCRKAAAAAAAAAAAAECQSBQAAAAAAAAAAAAgSCQKAAAAAAAAAAAAECQSBQAAAAAAAAAAAAgSiQIAAAAAAAAAAAAEiUQBAAAAAAAAAAAAgkSiAAAAAAAAAAAAAEEiUQAAAAAAAAAAAIAgkSgAAAAAAAAAAABAkEgUAAAAAAAAAAAAIEgkCgAAAAAAAAAAABAkEgUAAAAAAAAAAAAIEokCAAAAAAAAAAAABIlEAQAAAAAAAAAAAIJEogAAAAAAAAAAAABBIlEAAAAAAAAAAACAIJEoAAAAAAAAAAAAQJBIFAAAAAAAAAAAACBIJAoAAAAAAAAAAAAQJBIFAAAAAAAAAAAACBKJAgAAAAAAAAAAAASJRAEAAAAAAAAAAACCRKIAAAAAAAAAAAAAQSJRAAAAAAAAAAAAgCCRKAAAAAAAAAAAAECQSBQAAAAAAAAAAAAgSCQKAAAAAAAAAAAAECQSBQAAAAAAAAAAAAgSiQIAAAAAAAAAAAAEiUQBAAAAAAAAAAAAgkSiAAAAAAAAAAAAAEEiUQAAAAAAAAAAAIAgkSgAAAAAAAAAAABAkEgUAAAAAAAAAAAAIEgkCgAAAAAAAAAAABAkEgUAAAAAAAAAAAAIEokCAAAAAAAAAAAABIlEAQAAAAAAAAAAAIJEogAAAAAAAAAAAABBIlEAAAAAAAAAAACAIJEoAAAAAAAAAAAAQJBIFAAAAAAAAAAAACBIJAoAAAAAAAAAAAAQJBIFAAAAAAAAAAAACBKJAgAAAAAAAAAAAASJRAEAAAAAAAAAAACCRKIAAAAAAAAAAAAAQSJRAAAAAAAAAAAAgCCRKAAAAAAAAAAAAECQSBQAAAAAAAAAAAAgSCQKAAAAAAAAAAAAECQSBQAAAAAAAAAAAAgSiQIAAAAAAAAAAAAEiUQBAAAAAAAAAAAAgkSiAAAAAAAAAAAAAEEiUQAAAAAAAAAAAIAgkSgAAAAAAAAAAABAkEgUAAAAAAAAAAAAIEgkCgAAAAAAAAAAABAkEgUAAAAAAAAAAAAIEokCAAAAAAAAAAAABIlEAQAAAAAAAAAAAIJEogAAAAAAAAAAAABBIlEAAAAAAAAAAACAIJEoAAAAAAAAAAAAQJBIFAAAAAAAAAAAACBIJAoAAAAAAAAAAAAQJBIFAAAAAAAAAAAACBKJAgAAAAAAAAAAAASJRAEAAAAAAAAAAACCRKIAAAAAAAAAAAAAQSJRAAAAAAAAAAAAgCCRKAAAAAAAAAAAAECQSBQAAAAAAAAAAAAgSCQKAAAAAAAAAAAAECQSBQAAAAAAAAAAAAgSiQIAAAAAAAAAAAAEiUQBAAAAAAAAAAAAgkSiAAAAAAAAAAAAAEEiUQAAAAAAAAAAAIAgkSgAAAAAAAAAAABAkEgUAAAAAAAAAAAAIEgkCgAAAAAAAAAAABAkEgUAAAAAAAAAAAAIEokCAAAAAAAAAAAABIlEAQAAAAAAAAAAAIJEogAAAAAAAAAAAABBIlEAAAAAAAAAAACAIJEoAAAAAAAAAAAAQJBIFAAAAAAAAAAAACBIJAoAAAAAAAAAAAAQJBIFAAAAAAAAAAAACBKJAgAAAAAAAAAAAASJRAEAAAAAAAAAAACCRKIAAAAAAAAAAAAAQSJRAAAAAAAAAAAAgCCRKAAAAAAAAAAAAECQSBQAAAAAAAAAAAAgSCQKAAAAAAAAAAAAECQSBQAAAAAAAAAAAAgSiQIAAAAAAAAAAAAEiUQBAAAAAAAAAAAAgkSiAAAAAAAAAAAAAEEiUQAAAAAAAAAAAIAgkSgAAAAAAAAAAABAkEgUAAAAAAAAAAAAIEgkCgAAAAAAAAAAABAkEgUAAAAAAAAAAAAIEokCAAAAAAAAAAAABIlEAQAAAAAAAAAAAIJEogAAAAAAAAAAAABBIlEAAAAAAAAAAACAIJEoAAAAAAAAAAAAQJBIFAAAAAAAAAAAACBIJAoAAAAAAAAAAAAQJBIFAAAAAAAAAAAACBKJAgAAAAAAAAAAAASJRAEAAAAAAAAAAACCRKIAAAAAAAAAAAAAQSJRAAAAAAAAAAAAgCCRKAAAAAAAAAAAAECQSBQAAAAAAAAAAAAgSCQKAAAAAAAAAAAAECQSBQAAAAAAAAAAAAgSiQIAAAAAAAAAAAAEiUQBAAAAAAAAAAAAgkSiAAAAAAAAAAAAAEEiUQAAAAAAAAAAAIAgkSgAAAAAAAAAAABAkEgUAAAAAAAAAAAAIEgkCgAAAAAAAAAAABAkEgUAAAAAAAAAAAAIEokCAAAAAAAAAAAABIlEAQAAAAAAAAAAAIJEogAAAAAAAAAAAABBIlEAAAAAAAAAAACAIJEoAAAAAAAAAAAAQJBIFAAAAAAAAAAAACBIJAoAAAAAAAAAAAAQJBIFAAAAAAAAAAAACBKJAgAAAAAAAAAAAASJRAEAAAAAAAAAAACCRKIAAAAAAAAAAAAAQSJRAAAAAAAAAAAAgCCRKAAAAAAAAAAAAECQSBQAAAAAAAAAAAAgSCQKAAAAAAAAAAAAECQSBQAAAAAAAAAAAAgSiQIAAAAAAAAAAAAEiUQBAAAAAAAAAAAAgkSiAAAAAAAAAAAAAEEiUQAAAAAAAAAAAIAgkSgAAAAAAAAAAABAkEgUAAAAAAAAAAAAIEgkCgAAAAAAAAAAABAkEgUAAAAAAAAAAAAIEokCAAAAAAAAAAAABIlEAQAAAAAAAAAAAIJEogAAAAAAAAAAAABBrz7iOW+/eP7w+uX7xw+vn314/Pmrb14+fPnfn3ns3//93Mde5+XDV3c992qf58h7Hfn5VWP4lHF47PGq4+Te9131HT3lu5g4Vu/9vY6Mz8RnPvLZpo/hnfPGxHl61ly06hxf9V0cGdunHG8T58KqcZ44lia+o3vnh51jvup6tOo8nVgnHDl/zzo+V435kXngrGvKp7hu2TkHTqxbdj535/EzcX6dtaY6a8yvsM+amNtXzaVH5pZV5/vONe30NXHnmnx6PCf2v6vO/Yn3uto9op2vOTEnTKz9PpVrx5Fzc/rYnp7TptceO+93rbq3uer1z9p3TN/bnL6nPb1H2Lkfmb4ns2p/t2qPv3P9PHEvd2LO37nGu8JeZuc1/QqfbeJ3mX7NiX3QWXuH6b3k9Fr0ymN11nV257x9hflk4lq2c5x3rrfPuhd91jXrrLniCvczp4//VfdO7z1Wp/cFO/etE3PRlR9PjElpT3HW/8Vc+V7WXZ7fbrePeBoAAAAAAAAAAAAAV/bi7A8AAAAAAAAAAAAAwHoiUQAAAAAAAAAAAICgV3f99Lt374Y+B/B0b968OfsjAAAAAAAAAAAAcHX+kigAAAAAAAAAAABA0PPb7Xb2ZwAAAAAAAAAAAABgMX9JFAAAAAAAAAAAACBIJAoAAAAAAAAAAAAQJBIFAAAAAAAAAAAACBKJAgAAAAAAAAAAAASJRAEAAAAAAAAAAACCRKIAAAAAAAAAAAAAQSJRAAAAAAAAAAAAgCCRKAAAAAAAAAAAAECQSBQAAAAAAAAAAAAgSCQKAAAAAAAAAAAAECQSBQAAAAAAAAAAAAgSiQIAAAAAAAAAAAAEiUQBAAAAAAAAAAAAgkSiAAAAAAAAAAAAAEH/AHdEePwToaFLAAAAAElFTkSuQmCC"></td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">Abbing, Mr. Anthony</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">6.79</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">0 (0 %)</td>
+</tr><tr><td style="color:black; background:transparent; text-align:right; vertical-align:middle;"><img style="display: inline; vertical-align: middle" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABP0lEQVQ4jaWSwUoCURiFv3vJB5BWMRAYE7aJHqDVSBL4AFIbW7nQZ5h2voISuQoX+gRBBGMh7tpIRAWjC0FcDfMAg/4tZip1VMy+1X8v55z/wj3wT9TswahaBdGSWmcQ9GBcchqxgL1a5k3DoSCJ9TslUPA5Kj8dA+jvzRrZwAygEijSRtUqAOwAiJYUohbMJvbFLaVkdPSb5Fp1eoCISoA6+AmIsVukk79k8JjBcH/vbBN67rx0SYCJnQ3NV7Nir07Fi6t1fLvFebLLvRsXLyMeAOAP+djMvyIguc/R1gFemwf/lJy59QtcKi9dzrIOd7Mh0S8sEvYAPVBMA4i64F5j+EU6eYdRNlL6TXKtcFRIMNXTfjhHGDXrFSQtLBZqHqUkQNT7qNw+mQsAMG6sgkzChq1C9KQ/Lj031mn+xBdgUWVMX+2cqAAAAABJRU5ErkJggg=="> </td>
+<td style="color:black; background:transparent; text-align:left; vertical-align:middle;">Ticket</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;"><img style="max-height: 80px" src="data:image/png;base64,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"></td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">1601</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">6.4</td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;"></td>
+<td style="color:black; background:transparent; text-align:right; vertical-align:middle;">0 (0 %)</td>
+</tr><tr><td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;"><img style="display: inline; vertical-align: middle" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABP0lEQVQ4jaWSwUoCURiFv3vJB5BWMRAYE7aJHqDVSBL4AFIbW7nQZ5h2voISuQoX+gRBBGMh7tpIRAWjC0FcDfMAg/4tZip1VMy+1X8v55z/wj3wT9TswahaBdGSWmcQ9GBcchqxgL1a5k3DoSCJ9TslUPA5Kj8dA+jvzRrZwAygEijSRtUqAOwAiJYUohbMJvbFLaVkdPSb5Fp1eoCISoA6+AmIsVukk79k8JjBcH/vbBN67rx0SYCJnQ3NV7Nir07Fi6t1fLvFebLLvRsXLyMeAOAP+djMvyIguc/R1gFemwf/lJy59QtcKi9dzrIOd7Mh0S8sEvYAPVBMA4i64F5j+EU6eYdRNlL6TXKtcFRIMNXTfjhHGDXrFSQtLBZqHqUkQNT7qNw+mQsAMG6sgkzChq1C9KQ/Lj031mn+xBdgUWVMX+2cqAAAAABJRU5ErkJggg=="> </td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Cabin</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;"><img style="max-height: 80px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAmwAAADnCAIAAAAsH51AAAAACXBIWXMAAAsTAAALEwEAmpwYAAAGcUlEQVR4nO3asYodZRjH4W/jBrGTVHbeQRAWtrJJEQKykj6NENALEfvchhcgyBZBUlosBlJZW0S2WNIIcU92xkKFYcMH7/xnZs8qz1MNw8w578x8c35s9GAcxwYAzHdn3wMAwH+ViAJASEQBICSiABASUQAIiSgAhEQUAEIiCgAhEQWAkIgCQEhEASAkogAQElEACIkoAIREFABCIgoAIREFgJCIAkBIRAEgJKIAEBJRAAiJKACERBQAQiIKACERBYCQiAJASEQBICSiABASUQAIiSgAhEQUAEIiCgAhEQWAkIgCQEhEWd/FyfHFo8+Wf87Ji92jn3bLPwegZ+HvjIgCQEhEASAkogAQElEACIkoAIREFABCIgoAIREFgJCIAkBIRAEgJKIAEBJRAAiJKACERBQAQiIKACERBYCQiAJASEQBICSiABASUQAIiSgAhEQUAEIiCgAhEQWAkIgCQEhEASAkogAQElEACIkoAIREFABCIgoAIREFgJCIAkBIRAEgJKIAEBJRAAiJKACERBQAQiIKACERBYCQiAJASEQBICSi3C7nb8fzt+O+p2Arni8Vw/nr4fz1+/t766d3/A043Mu3Qs/Tn9/thnb64O6+B2ETni8Vb54+brvLe6cvr+3vrZ/e8TfAX6IAEBJRAAiJKACERBQAQiIKACERBYCQiAJASEQBICSiABASUQAIiSgAhEQUAEIiCgAhEQWAkIgCQEhEASAkogAQElEACIkoAIREFABCIgoAIREFgJCIAkBIRAEgJKIAEBJRAAiJKACERBQAQiIKACERBYCQiAJASEQBICSiABASUQAIiSgAhEQUAEIiCgAhEQWAkIgCQEhEASAkogAQElEACB3ue4Bb4d2rsza2w/tH17Z7x7x6M46t3f/4oHj8WrNN9WaY7l/y+VurzPnFxS9XQ2vteKMZKtc+nbM389z9S+a8Dc+rt/Yqs23xTOe+g5Xn0ruum7z/c79r7u/YXGut5yW/UdP1s9a1LFyTB+M4Zmf+n1ycHLfd5b3Tl9e2e8ecvNjthnb64G7x+LVmm+rNMN2/5PO3mHmqN2fl3u5rzsrMlf1L5tz6nvT07sPc2W5yvVXencpn7uv+z/2uub9jc621nte6/0uey4q/M/45FwBCIgoAIREFgJCIAkBIRAEgJKIAEBJRAAiJKACERBQAQiIKACERBYCQiAJASEQBICSiABASUQAIiSgAhEQUAEIiCgAhEQWAkIgCQEhEASAkogAQElEACIkoAIREFABCIgoAIREFgJCIAkBIRAEgJKIAEBJRAAiJKACERBQAQiIKACERBYCQiAJASEQBICSiABASUQAIiSgAhEQUAEIiCgChw/jM578PQ2sPP7nTWvvz+Q9tGD98+OW1/b3t3vHT/WsdUzm3co1T3/z243g1tva4eHzlPlRmm+7vzTDdX7kPvc+v3Ofedu8zp8f05qzc27XWQOXap/NUZq5c49z3omfuWlryTHvPZe5sW8zfe45z91fuee/cJetwrXezp/JuVubprfO566ryXiyx1jtVlEf02a9Xu+GfL/vj2bdtd/n3oNP9ve3e8dP9ax1TObdyjVOff/9d2122r67/oPSOr9yHymzT/b0Zpvsr96H3+ZX73Nvufeb0mN6clXu71hqoXPt0nsrMlWuc+170zF1LS55p77nMnW2L+XvPce7+yj3vnbtkHa71bvZU3s3KPL11PnddVd6LJdZ6p4r8cy4AhEQUAEIiCgAhEQWAkIgCQEhEASAkogAQElEACIkoAIREFABCIgoAIREFgJCIAkBIRAEgJKIAEBJRAAiJKACERBQAQiIKACERBYCQiAJASEQBICSiABASUQAIiSgAhEQUAEIiCgAhEQWAkIgCQEhEASAkogAQElEACIkoAIREFABCIgoAIREFgJCIAkBIRAEgJKIAEBJRAAiJKACERBQAQofxmU8+/WD4d/ujJ1+34er9/b3t3vHT/WsdUzl3yffOnWHJPEu21/reuc/3Jp/FFmtg6zm3fi+2eKZbv7P7ekZb3M/bsD7X+h3bYp3v6/5Xjik6GMdx5ikAQGv+ORcAYiIKAKF5/0307OxsozmAuqOjo32PALTmL1EAiPkfiwAg5C9RAAiJKACERBQAQiIKACERBYCQiAJASEQBICSiABASUQAIiSgAhEQUAEIiCgAhEQWAkIgCQOgvai5PWlUmetoAAAAASUVORK5CYII="></td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;"></td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;"></td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;"></td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">4.9</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;"></td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;"></td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">687 (77 %)</td>
+</tr><tr><td style="color:black; background:#a0a0a0; text-align:right; vertical-align:middle;"><img style="display: inline; vertical-align: middle" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABP0lEQVQ4jaWSwUoCURiFv3vJB5BWMRAYE7aJHqDVSBL4AFIbW7nQZ5h2voISuQoX+gRBBGMh7tpIRAWjC0FcDfMAg/4tZip1VMy+1X8v55z/wj3wT9TswahaBdGSWmcQ9GBcchqxgL1a5k3DoSCJ9TslUPA5Kj8dA+jvzRrZwAygEijSRtUqAOwAiJYUohbMJvbFLaVkdPSb5Fp1eoCISoA6+AmIsVukk79k8JjBcH/vbBN67rx0SYCJnQ3NV7Nir07Fi6t1fLvFebLLvRsXLyMeAOAP+djMvyIguc/R1gFemwf/lJy59QtcKi9dzrIOd7Mh0S8sEvYAPVBMA4i64F5j+EU6eYdRNlL6TXKtcFRIMNXTfjhHGDXrFSQtLBZqHqUkQNT7qNw+mQsAMG6sgkzChq1C9KQ/Lj031mn+xBdgUWVMX+2cqAAAAABJRU5ErkJggg=="> </td>
+<td style="color:black; background:#a0a0a0; text-align:left; vertical-align:middle;">Survived</td>
+<td style="color:black; background:#a0a0a0; text-align:right; vertical-align:middle;"><img style="max-height: 80px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUwAAADnCAIAAAD6oPiRAAAACXBIWXMAAAsTAAALEwEAmpwYAAADHUlEQVR4nO3YsU3DUABFUQKmoGIGZsgEVCxAm5qsxA4sQMUE3oCCFagRMiskSpwvXc6p/aXXXH3bm2VZroCu69EDgHWJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4qYTzz99/JxlBxfz/ng7egIX5SaHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEih7hp9ABG+n55Hj2B49y/vh17ROT/2u/X5+gJrM7rOsSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcSKHOJFDnMghTuQQJ3KIEznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIU7kECdyiBM5xIkc4kQOcdOJ53cPN2fZwRB3u/3oCaxusyzL6A3AiryuQ5zIIe64b/J5nlfaARxuu90e/rCbHOL8eIM4NznEiRziRA5xIoc4kUOcyCFO5BAncogTOcSJHOJEDnEihziRQ5zIIe4PUqYX1c0f4QQAAAAASUVORK5CYII="></td>
+<td style="color:black; background:#a0a0a0; text-align:right; vertical-align:middle;"></td>
+<td style="color:black; background:#a0a0a0; text-align:right; vertical-align:middle;">0</td>
+<td style="color:black; background:#a0a0a0; text-align:right; vertical-align:middle;"></td>
+<td style="color:black; background:#a0a0a0; text-align:right; vertical-align:middle;">0.666</td>
+<td style="color:black; background:#a0a0a0; text-align:right; vertical-align:middle;"></td>
+<td style="color:black; background:#a0a0a0; text-align:right; vertical-align:middle;"></td>
+<td style="color:black; background:#a0a0a0; text-align:right; vertical-align:middle;">0 (0 %)</td>
+</tr></tbody></table></div></section>
+
+<div class="textwrapper"><textarea placeholder="Write a comment..." oninput="this.innerHTML = this.value;pybridge._add_comment(this.parentNode.parentNode.id, this.value);">Se observa que hay datos faltantes en algunas columnas</textarea></div></div><div id="2196156128224" class="normal" onclick="pybridge._select_item(this.id)"><section class="section"><h1>Apply Domain <span class="timestamp">Wed Sep 23 26, 19:51:13</span></h1><div class="content">
+<h2>Data</h2><ul><b>Data instances:</b> 713<br><b>Features:</b> PassengerId, Pclass, Sex, Age, SibSp, Parch, Fare, Embarked, Name, Ticket (total: 10 features)<br><b>Meta attributes:</b> Selected<br><b>Target:</b> Survived<br></ul><h2>Template data</h2><ul><b>Features:</b> PassengerId, Pclass, Sex, Age, SibSp, Parch, Fare, Embarked, Name, Ticket (total: 10 features)<br><b>Target:</b> Survived<br></ul><h2>Transformed data</h2><ul><b>Data instances:</b> 713<br><b>Features:</b> PassengerId, Pclass, Sex, Age, SibSp, Parch, Fare, Embarked, Name, Ticket (total: 10 features)<br><b>Target:</b> Survived<br></ul></div></section>
+
+<div class="textwrapper"><textarea placeholder="Write a comment..." oninput="this.innerHTML = this.value;pybridge._add_comment(this.parentNode.parentNode.id, this.value);">Se observa acá la imputación del dato de la edad con el dato usado (28 años)</textarea></div></div><div id="2196156134272" class="normal" onclick="pybridge._select_item(this.id)"><section class="section"><h1>Data Table <span class="timestamp">Wed Sep 23 26, 19:54:21</span></h1><div class="content">
+<ul><b>Data instances:</b> 713<br><b>Features:</b> 10<br><b>Meta attributes:</b> None<br><b>Target:</b> Class 'Survived'<br></ul><table>
+<tbody><tr><th></th><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">Survived</th>
+<th style="color:black; background:transparent; text-align:left; vertical-align:middle;">PassengerId</th>
+<th style="color:black; background:transparent; text-align:left; vertical-align:middle;">Pclass</th>
+<th style="color:black; background:transparent; text-align:left; vertical-align:middle;">Sex</th>
+<th style="color:black; background:transparent; text-align:left; vertical-align:middle;">Age</th>
+<th style="color:black; background:transparent; text-align:left; vertical-align:middle;">SibSp</th>
+<th style="color:black; background:transparent; text-align:left; vertical-align:middle;">Parch</th>
+<th style="color:black; background:transparent; text-align:left; vertical-align:middle;">Fare</th>
+<th style="color:black; background:transparent; text-align:left; vertical-align:middle;">Embarked</th>
+<th style="color:black; background:transparent; text-align:left; vertical-align:middle;">Name</th>
+<th style="color:black; background:transparent; text-align:left; vertical-align:middle;">Ticket</th>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">1</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">184</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">39.0000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Becker, Master. Richard F</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">230136</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">2</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">448</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">34.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">26.5500</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Seward, Mr. Frederic Kimber</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">113794</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">3</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">269</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">58.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">153.4625</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Graham, Mrs. William Thompson (Edith Junkins)</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">PC 17582</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">4</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">138</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">37.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">53.1000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Futrelle, Mr. Jacques Heath</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">113803</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">5</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">388</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">36.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">13.0000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Buss, Miss. Kate</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">27849</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">6</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">424</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">28.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">14.4000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Danbom, Mrs. Ernst Gilbert (Anna Sigrid Maria Brogren)</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">347080</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">7</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">748</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">30.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">13.0000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Sinkkonen, Miss. Anna</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">250648</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">8</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">628</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">21.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">77.9583</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Longley, Miss. Gretchen Fiske</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">13502</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">9</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">144</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">19.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">6.7500</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Q</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Burke, Mr. Jeremiah</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">365222</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">10</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">866</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">42.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">13.0000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Bystrom, Mrs. (Karolina)</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">236852</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">11</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">779</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">28.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">7.7375</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Q</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Kilgannon, Mr. Thomas J</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">36865</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">12</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">878</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">19.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">7.8958</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Petroff, Mr. Nedelio</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">349212</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">13</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">59</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">5.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">27.7500</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">West, Miss. Constance Mirium</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">C.A. 34651</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">14</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">643</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">27.9000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Skoog, Miss. Margit Elizabeth</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">347088</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">15</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">697</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">44.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">8.0500</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Kelly, Mr. James</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">363592</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">16</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">178</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">50.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">28.7125</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">C</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Isham, Miss. Ann Elizabeth</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">PC 17595</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">17</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">395</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">24.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">16.7000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Sandstrom, Mrs. Hjalmar (Agnes Charlotta Bengtsson)</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">PP 9549</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">18</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">755</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">48.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">65.0000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Herman, Mrs. Samuel (Jane Laver)</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">220845</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">19</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">645</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0.75</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">19.2583</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">C</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Baclini, Miss. Eugenie</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">2666</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">20</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">771</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">24.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">9.5000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Lievens, Mr. Rene Aime</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">345781</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">21</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">540</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">22.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">49.5000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">C</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Frolicher, Miss. Hedwig Margaritha</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">13568</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">22</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">524</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">44.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">57.9792</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">C</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Hippach, Mrs. Louis Albert (Ida Sophia Fischer)</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">111361</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">23</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">731</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">29.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">211.3375</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Allen, Miss. Elisabeth Walton</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">24160</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">24</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">881</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">25.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">26.0000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Shelley, Mrs. William (Imanita Parrish Hall)</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">230433</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">25</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">795</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">25.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">7.8958</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Dantcheff, Mr. Ristiu</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">349203</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">26</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">568</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">29.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">4</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">21.0750</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Palsson, Mrs. Nils (Alma Cornelia Berglund)</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">349909</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">27</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">408</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">18.7500</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Richards, Master. William Rowe</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">29106</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">28</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">444</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">28.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">13.0000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Reynaldo, Ms. Encarnacion</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">230434</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">29</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">64</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">4.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">27.9000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Skoog, Master. Harald</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">347088</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">30</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">545</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">50.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">106.4250</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">C</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Douglas, Mr. Walter Donald</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">PC 17761</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">31</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">391</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">36.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">120.0000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Carter, Mr. William Ernest</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">113760</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">32</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">512</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">28.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">8.0500</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Webber, Mr. James</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">SOTON/OQ 3101316</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">33</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">730</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">25.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">7.9250</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Ilmakangas, Miss. Pieta Sofia</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">STON/O2. 3101271</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">34</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">355</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">28.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">7.2250</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">C</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Yousif, Mr. Wazli</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">2647</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">35</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">464</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">48.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">13.0000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Milling, Mr. Jacob Christian</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">234360</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">36</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">415</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">44.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">7.9250</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Sundman, Mr. Johan Julian</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">STON/O 2. 3101269</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">37</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">589</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">22.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">8.0500</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Gilinski, Mr. Eliezer</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">14973</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">38</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">495</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">21.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">8.0500</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Stanley, Mr. Edward Roland</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">A/4 45380</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">39</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">746</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">70.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">71.0000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Crosby, Capt. Edward Gifford</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">WE/P 5735</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">40</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">267</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">16.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">4</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">39.6875</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Panula, Mr. Ernesti Arvid</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">3101295</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">41</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">317</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">24.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">26.0000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Kantor, Mrs. Sinai (Miriam Sternin)</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">244367</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">42</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">787</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">18.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">7.4958</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Sjoblom, Miss. Anna Sofia</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">3101265</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">43</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">837</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">21.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">8.6625</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Pasic, Mr. Jakob</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">315097</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">44</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">481</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">9.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">5</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">46.9000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Goodwin, Master. Harold Victor</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">CA 2144</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">45</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">312</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">18.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">262.3750</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">C</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Ryerson, Miss. Emily Borie</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">PC 17608</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">46</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">62</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">38.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">80.0000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Icard, Miss. Amelie</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">113572</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">47</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">207</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">32.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">15.8500</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Backstrom, Mr. Karl Alfred</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">3101278</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">48</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">416</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">28.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">8.0500</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Meek, Mrs. Thomas (Annie Louise Rowley)</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">343095</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">49</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">582</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">39.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">110.8833</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">C</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Thayer, Mrs. John Borland (Marian Longstreth Morris)</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">17421</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">50</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">758</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">18.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">11.5000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Bailey, Mr. Percy Andrew</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">29108</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">51</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">765</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">16.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">7.7750</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Eklund, Mr. Hans Linus</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">347074</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">52</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">626</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">61.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">32.3208</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Sutton, Mr. Frederick</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">36963</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">53</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">240</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">33.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">12.2750</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Hunt, Mr. George Henry</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">SCO/W 1585</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">54</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">52</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">21.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">7.8000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Nosworthy, Mr. Richard Cater</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">A/4. 39886</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">55</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">803</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">11.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">120.0000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Carter, Master. William Thornton II</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">113760</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">56</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">264</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">40.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0.0000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Harrison, Mr. William</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">112059</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">57</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">186</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">28.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">50.0000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Rood, Mr. Hugh Roscoe</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">113767</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">58</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">20</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">28.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">7.2250</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">C</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Masselmani, Mrs. Fatima</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">2649</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">59</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">865</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">24.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">13.0000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Gill, Mr. John William</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">233866</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">60</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">598</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">49.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0.0000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Johnson, Mr. Alfred</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">LINE</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">61</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">378</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">27.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">211.5000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">C</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Widener, Mr. Harry Elkins</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">113503</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">62</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">143</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">24.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">15.8500</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Hakkarainen, Mrs. Pekka Pietari (Elin Matilda Dolck)</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">STON/O2. 3101279</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">63</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">50</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">18.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">17.8000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Arnold-Franchi, Mrs. Josef (Josefine Franchi)</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">349237</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">64</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">428</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">19.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">26.0000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Phillips, Miss. Kate Florence ("Mrs Kate Louise Phillips Marshall")</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">250655</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">65</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">271</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">28.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">31.0000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Cairns, Mr. Alexander</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">113798</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">66</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">588</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">60.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">79.2000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">C</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Frolicher-Stehli, Mr. Maxmillian</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">13567</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">67</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">537</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">45.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">26.5500</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Butt, Major. Archibald Willingham</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">113050</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">68</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">503</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">28.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">7.6292</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Q</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">O'Sullivan, Miss. Bridget Mary</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">330909</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">69</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">78</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">28.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">8.0500</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Moutal, Mr. Rahamin Haim</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">374746</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">70</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">638</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">31.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">26.2500</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Collyer, Mr. Harvey</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">C.A. 31921</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">71</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">777</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">28.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">7.7500</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Q</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Tobin, Mr. Roger</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">383121</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">72</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">720</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">33.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">7.7750</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Johnson, Mr. Malkolm Joackim</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">347062</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">73</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">205</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">18.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">8.0500</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Cohen, Mr. Gurshon "Gus"</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">A/5 3540</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">74</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">173</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">11.1333</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Johnson, Miss. Eleanor Ileen</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">347742</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">75</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">609</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">22.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">41.5792</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">C</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Laroche, Mrs. Joseph (Juliette Marie Louise Lafargue)</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">SC/Paris 2123</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">76</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">563</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">28.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">13.5000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Norman, Mr. Robert Douglas</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">218629</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">77</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">694</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">25.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">7.2250</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">C</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Saad, Mr. Khalil</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">2672</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">78</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">685</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">60.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">39.0000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Brown, Mr. Thomas William Solomon</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">29750</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">79</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">291</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">26.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">78.8500</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Barber, Miss. Ellen "Nellie"</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">19877</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">80</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">884</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">28.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">10.5000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Banfield, Mr. Frederick James</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">C.A./SOTON 34068</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">81</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">233</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">59.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">13.5000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Sjostedt, Mr. Ernst Adolf</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">237442</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">82</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">26</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">38.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">5</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">31.3875</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Asplund, Mrs. Carl Oscar (Selma Augusta Emilia Johansson)</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">347077</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">83</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">664</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">36.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">7.4958</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Coleff, Mr. Peju</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">349210</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">84</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">662</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">40.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">7.2250</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">C</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Badt, Mr. Mohamed</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">2623</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">85</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">476</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">28.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">52.0000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Clifford, Mr. George Quincy</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">110465</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">86</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">289</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">42.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">13.0000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Hosono, Mr. Masabumi</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">237798</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">87</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">873</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">33.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">5.0000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Carlsson, Mr. Frans Olof</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">695</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">88</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">297</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">23.50</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">7.2292</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">C</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Hanna, Mr. Mansour</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">2693</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">89</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">566</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">24.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">24.1500</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Davies, Mr. Alfred J</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">A/4 48871</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">90</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">433</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">42.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">26.0000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Louch, Mrs. Charles Alexander (Alice Adelaide Slow)</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">SC/AH 3085</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">91</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">349</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">15.9000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Coutts, Master. William Loch "William"</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">C.A. 37671</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">92</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">556</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">62.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">26.5500</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Wright, Mr. George</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">113807</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">93</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">341</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">26.0000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Navratil, Master. Edmond Roger</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">230080</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">94</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">135</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">25.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">13.0000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Sobey, Mr. Samuel James Hayden</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">C.A. 29178</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">95</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">831</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">15.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">14.4542</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">C</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Yasbeck, Mrs. Antoni (Selini Alexander)</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">2659</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">96</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">139</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">16.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">9.2167</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Osen, Mr. Olaf Elon</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">7534</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">97</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">134</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">2</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">29.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">26.0000</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Weisz, Mrs. Leopold (Mathilde Francoise Pede)</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">228414</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">98</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">251</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">28.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">7.2500</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">S</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Reed, Mr. James George</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">362316</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">99</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">363</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">female</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">45.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">1</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">14.4542</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">C</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Barbara, Mrs. (Catherine David)</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">2691</td>
+</tr><tr><th style="color:black; background:transparent; text-align:left; vertical-align:middle;">100</th>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">429</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">3</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">male</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">28.00</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">0</td>
+<td style="color:#ffffff; background:#0078d7; text-align:right; vertical-align:middle;">7.7500</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Q</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">Flynn, Mr. James</td>
+<td style="color:#ffffff; background:#0078d7; text-align:left; vertical-align:middle;">364851</td>
+</tr><tr><th></th><td colspan="11"><b>+ 613 more</b></td></tr>
+            </tbody></table></div></section>
+
+<div class="textwrapper"><textarea placeholder="Write a comment..." oninput="this.innerHTML = this.value;pybridge._add_comment(this.parentNode.parentNode.id, this.value);">Se observan algunos datos con la imputación ya realizada</textarea></div></div><div id="2196156134560" class="normal" onclick="pybridge._select_item(this.id)"><section class="section"><h1>Discretize <span class="timestamp">Wed Sep 23 26, 19:55:16</span></h1><div class="content">
+<ul><b>Default setting:</b> keep<br></ul><h2>Variables</h2><ul><b>PassengerId:</b> <br><b>Pclass:</b> <br><b>Age (entropy):</b> <br><b>SibSp:</b> <br><b>Parch:</b> <br><b>Fare:</b> <br></ul></div></section>
+
+<div class="textwrapper"><textarea placeholder="Write a comment..." oninput="this.innerHTML = this.value;pybridge._add_comment(this.parentNode.parentNode.id, this.value);">Después de aplicar el Entropy-MDL se observa que el modelo eliminó la columna de Age</textarea></div></div><div id="2196156137008" class="normal" onclick="pybridge._select_item(this.id)"><section class="section"><h1>Continuize <span class="timestamp">Wed Sep 23 26, 20:01:35</span></h1><div class="content">
+<h2>Categorical variables</h2><ul><b>Preset:</b> first value as base<br><b>Embarked:</b> first value as base<br></ul><h2>Numeric variables</h2><p>keep as it is</p><h2>Unlisted</h2><p>Any unlisted attributes default to preset option, and unlisted meta attributes and target variables are kept as they are</p></div></section>
+
+<div class="textwrapper"><textarea placeholder="Write a comment..." oninput="this.innerHTML = this.value;pybridge._add_comment(this.parentNode.parentNode.id, this.value);">Se observa que generó lo mismo que la codificación Dummy del notebook</textarea></div></div><div id="2196156188720" class="selected" onclick="pybridge._select_item(this.id)"><section class="section"><h1>Continuize <span class="timestamp">Wed Sep 23 26, 20:02:44</span></h1><div class="content">
+<h2>Categorical variables</h2><ul><b>Preset:</b> first value as base<br><b>Embarked:</b> one-hot encoding<br></ul><h2>Numeric variables</h2><p>keep as it is</p><h2>Unlisted</h2><p>Any unlisted attributes default to preset option, and unlisted meta attributes and target variables are kept as they are</p></div></section>
+
+<div class="textwrapper"><textarea placeholder="Write a comment..." oninput="this.innerHTML = this.value;pybridge._add_comment(this.parentNode.parentNode.id, this.value);">Genera lo mismo que el One-Hot Encoding del notebook</textarea></div></div></body></html>
