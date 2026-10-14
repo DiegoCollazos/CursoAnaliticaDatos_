@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='utf-8'?>
+<scheme version="2.0" title="" description="">
+	<nodes>
+		<node id="0" name="File" qualified_name="Orange.widgets.data.owfile.OWFile" project_name="Orange3" version="" title="File" position="(754.2857142857142, 245.52380952380946)" />
+		<node id="1" name="Distributions" qualified_name="Orange.widgets.visualize.owdistributions.OWDistributions" project_name="Orange3" version="" title="Distributions" position="(900.6190476190478, 216.52380952380946)" />
+	</nodes>
+	<links>
+		<link id="0" source_node_id="0" sink_node_id="1" source_channel="Data" sink_channel="Data" enabled="true" source_channel_id="data" sink_channel_id="data" />
+	</links>
+	<annotations>
+		<text id="0" type="text/plain" rect="(-87.25, 32.25, 825.0, 518.0)" font-family="Segoe UI" font-size="16">Actividad 1
+
+(a) No coincide. Orange detectó track_genre como Texto (variable de texto libre / meta), mientras que en el notebook la clasificamos como cualitativa nominal.
+
+Esto ocurre porque el detector automático de Orange no analiza el significado estadístico de la variable, sino simplemente cuántos valores distintos tiene la columna. Cuando una columna de tipo texto supera un umbral de valores únicos, Orange asume que probablemente es texto libre en vez de una categoría manejable, y la deja como "Text" por defecto. 
+
+(b) – Tipos de variable: key y mode
+Mode sí coincide: Orange la detectó como Categorical feature, que corresponde exactamente a la clasificación cualitativa nominal que hicimos en el notebook (mayor/menor son dos categorías sin orden). 
+
+Key no coincide: Orange la detectó como Numeric feature, cuando en realidad también es cualitativa nominal cada valor (0 a 11, o -1) representa una nota musical, sin ninguna jerarquía numérica real entre ellas.
+
+Por qué es importante corregir key a Categorical: si se deja como numérica, cualquier widget (Distributions, Correlations, Scatter Plot, PCA, un modelo de regresión) va a asumir que tiene orden y magnitud reales. 
+Calculará un "promedio de key" sin sentido musical, o una correlación de Pearson asumiendo que key=11 está once unidades lejos de key=0, cuando en la rueda de tonos son notas vecinas. Cambiarla manualmente a Categorical evita estas conclusiones estadísticamente inválidas.</text>
+		<text id="1" type="text/plain" rect="(951.0714285714282, 45.4166666666666, 549.1071428571427, 401.4285714285715)" font-family="Segoe UI" font-size="16">Actividad 2 – Distributions: track_genre y tempo
+Género musical (track_genre): El gráfico de barras de Orange muestra la misma tendencia que el del notebook: los primeros 10 géneros (acoustic, afrobeat, alt-rock, alternative, ambient, anime, black-metal, bluegrass, blues, brazil) coinciden exactamente entre ambas herramientas, cada uno con 1000 canciones. La diferencia visual es que el notebook solo grafica el Top 10, mientras que Orange muestra las 114 categorías completas del dataset.
+
+Tempo: El histograma de Orange reproduce la misma forma que el de Matplotlib: una distribución aproximadamente unimodal, con el pico de mayor frecuencia entre 120 y 130 BPM, cola más larga hacia tempos altos (asimetría positiva) y muy pocas canciones por debajo de 50 BPM o por encima de 200 BPM. La forma general coincide entre ambas herramientas.</text>
+		<text id="2" type="text/plain" rect="(426.2500000000001, 625.8333333333333, 868.75, 289.0)" font-family="Segoe UI" font-size="16">Reflexion Final
+
+Prefiero Orange en escenarios de exploración rápida y comunicación visual: widgets como Distributions o Bar Plot generan gráficos legibles en segundos, sin escribir código, lo cual es valioso para revisar tendencias generales o presentar resultados a alguien no técnico. Sin embargo, note que Orange detecta el tipo de variable de forma heurística (basada en la cantidad de valores distintos), lo que llevó a clasificaciones incorrectas como key (numérica en vez de categórica) que requirieron corrección manual. En Python, con Pandas, uno declara y controla el tipo de dato desde el inicio, evitando ese riesgo. Preferiríamos Python cuando el flujo requiere limpieza de datos complejos o conexión a bases de datos: conectar SQLite fue una sola línea de código con sqlite3, mientras que en Orange tuvimos que instalar y configurar un servidor PostgreSQL.</text>
+	</annotations>
+	<thumbnail />
+	<node_properties>
+		<properties node_id="0" format="pickle">gASVkAgAAAAAAAB9lCiMEmNvbnRyb2xBcmVhVmlzaWJsZZSIjAxyZWNlbnRfcGF0aHOUXZQojB5v
+cmFuZ2V3aWRnZXQudXRpbHMuZmlsZWRpYWxvZ3OUjApSZWNlbnRQYXRolJOUKYGUfZQojAdhYnNw
+YXRolIxFRDovQW5hbGl0aWNhX0RhdG9zL0RhdGFfT3JhbmdlX01pbmUvTGFib3JhdG9yaW9fMS9k
+YXRhc2V0X3Nwb3RpZnkuY3N2lIwGcHJlZml4lIwHYmFzZWRpcpSMB3JlbHBhdGiUjBNkYXRhc2V0
+X3Nwb3RpZnkuY3N2lIwFdGl0bGWUjACUjAVzaGVldJRoEIwLZmlsZV9mb3JtYXSUTnViaAYpgZR9
+lChoCYxCRDovQW5hbGl0aWNhX0RhdG9zL0RhdGFfT3JhbmdlX01pbmUvTGFib3JhdG9yaW9fMS9h
+dXRvc19saW1waW8uY3N2lGgLaAxoDYwQYXV0b3NfbGltcGlvLmNzdpRoD2gQaBFoEGgSTnViaAYp
+gZR9lChoCYxCRDovUHJvZ3JhbWFzL0RhdGFvcmFuZ2UvTGliL3NpdGUtcGFja2FnZXMvT3Jhbmdl
+L2RhdGFzZXRzL2lyaXMudGFilGgLjA9zYW1wbGUtZGF0YXNldHOUaA2MCGlyaXMudGFilGgPaBBo
+EWgQaBJOdWJoBimBlH2UKGgJjEVEOi9Qcm9ncmFtYXMvRGF0YW9yYW5nZS9MaWIvc2l0ZS1wYWNr
+YWdlcy9PcmFuZ2UvZGF0YXNldHMvdGl0YW5pYy50YWKUaAtoGmgNjAt0aXRhbmljLnRhYpRoD2gQ
+aBFoEGgSTnViaAYpgZR9lChoCYxFRDovUHJvZ3JhbWFzL0RhdGFvcmFuZ2UvTGliL3NpdGUtcGFj
+a2FnZXMvT3JhbmdlL2RhdGFzZXRzL2hvdXNpbmcudGFilGgLaBpoDYwLaG91c2luZy50YWKUaA9o
+EGgRaBBoEk51YmgGKYGUfZQoaAmMS0Q6L1Byb2dyYW1hcy9EYXRhb3JhbmdlL0xpYi9zaXRlLXBh
+Y2thZ2VzL09yYW5nZS9kYXRhc2V0cy9oZWFydF9kaXNlYXNlLnRhYpRoC2gaaA2MEWhlYXJ0X2Rp
+c2Vhc2UudGFilGgPaBBoEWgQaBJOdWJoBimBlH2UKGgJjExEOi9Qcm9ncmFtYXMvRGF0YW9yYW5n
+ZS9MaWIvc2l0ZS1wYWNrYWdlcy9PcmFuZ2UvZGF0YXNldHMvYnJvd24tc2VsZWN0ZWQudGFilGgL
+aBpoDYwSYnJvd24tc2VsZWN0ZWQudGFilGgPaBBoEWgQaBJOdWJoBimBlH2UKGgJjEFEOi9Qcm9n
+cmFtYXMvRGF0YW9yYW5nZS9MaWIvc2l0ZS1wYWNrYWdlcy9PcmFuZ2UvZGF0YXNldHMvem9vLnRh
+YpRoC2gaaA2MB3pvby50YWKUaA9oEGgRaBBoEk51YmWMC3JlY2VudF91cmxzlF2UjBNzYXZlZFdp
+ZGdldEdlb21ldHJ5lENCAdnQywADAAAAAAAKAAAAcwAAAmMAAALcAAAACwAAAJEAAAJiAAAC2wAA
+AAAAAAAABgAAAAALAAAAkQAAAmIAAALblIwLc2hlZXRfbmFtZXOUfZSMBnNvdXJjZZRLAIwDdXJs
+lGgQjA1kb21haW5fZWRpdG9ylH2UjAtfX3ZlcnNpb25fX5RLAYwQY29udGV4dF9zZXR0aW5nc5Rd
+lIwVb3Jhbmdld2lkZ2V0LnNldHRpbmdzlIwHQ29udGV4dJSTlCmBlH2UKIwGdmFsdWVzlH2UKIwJ
+dmFyaWFibGVzlF2UaDh9lGhEXZQoXZQojAlGZWF0dXJlIDGUjBRPcmFuZ2UuZGF0YS52YXJpYWJs
+ZZSMEkNvbnRpbnVvdXNWYXJpYWJsZZSTlEsAaBCIZV2UKIwKcG9wdWxhcml0eZRoTEsAaBCIZV2U
+KIwLZHVyYXRpb25fbXOUaExLAGgQiGVdlCiMCGV4cGxpY2l0lGhKjBBEaXNjcmV0ZVZhcmlhYmxl
+lJOUSwCMC0ZhbHNlLCBUcnVllIllXZQojAxkYW5jZWFiaWxpdHmUaExLAGgQiGVdlCiMBmVuZXJn
+eZRoTEsAaBCIZV2UKIwDa2V5lGhUSwBoEIhlXZQojAhsb3VkbmVzc5RoTEsAaBCIZV2UKIwEbW9k
+ZZRoVEsAjAQwLCAxlIhlXZQojAtzcGVlY2hpbmVzc5RoTEsAaBCIZV2UKIwMYWNvdXN0aWNuZXNz
+lGhMSwBoEIhlXZQojBBpbnN0cnVtZW50YWxuZXNzlGhMSwBoEIhlXZQojAhsaXZlbmVzc5RoTEsA
+aBCIZV2UKIwHdmFsZW5jZZRoTEsAaBCIZV2UKIwFdGVtcG+UaExLAGgQiGVdlCiMDnRpbWVfc2ln
+bmF0dXJllGhMSwBoEIhlXZQojAh0cmFja19pZJRoSowOU3RyaW5nVmFyaWFibGWUk5RLAmgQiWVd
+lCiMB2FydGlzdHOUaHJLAmgQiWVdlCiMCmFsYnVtX25hbWWUaHJLAmgQiWVdlCiMCnRyYWNrX25h
+bWWUaHJLAmgQiWVdlCiMC3RyYWNrX2dlbnJllGhUSwBoEIllZXNoOksBdYwKYXR0cmlidXRlc5Qo
+aElLAoaUaE5LAoaUaFBLAoaUaFJdlCiMBUZhbHNllIwEVHJ1ZZRlhpRoV0sChpRoWUsChpRoW0sC
+hpRoXUsChpRoX12UKIwBMJSMATGUZYaUaGJLAoaUaGRLAoaUaGZLAoaUaGhLAoaUaGpLAoaUaGxL
+AoaUaG5LAoaUdJSMBW1ldGFzlChocEsDhpRodEsDhpRodksDhpRoeEsDhpRoeksDhpR0lIwKY2xh
+c3NfdmFyc5QpjBJtb2RpZmllZF92YXJpYWJsZXOUXZR1YmF1Lg==
+</properties>
+		<properties node_id="1" format="pickle">gASVngMAAAAAAAB9lCiMCmF1dG9fYXBwbHmUiIwSY29udHJvbEFyZWFWaXNpYmxllIiMEGN1bXVs
+YXRpdmVfZGlzdHKUiYwTZml0dGVkX2Rpc3RyaWJ1dGlvbpRLAIwJaGlkZV9iYXJzlImMDWtkZV9z
+bW9vdGhpbmeUSwqME3NhdmVkV2lkZ2V0R2VvbWV0cnmUQ0IB2dDLAAMAAAAAAHQAAABiAAAECAAA
+ArYAAAB1AAAAgAAABAcAAAK1AAAAAAAAAAAGAAAAAHUAAACAAAAEBwAAArWUjApzaG93X3Byb2Jz
+lImMDHNvcnRfYnlfZnJlcZSJjA9zdGFja2VkX2NvbHVtbnOUiYwLX192ZXJzaW9uX1+USwKMEGNv
+bnRleHRfc2V0dGluZ3OUXZQojBVvcmFuZ2V3aWRnZXQuc2V0dGluZ3OUjAdDb250ZXh0lJOUKYGU
+fZQojAZ2YWx1ZXOUfZQojARjdmFylE5K/v///4aUjA5udW1iZXJfb2ZfYmluc5RLAEr+////hpSM
+DXNlbGVjdGVkX2JhcnOUj5RK/v///4aUjAN2YXKUjAV0ZW1wb5RLZoaUaAxLAnWMCmF0dHJpYnV0
+ZXOUfZQojAlGZWF0dXJlIDGUSwKMCnBvcHVsYXJpdHmUSwKMC2R1cmF0aW9uX21zlEsCjAhleHBs
+aWNpdJRLAYwMZGFuY2VhYmlsaXR5lEsCjAZlbmVyZ3mUSwKMA2tleZRLAYwIbG91ZG5lc3OUSwKM
+BG1vZGWUSwGMC3NwZWVjaGluZXNzlEsCjAxhY291c3RpY25lc3OUSwKMEGluc3RydW1lbnRhbG5l
+c3OUSwKMCGxpdmVuZXNzlEsCjAd2YWxlbmNllEsCaB5LAowOdGltZV9zaWduYXR1cmWUSwKMC3Ry
+YWNrX2dlbnJllEsBdYwFbWV0YXOUfZQojAh0cmFja19pZJRLA4wHYXJ0aXN0c5RLA4wKYWxidW1f
+bmFtZZRLA4wKdHJhY2tfbmFtZZRLA3V1YmgRKYGUfZQoaBR9lChoFk5K/v///4aUaBhLBUr+////
+hpRoGo+USv7///+GlGgdaCJLZoaUaAxLAnVoIH2UKGgiSwJoI0sCaCRLAmglSwFoJksCaCdLAmgo
+SwFoKUsCaCpLAWgrSwJoLEsCaC1LAmguSwJoL0sCaB5LAmgwSwJ1aDJ9lChoNEsDaDVLA2g2SwNo
+N0sDjAt0cmFja19nZW5yZZRLA3V1YmV1Lg==
+</properties>
+	</node_properties>
+	<session_state>
+		<window_groups />
+	</session_state>
+</scheme>
