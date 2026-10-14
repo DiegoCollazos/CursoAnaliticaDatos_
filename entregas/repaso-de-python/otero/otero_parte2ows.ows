@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='utf-8'?>
+<scheme version="2.0" title="" description="">
+	<nodes>
+		<node id="0" name="File" qualified_name="Orange.widgets.data.owfile.OWFile" project_name="Orange3" version="" title="File" position="(79.0, 73.0)" />
+		<node id="1" name="Distributions" qualified_name="Orange.widgets.visualize.owdistributions.OWDistributions" project_name="Orange3" version="" title="Distributions" position="(232.0, 357.0)" />
+	</nodes>
+	<links>
+		<link id="0" source_node_id="0" sink_node_id="1" source_channel="Data" sink_channel="Data" enabled="true" source_channel_id="data" sink_channel_id="data" />
+	</links>
+	<annotations>
+		<text id="0" type="text/plain" rect="(387.0, -315.0, 424.0, 452.0)" font-family="Segoe UI" font-size="16">a) La variable "track_genre" no se detectó como una variable cualitativa nominal (Categorical) si no como texto cualquiera.
+b) De igual forma "key" no se dectectó como una variable cualitativa nominal (Categorical) si no como una variable numérica, sin embargo "mode" si se detectó bien.
+
+Por qúe deben ser categóricas:
+
+Si asignas Do = 1, Re = 2 y Mi = 3, para un algoritmo matemático significaría que "Re" está en medio de Do y Mi en una escala lineal, o que "Mi" vale el triple que "Do". Esto no tiene ningún sentido musical ni representa la distancia armónica real entre las notas.
+
+De forma similar, si asignas Mayor = 1 y Menor = 2, un modelo de Machine Learning podría intentar calcular un "promedio" (como 1.5). No existe un modo "1.5"; una pieza musical o un acorde es mayor, o es menor, pero no un promedio numérico de ambos.</text>
+		<arrow id="1" start="(107.0, 52.0)" end="(375.0, -129.0)" fill="#C1272D" />
+		<text id="2" type="text/plain" rect="(371.0, 325.0, 579.0, 115.0)" font-family="Segoe UI" font-size="16">Tanto la distribución de genero más frecuente como la del tempo coinciden en la forma de las que vemos en el script de python
+</text>
+		<arrow id="3" start="(265.0, 360.0)" end="(375.0, 356.0)" fill="#C1272D" />
+		<text id="4" type="text/plain" rect="(12.0, 473.0, 954.0, 69.0)" font-family="Segoe UI" font-size="16">Reflexión Final:
+
+Por lo que ví durante el proceso de este Laboratorio, siempre que vaya a usar Orange me gustaría hacer un preprocesamiento de los datos antes en Python, ya que sí Orange es mucho más comodo a la hora de visualizar las bases de datos, sin embargo, si fuera necesarion hacer algún cambio en la estructura en la base de datos, preferiría primero pasar por Python y después venir a hacer un análisis visual en Orange.</text>
+	</annotations>
+	<thumbnail />
+	<node_properties>
+		<properties node_id="0" format="pickle">gASVewoAAAAAAAB9lCiMEmNvbnRyb2xBcmVhVmlzaWJsZZSIjAxyZWNlbnRfcGF0aHOUXZQojB5v
+cmFuZ2V3aWRnZXQudXRpbHMuZmlsZWRpYWxvZ3OUjApSZWNlbnRQYXRolJOUKYGUfZQojAdhYnNw
+YXRolIwrQzovVXNlcnMvb3Rlcm8vT25lRHJpdmUvRGVza3RvcC9kYXRhc2V0LmNzdpSMBnByZWZp
+eJSMB2Jhc2VkaXKUjAdyZWxwYXRolIwLZGF0YXNldC5jc3aUjAV0aXRsZZSMAJSMBXNoZWV0lGgQ
+jAtmaWxlX2Zvcm1hdJSMGE9yYW5nZS5kYXRhLmlvLkNTVlJlYWRlcpR1YmgGKYGUfZQoaAmMMEM6
+L1VzZXJzL290ZXJvL09uZURyaXZlL0Rlc2t0b3AvYXV0b3NfbGltcGlvLmNzdpRoC2gMaA2MEGF1
+dG9zX2xpbXBpby5jc3aUaA9oEGgRaBBoEowYT3JhbmdlLmRhdGEuaW8uQ1NWUmVhZGVylHViaAYp
+gZR9lChoCYxXQzovVXNlcnMvb3Rlcm8vQXBwRGF0YS9Mb2NhbC9Qcm9ncmFtcy9PcmFuZ2UvTGli
+L3NpdGUtcGFja2FnZXMvT3JhbmdlL2RhdGFzZXRzL2lyaXMudGFilGgLjA9zYW1wbGUtZGF0YXNl
+dHOUaA2MCGlyaXMudGFilGgPaBBoEWgQaBJOdWJoBimBlH2UKGgJjFpDOi9Vc2Vycy9vdGVyby9B
+cHBEYXRhL0xvY2FsL1Byb2dyYW1zL09yYW5nZS9MaWIvc2l0ZS1wYWNrYWdlcy9PcmFuZ2UvZGF0
+YXNldHMvdGl0YW5pYy50YWKUaAtoHGgNjAt0aXRhbmljLnRhYpRoD2gQaBFoEGgSTnViaAYpgZR9
+lChoCYxaQzovVXNlcnMvb3Rlcm8vQXBwRGF0YS9Mb2NhbC9Qcm9ncmFtcy9PcmFuZ2UvTGliL3Np
+dGUtcGFja2FnZXMvT3JhbmdlL2RhdGFzZXRzL2hvdXNpbmcudGFilGgLaBxoDYwLaG91c2luZy50
+YWKUaA9oEGgRaBBoEk51YmgGKYGUfZQoaAmMYEM6L1VzZXJzL290ZXJvL0FwcERhdGEvTG9jYWwv
+UHJvZ3JhbXMvT3JhbmdlL0xpYi9zaXRlLXBhY2thZ2VzL09yYW5nZS9kYXRhc2V0cy9oZWFydF9k
+aXNlYXNlLnRhYpRoC2gcaA2MEWhlYXJ0X2Rpc2Vhc2UudGFilGgPaBBoEWgQaBJOdWJoBimBlH2U
+KGgJjGFDOi9Vc2Vycy9vdGVyby9BcHBEYXRhL0xvY2FsL1Byb2dyYW1zL09yYW5nZS9MaWIvc2l0
+ZS1wYWNrYWdlcy9PcmFuZ2UvZGF0YXNldHMvYnJvd24tc2VsZWN0ZWQudGFilGgLaBxoDYwSYnJv
+d24tc2VsZWN0ZWQudGFilGgPaBBoEWgQaBJOdWJoBimBlH2UKGgJjFZDOi9Vc2Vycy9vdGVyby9B
+cHBEYXRhL0xvY2FsL1Byb2dyYW1zL09yYW5nZS9MaWIvc2l0ZS1wYWNrYWdlcy9PcmFuZ2UvZGF0
+YXNldHMvem9vLnRhYpRoC2gcaA2MB3pvby50YWKUaA9oEGgRaBBoEk51YmWMC3JlY2VudF91cmxz
+lF2UjBNzYXZlZFdpZGdldEdlb21ldHJ5lENCAdnQywADAAAAAAFTAAAANQAAA6wAAAKeAAABVAAA
+AFMAAAOrAAACnQAAAAAAAAAABQAAAAFUAAAAUwAAA6sAAAKdlIwLc2hlZXRfbmFtZXOUfZSMBnNv
+dXJjZZRLAIwDdXJslGgQjA1kb21haW5fZWRpdG9ylH2UjAtfX3ZlcnNpb25fX5RLAYwQY29udGV4
+dF9zZXR0aW5nc5RdlCiMFW9yYW5nZXdpZGdldC5zZXR0aW5nc5SMB0NvbnRleHSUk5QpgZR9lCiM
+BnZhbHVlc5R9lCiMCXZhcmlhYmxlc5RdlGg6fZRoRl2UKF2UKIwJRmVhdHVyZSAxlIwUT3Jhbmdl
+LmRhdGEudmFyaWFibGWUjBJDb250aW51b3VzVmFyaWFibGWUk5RLAGgQiGVdlCiMCnBvcHVsYXJp
+dHmUaE5LAGgQiGVdlCiMC2R1cmF0aW9uX21zlGhOSwBoEIhlXZQojAhleHBsaWNpdJRoTIwQRGlz
+Y3JldGVWYXJpYWJsZZSTlEsAjAtGYWxzZSwgVHJ1ZZSJZV2UKIwMZGFuY2VhYmlsaXR5lGhOSwBo
+EIhlXZQojAZlbmVyZ3mUaE5LAGgQiGVdlCiMA2tleZRoVksAaBCIZV2UKIwIbG91ZG5lc3OUaE5L
+AGgQiGVdlCiMBG1vZGWUaFZLAIwEMCwgMZSIZV2UKIwLc3BlZWNoaW5lc3OUaE5LAGgQiGVdlCiM
+DGFjb3VzdGljbmVzc5RoTksAaBCIZV2UKIwQaW5zdHJ1bWVudGFsbmVzc5RoTksAaBCIZV2UKIwI
+bGl2ZW5lc3OUaE5LAGgQiGVdlCiMB3ZhbGVuY2WUaE5LAGgQiGVdlCiMBXRlbXBvlGhOSwBoEIhl
+XZQojA50aW1lX3NpZ25hdHVyZZRoTksAaBCIZV2UKIwIdHJhY2tfaWSUaEyMDlN0cmluZ1Zhcmlh
+YmxllJOUSwJoEIllXZQojAdhcnRpc3RzlGh0SwJoEIllXZQojAphbGJ1bV9uYW1llGh0SwJoEIll
+XZQojAp0cmFja19uYW1llGh0SwJoEIllXZQojAt0cmFja19nZW5yZZRoVksCaBCJZWVzaDxLAXWM
+CmF0dHJpYnV0ZXOUKGhLSwKGlGhQSwKGlGhSSwKGlGhUXZQojAVGYWxzZZSMBFRydWWUZYaUaFlL
+AoaUaFtLAoaUaF1LAoaUaF9LAoaUaGFdlCiMATCUjAExlGWGlGhkSwKGlGhmSwKGlGhoSwKGlGhq
+SwKGlGhsSwKGlGhuSwKGlGhwSwKGlHSUjAVtZXRhc5QoaHJLA4aUaHZLA4aUaHhLA4aUaHpLA4aU
+aHxLA4aUdJSMCmNsYXNzX3ZhcnOUKYwSbW9kaWZpZWRfdmFyaWFibGVzlF2UdWJoQSmBlH2UKGhE
+fZQoaEZdlGg6fZRoRl2UKF2UKIwDbXBnlGhOSwBoEIhlXZQojAljaWxpbmRyb3OUaE5LAGgQiGVd
+lCiMDmRlc3BsYXphbWllbnRvlGhOSwBoEIhlXZQojA9jYWJhbGxvc19mdWVyemGUaE5LAGgQiGVd
+lCiMBHBlc2+UaE5LAGgQiGVdlCiMC2FjZWxlcmFjaW9ulGhOSwBoEIhlXZQojAthbmlvX21vZGVs
+b5RoTksAaBCIZV2UKIwGb3JpZ2VulGhOSwBoEIhlZXNoPEsBdWh9KIwDbXBnlEsChpSMCWNpbGlu
+ZHJvc5RLAoaUjA5kZXNwbGF6YW1pZW50b5RLAoaUjA9jYWJhbGxvc19mdWVyemGUSwKGlIwEcGVz
+b5RLAoaUjAthY2VsZXJhY2lvbpRLAoaUjAthbmlvX21vZGVsb5RLAoaUjAZvcmlnZW6USwKGlHSU
+aJUpaJwpaJ1dlHViZXUu
+</properties>
+		<properties node_id="1" format="pickle">gASVngMAAAAAAAB9lCiMCmF1dG9fYXBwbHmUiIwSY29udHJvbEFyZWFWaXNpYmxllIiMEGN1bXVs
+YXRpdmVfZGlzdHKUiYwTZml0dGVkX2Rpc3RyaWJ1dGlvbpRLAIwJaGlkZV9iYXJzlImMDWtkZV9z
+bW9vdGhpbmeUSwqME3NhdmVkV2lkZ2V0R2VvbWV0cnmUQ0IB2dDLAAMAAP////gAAABVAAAEUQAA
+Aob/////AAAAcwAABEoAAAJ/AAAAAAAAAAAFAP////8AAABzAAAESgAAAn+UjApzaG93X3Byb2Jz
+lImMDHNvcnRfYnlfZnJlcZSJjA9zdGFja2VkX2NvbHVtbnOUiIwLX192ZXJzaW9uX1+USwKMEGNv
+bnRleHRfc2V0dGluZ3OUXZQojBVvcmFuZ2V3aWRnZXQuc2V0dGluZ3OUjAdDb250ZXh0lJOUKYGU
+fZQojAZ2YWx1ZXOUfZQojARjdmFylE5K/v///4aUjA5udW1iZXJfb2ZfYmluc5RLAEr+////hpSM
+DXNlbGVjdGVkX2JhcnOUj5RK/v///4aUjAN2YXKUjAV0ZW1wb5RLZoaUaAxLAnWMCmF0dHJpYnV0
+ZXOUfZQojAlGZWF0dXJlIDGUSwKMCnBvcHVsYXJpdHmUSwKMC2R1cmF0aW9uX21zlEsCjAhleHBs
+aWNpdJRLAYwMZGFuY2VhYmlsaXR5lEsCjAZlbmVyZ3mUSwKMA2tleZRLAYwIbG91ZG5lc3OUSwKM
+BG1vZGWUSwGMC3NwZWVjaGluZXNzlEsCjAxhY291c3RpY25lc3OUSwKMEGluc3RydW1lbnRhbG5l
+c3OUSwKMCGxpdmVuZXNzlEsCjAd2YWxlbmNllEsCaB5LAowOdGltZV9zaWduYXR1cmWUSwJ1jAVt
+ZXRhc5R9lCiMCHRyYWNrX2lklEsDjAdhcnRpc3RzlEsDjAphbGJ1bV9uYW1llEsDjAp0cmFja19u
+YW1llEsDjAt0cmFja19nZW5yZZRLAXV1YmgRKYGUfZQoaBR9lChoFk5K/v///4aUaBhLBUr+////
+hpRoGo+USv7///+GlGgdaCJLZoaUaAxLAnVoIH2UKGgiSwJoI0sCaCRLAmglSwFoJksCaCdLAmgo
+SwFoKUsCaCpLAWgrSwJoLEsCaC1LAmguSwJoL0sCaB5LAmgwSwJ1aDF9lChoM0sDaDRLA2g1SwNo
+NksDjAt0cmFja19nZW5yZZRLA3V1YmV1Lg==
+</properties>
+	</node_properties>
+	<session_state>
+		<window_groups />
+	</session_state>
+</scheme>
