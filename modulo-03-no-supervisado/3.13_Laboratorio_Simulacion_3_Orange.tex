@@ -1,0 +1,257 @@
+\documentclass[11pt,letterpaper]{article}
+
+% ---------- Idioma y codificación ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+
+% ---------- Paquetes generales ----------
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{seqsplit}
+
+% ---------- Colores del curso ----------
+\definecolor{brandblue}{HTML}{1F4E78}
+\definecolor{brandgreen}{HTML}{1DB954}
+\definecolor{lightgray}{HTML}{F4F6F8}
+\definecolor{codebg}{HTML}{F5F5F5}
+
+% ---------- Encabezado y pie de página ----------
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\small Laboratorio de Simulación 3 --- Analítica de Datos}
+\fancyhead[R]{\small Módulo 3: Enfoques no supervisados}
+\fancyfoot[C]{\small\thepage}
+
+% ---------- Estilo de secciones ----------
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{brandblue}}
+  {\thesection}{0.6em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{brandblue}}
+  {\thesubsection}{0.6em}{}
+
+% ---------- Cajas de actividades y notas ----------
+\newtcolorbox{actividad}[1][]{
+  breakable, enhanced, colback=lightgray, colframe=brandblue,
+  boxrule=0.8pt, arc=2pt, left=6pt, right=6pt, top=5pt, bottom=5pt,
+  title={\faPencil\ Actividad}, fonttitle=\bfseries\color{white},
+  colbacktitle=brandblue, #1
+}
+\newtcolorbox{nota}[1][]{
+  breakable, enhanced, colback=white, colframe=brandgreen,
+  boxrule=0.8pt, arc=2pt, left=6pt, right=6pt, top=5pt, bottom=5pt,
+  title={Nota}, fonttitle=\bfseries\color{white},
+  colbacktitle=brandgreen, #1
+}
+
+% ---------- Código / comandos ----------
+\lstset{
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{codebg},
+  breaklines=true,
+  frame=single,
+  framerule=0.3pt,
+  rulecolor=\color{gray!50},
+  columns=fullflexible,
+  keepspaces=true,
+}
+
+% ---------- Metadatos del PDF ----------
+\hypersetup{
+  pdftitle={Laboratorio de Simulación 3 - Analítica de Datos},
+  pdfauthor={Diego Fabián Collazos Huertas},
+  pdfsubject={Curso Analítica de Datos - Módulo 3},
+  colorlinks=true,
+  linkcolor=brandblue,
+  urlcolor=brandblue,
+  citecolor=brandblue,
+}
+
+% Sustituto simple para el icono de lápiz (evita depender de fontawesome)
+\newcommand{\faPencil}{\raisebox{-0.1em}{\textbf{\Large\textbullet}}}
+
+\title{\vspace{-2cm}}
+\date{}
+
+\begin{document}
+
+% ============================================================
+% PORTADA
+% ============================================================
+\begin{titlepage}
+\centering
+\vspace*{1.5cm}
+
+{\Large Universidad Nacional de Colombia --- Sede Manizales}\\[0.2cm]
+{\large Facultad de Ingeniería y Arquitectura}\\[0.2cm]
+{\large Departamento de Ingeniería Eléctrica, Electrónica y Computación}\\[1.2cm]
+
+\rule{\linewidth}{1pt}\\[0.5cm]
+{\huge\bfseries\color{brandblue} Laboratorio de Simulación 3}\\[0.4cm]
+{\Large Implementación en Orange Data Mining}\\[0.5cm]
+\rule{\linewidth}{1pt}\\[1cm]
+
+{\large \textbf{Curso:} Analítica de Datos (Aprendizaje de máquina) --- Código 4200729}\\[0.3cm]
+{\large \textbf{Módulo:} 3 --- Modelado y evaluación de enfoques no supervisados}\\[0.3cm]
+{\large \textbf{Docente:} Diego Fabián Collazos Huertas}\\[0.3cm]
+{\large \textbf{Modalidad:} trabajo en parejas}\\[1.5cm]
+
+\vfill
+
+{\small Este laboratorio hace parte de la nota de \textbf{Laboratorios de simulación (45\% de la evaluación)}, según el programa de la asignatura (\texttt{PROGRAMA.md}).}
+
+\end{titlepage}
+
+% ============================================================
+% OBJETIVOS
+% ============================================================
+\section{Objetivos}
+
+\begin{itemize}[leftmargin=1.2cm]
+  \item Reproducir en \textbf{Orange Data Mining} --- mediante programación visual, sin escribir código --- los análisis desarrollados en los notebooks \texttt{\seqsplit{3.6\_PCA\_y\_Kernel\_PCA\_Ejemplos.ipynb}}, \texttt{\seqsplit{3.12\_Clustering\_Jerarquico\_Ejemplos.ipynb}} y \texttt{\seqsplit{3.10\_Kmeans\_Ejemplos.ipynb}}.
+  \item Aplicar \textbf{PCA} para reducir la dimensión de un dataset y visualizar cómo se separan clases conocidas en el espacio de los primeros componentes.
+  \item Construir un dendrograma con distintos criterios de enlace y practicar la \textbf{lectura y el corte} de un dendrograma para obtener una partición final.
+  \item Comparar, sobre el mismo dataset, la partición obtenida con \textbf{clustering jerárquico} y con \textbf{K-means}.
+\end{itemize}
+
+\begin{nota}
+Este taller \textbf{no reemplaza} los notebooks de Python; los complementa. La idea es que compares, para el mismo problema, qué tan distinto es resolverlo con código (scikit-learn/SciPy) frente a resolverlo con programación visual (Orange) --- ver \texttt{1.2\_Orange\_Data\_Mining.md} para instalar la herramienta si aún no lo has hecho.
+\end{nota}
+
+% ============================================================
+% INSTRUCCIONES GENERALES
+% ============================================================
+\section{Instrucciones generales}
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item \textbf{Este laboratorio se desarrolla en parejas} (2 estudiantes), asignadas o conformadas según indique el docente.
+  \item Para cada parte del laboratorio, arma el flujo (\textit{workflow}) solicitado en el lienzo de Orange.
+  \item Cada vez que veas el ícono \faPencil\ \textbf{Actividad}, documenta la respuesta \textbf{directamente sobre el lienzo de Orange}, usando la herramienta de texto (clic derecho sobre un espacio vacío del lienzo $\to$ \textit{Text}, o el ícono ``T'' de la barra de herramientas) para agregar un cuadro de texto junto a los widgets correspondientes. No se entregan respuestas en un documento aparte: el workflow comentado \textbf{es} la respuesta.
+  \item Además, toma una captura de pantalla del resultado de cada actividad (el widget correspondiente ya abierto, mostrando el gráfico o la tabla) para incluirla en el PDF de evidencias.
+  \item Consulta la sección \textbf{Entregables} (al final de este documento) para el detalle de qué debes entregar y cómo.
+\end{enumerate}
+
+% ============================================================
+% PARTE 1
+% ============================================================
+\section{Parte 1 --- Reducción de dimensión con PCA en Orange}
+
+Esta parte reproduce en Orange lo desarrollado en el notebook \texttt{\seqsplit{3.6\_PCA\_y\_Kernel\_PCA\_Ejemplos.ipynb}}: aplicar PCA sobre un dataset real y comprobar cuánta varianza explican los primeros componentes.
+
+\subsection{1.1 Cargar el dataset Iris}
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item Abre Orange y crea un workflow nuevo. Arrastra el widget \textbf{File} al lienzo.
+  \item En el combo de selección de archivo, abre la lista de \textbf{datasets de muestra incluidos con Orange} (el ícono de carpeta junto al nombre del archivo) y elige \texttt{iris.tab}. No necesitas descargar nada: este dataset viene empaquetado con la instalación.
+  \item Agrega un widget \textbf{Data Table} conectado a \textit{File} y confirma que hay 150 observaciones, 4 variables numéricas (largo/ancho de sépalo y pétalo) y una columna de clase \texttt{iris} con tres especies (\textit{setosa}, \textit{versicolor}, \textit{virginica}) --- el mismo dataset Iris que usaste en el notebook \texttt{3.4}.
+\end{enumerate}
+
+\subsection{1.2 Aplicar PCA}
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item Agrega el widget \textbf{PCA} (categoría \textit{Unsupervised}) conectado a \textit{File}.
+  \item Abre el widget: muestra un gráfico de \textbf{varianza explicada acumulada} por componente, igual que la sección 2 del notebook \texttt{3.6} (allí sobre el dataset \textit{Wine}).
+\end{enumerate}
+
+\begin{actividad}
+En un cuadro de texto junto al widget \textit{PCA}, anota el porcentaje de varianza acumulada que explican los dos primeros componentes. Compáralo con lo que encontró el notebook \texttt{3.6} para \textit{Wine} (donde pocos componentes ya explicaban la mayoría de la varianza): ¿en Iris pasa algo parecido, o se necesitan más componentes para explicar la misma proporción? Incluye en tu PDF de evidencias una captura del gráfico de varianza explicada.
+\end{actividad}
+
+\subsection{1.3 Visualizar en el espacio de componentes}
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item Conecta un widget \textbf{Scatter Plot} a la salida \textit{Transformed Data} de \textit{PCA}.
+  \item En el eje X selecciona \texttt{PC1}, en el eje Y selecciona \texttt{PC2}, y en \textbf{Color} selecciona la variable \texttt{iris} (la especie).
+\end{enumerate}
+
+\begin{actividad}
+Observando el \textit{Scatter Plot}: ¿las tres especies se separan visualmente usando solo los dos primeros componentes? Compara con el hallazgo del notebook \texttt{3.6}, donde 2 componentes ya separaban visualmente los tres cultivares de \textit{Wine} \textbf{sin usar sus etiquetas} para calcular la proyección. Incluye en tu PDF de evidencias una captura del \textit{Scatter Plot} coloreado por especie.
+\end{actividad}
+
+% ============================================================
+% PARTE 2
+% ============================================================
+\section{Parte 2 --- Clustering jerárquico en Orange}
+
+Esta parte reproduce en Orange lo desarrollado en el notebook \texttt{\seqsplit{3.12\_Clustering\_Jerarquico\_Ejemplos.ipynb}}, sobre el mismo dataset Iris cargado en la Parte 1.
+
+\subsection{2.1 Calcular la matriz de distancias}
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item Agrega el widget \textbf{Distances} (categoría \textit{Unsupervised}) conectado a \textit{File}. Deja la métrica por defecto, \textbf{Euclidean} (normalizada).
+\end{enumerate}
+
+\begin{nota}
+\textit{Distances} solo acepta \textit{Data} como entrada y produce una \textbf{matriz de distancias} como única salida --- no una partición ni un dendrograma. Es el insumo obligatorio de \textit{Hierarchical Clustering}, que a diferencia de \textit{PCA} o \textit{k-Means} \textbf{no acepta} \textit{Data} directamente: siempre necesita una matriz de distancias ya calculada.
+\end{nota}
+
+\subsection{2.2 Construir el dendrograma con los cuatro criterios de enlace}
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item Agrega el widget \textbf{Hierarchical Clustering} conectado a \textit{Distances}.
+  \item En el panel \textit{Linkage}, prueba uno a la vez los cuatro criterios de enlace vistos en las diapositivas \texttt{3.11}: \textbf{Single} (simple), \textbf{Average} (promedio), \textbf{Complete} (completo) y \textbf{Ward}.
+\end{enumerate}
+
+\begin{actividad}
+Para cada uno de los cuatro criterios, observa la forma del dendrograma: ¿se ve ``equilibrado'' (ramas de tamaño parecido) o muestra \textbf{encadenamiento} (una cadena larga con grupos muy desiguales)? Esto es justamente lo que el notebook \texttt{3.12} midió numéricamente sobre este mismo dataset: con enlace \textit{simple} uno de los tres grupos termina con solo 2 observaciones, mientras que con \textit{Ward} los tres grupos quedan mucho más balanceados. En un cuadro de texto junto al widget, anota cuál de los cuatro te pareció más balanceado. Incluye en tu PDF de evidencias una captura del dendrograma con el criterio \textbf{Ward} seleccionado.
+\end{actividad}
+
+\subsection{2.3 Cortar el dendrograma en 3 grupos}
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item Con el criterio \textbf{Ward} seleccionado, usa el control \textit{Selection} del panel (configúralo en \textit{Top N}, con valor 3) o haz clic directamente sobre el dendrograma para seleccionar 3 grupos.
+  \item Conecta la salida \textit{Selected Data} a un nuevo \textbf{Scatter Plot}. En los ejes selecciona \texttt{petal length} y \texttt{petal width} (las variables que mejor separan las especies de Iris), y en \textbf{Color} selecciona \texttt{Cluster}.
+\end{enumerate}
+
+\begin{actividad}
+Cambia momentáneamente el \textbf{Color} del mismo \textit{Scatter Plot} de \texttt{Cluster} a \texttt{iris} (la especie real) y compara ambos coloreados. ¿Los 3 grupos que encontró \textit{Hierarchical Clustering} con Ward se parecen a las 3 especies reales? En el notebook \texttt{3.12} esto se midió con el \textit{Adjusted Rand Index} (ARI $\approx 0.73$ para Ward, frente a $\approx 0.56$ para enlace simple). En un cuadro de texto, describe en qué se parecen y en qué difieren los dos coloreados. Incluye en tu PDF de evidencias una captura de cada coloreado.
+\end{actividad}
+
+% ============================================================
+% PARTE 3
+% ============================================================
+\section{Parte 3 --- Comparación con K-means}
+
+Esta parte reproduce en Orange lo desarrollado en el notebook \texttt{\seqsplit{3.10\_Kmeans\_Ejemplos.ipynb}} y cierra comparando sus resultados con los de la Parte 2, igual que la tabla ``Evaluación y comparación con K-means'' de las diapositivas \texttt{3.11}.
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item Agrega el widget \textbf{k-Means} (categoría \textit{Unsupervised}) conectado a \textit{File}. En \textit{Number of Clusters} selecciona \textbf{Fixed} y escribe \textbf{3} --- el mismo número de grupos que usaste al cortar el dendrograma en la Parte 2.
+  \item Conecta su salida a un nuevo \textbf{Scatter Plot}, con los mismos ejes que usaste en 2.3 (\texttt{petal length} y \texttt{petal width}) y \textbf{Color} = \texttt{Cluster}.
+\end{enumerate}
+
+\begin{actividad}[title={\faPencil\ Reflexión final}]
+Compara el \textit{Scatter Plot} de K-means con el de \textit{Hierarchical Clustering} (Ward) de la actividad 2.3: ¿las dos particiones se parecen? Esto es consistente con el notebook \texttt{3.12}, donde Ward y K-means obtuvieron casi el mismo ARI ($\approx 0.73$ ambos) --- a diferencia de enlace simple, notablemente peor. Como cuadro de texto de cierre en el workflow de la \textbf{Parte 3}, escriban en pareja una breve reflexión (5--8 líneas) usando la tabla de la diapositiva \textit{Evaluación y comparación con K-means}: ¿qué fue más fácil de decidir en Orange: elegir el criterio de enlace y el corte del dendrograma, o elegir K para K-means? ¿En qué situación preferirían explorar primero con un dendrograma antes de comprometerse con un K fijo?
+\end{actividad}
+
+% ============================================================
+% ENTREGABLES
+% ============================================================
+\section{Entregables}
+
+La pareja debe subir al repositorio del curso (a través de la página de entregas) \textbf{dos tipos de archivo}:
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item \textbf{Los archivos \texttt{.ows} de los workflows armados en Orange} (uno por cada parte del laboratorio), \textbf{comentados con la herramienta de texto de Orange} tal como se indicó en cada actividad. El workflow comentado --- no un documento aparte --- es donde se responden las preguntas de cada actividad.
+  \item \textbf{Un único PDF con las capturas de pantalla} de los resultados obtenidos en cada una de las 5 actividades (\faPencil), claramente identificadas (por ejemplo, ``Actividad 1 --- Varianza explicada por PCA'').
+\end{enumerate}
+
+Nombra los archivos con los apellidos de ambos integrantes de la pareja, por ejemplo: \texttt{\seqsplit{apellido1\_apellido2\_parte1.ows}}, \texttt{\seqsplit{apellido1\_apellido2\_parte2.ows}}, \texttt{\seqsplit{apellido1\_apellido2\_parte3.ows}} y \texttt{\seqsplit{apellido1\_apellido2\_evidencias.pdf}}. Sube estos archivos desde la página de entregas del curso, seleccionando la categoría \textbf{Laboratorio de Simulación 3}.
+
+\begin{nota}
+Este laboratorio corresponde a la tercera entrega del componente \textbf{Laboratorios de simulación (45\% de la nota)}. Revisa la fecha de entrega vigente en \texttt{entregas/README.md}.
+\end{nota}
+
+\end{document}
