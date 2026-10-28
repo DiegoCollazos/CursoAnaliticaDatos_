@@ -1,0 +1,340 @@
+\documentclass[11pt,letterpaper]{article}
+
+% ---------- Idioma y codificación ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+
+% ---------- Paquetes generales ----------
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{seqsplit}
+
+% ---------- Colores del curso ----------
+\definecolor{brandblue}{HTML}{1F4E78}
+\definecolor{brandgreen}{HTML}{1DB954}
+\definecolor{brandorange}{HTML}{E07B00}
+\definecolor{lightgray}{HTML}{F4F6F8}
+\definecolor{codebg}{HTML}{F5F5F5}
+
+% ---------- Encabezado y pie de página ----------
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\small Taller Guiado --- Analítica de Datos}
+\fancyhead[R]{\small Cierre de capítulos en Orange}
+\fancyfoot[C]{\small\thepage}
+
+% ---------- Estilo de secciones ----------
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{brandblue}}
+  {\thesection}{0.6em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\color{brandblue}}
+  {\thesubsection}{0.6em}{}
+
+% ---------- Cajas de actividades, preguntas y notas ----------
+\newtcolorbox{actividad}[1][]{
+  breakable, enhanced, colback=lightgray, colframe=brandblue,
+  boxrule=0.8pt, arc=2pt, left=6pt, right=6pt, top=5pt, bottom=5pt,
+  title={\faPencil\ Actividad}, fonttitle=\bfseries\color{white},
+  colbacktitle=brandblue, #1
+}
+\newtcolorbox{pregunta}[1][]{
+  breakable, enhanced, colback=white, colframe=brandorange,
+  boxrule=0.8pt, arc=2pt, left=6pt, right=6pt, top=5pt, bottom=5pt,
+  title={\faPencil\ Pregunta de concepto}, fonttitle=\bfseries\color{white},
+  colbacktitle=brandorange, #1
+}
+\newtcolorbox{nota}[1][]{
+  breakable, enhanced, colback=white, colframe=brandgreen,
+  boxrule=0.8pt, arc=2pt, left=6pt, right=6pt, top=5pt, bottom=5pt,
+  title={Nota}, fonttitle=\bfseries\color{white},
+  colbacktitle=brandgreen, #1
+}
+
+% ---------- Código / comandos ----------
+\lstset{
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{codebg},
+  breaklines=true,
+  frame=single,
+  framerule=0.3pt,
+  rulecolor=\color{gray!50},
+  columns=fullflexible,
+  keepspaces=true,
+}
+
+% ---------- Metadatos del PDF ----------
+\hypersetup{
+  pdftitle={Taller Guiado - Cierre de capitulos en Orange - Analitica de Datos},
+  pdfauthor={Diego Fabián Collazos Huertas},
+  pdfsubject={Curso Analítica de Datos - Taller guiado},
+  colorlinks=true,
+  linkcolor=brandblue,
+  urlcolor=brandblue,
+  citecolor=brandblue,
+}
+
+% Sustituto simple para el icono de lápiz (evita depender de fontawesome)
+\newcommand{\faPencil}{\raisebox{-0.1em}{\textbf{\Large\textbullet}}}
+
+\title{\vspace{-2cm}}
+\date{}
+
+\begin{document}
+
+% ============================================================
+% PORTADA
+% ============================================================
+\begin{titlepage}
+\centering
+\vspace*{1.5cm}
+
+{\Large Universidad Nacional de Colombia --- Sede Manizales}\\[0.2cm]
+{\large Facultad de Ingeniería y Arquitectura}\\[0.2cm]
+{\large Departamento de Ingeniería Eléctrica, Electrónica y Computación}\\[1.2cm]
+
+\rule{\linewidth}{1pt}\\[0.5cm]
+{\huge\bfseries\color{brandblue} Taller Guiado en Orange}\\[0.4cm]
+{\Large Cierre de capítulos: un repaso de extremo a extremo}\\[0.5cm]
+\rule{\linewidth}{1pt}\\[1cm]
+
+{\large \textbf{Curso:} Analítica de Datos (Aprendizaje de máquina) --- Código 4200729}\\[0.3cm]
+{\large \textbf{Docente:} Diego Fabián Collazos Huertas}\\[0.3cm]
+{\large \textbf{Modalidad:} guiado en clase, individual o en parejas}\\[0.3cm]
+{\large \textbf{Dataset:} \texttt{ICFES\_2020-2\_Eje\_Cafetero.csv}}\\[1.5cm]
+
+\vfill
+
+{\small Este taller se desarrolla \textbf{en el horario de clase}, guiado en vivo por el docente. El archivo \texttt{.ows} resultante, con las respuestas a las preguntas de concepto escritas sobre el lienzo, se entrega según se indique en clase.}
+
+\end{titlepage}
+
+% ============================================================
+% OBJETIVOS
+% ============================================================
+\section{Objetivos}
+
+\begin{itemize}[leftmargin=1.2cm]
+  \item Repasar, de extremo a extremo y sobre un \textbf{único problema real}, (casi) todas las técnicas de análisis exploratorio, selección de variables y agrupamiento vistas en el curso, usando \textbf{Orange Data Mining}.
+  \item Practicar la formulación de preguntas sobre un conjunto de datos y la elección de la técnica adecuada para responderlas.
+  \item Hacer un \textbf{sanity check} de los datos antes de sacar conclusiones, identificando valores extraños, atípicos y faltantes.
+  \item Distinguir cuándo una diferencia observada es \textbf{estadísticamente significativa} y cuándo una correlación no implica causalidad.
+\end{itemize}
+
+\begin{nota}
+Este enfoque \textbf{no es el único posible}: dependiendo de los datos y de las preguntas que queramos hacerles, las técnicas, los análisis y las conclusiones pueden cambiar. Lo importante de este taller es la \textbf{forma de pensar} el problema, no memorizar una receta fija.
+\end{nota}
+
+% ============================================================
+% DATOS DE ORIGEN
+% ============================================================
+\section{Datos de origen}
+
+Trabajaremos con un extracto de la base de datos de las \textbf{Pruebas Saber 11, segundo semestre de 2020} (origen: \href{https://www.datos.gov.co/Educaci-n/Resultados-nicos-Saber-11/kgxf-xxbg}{Saber 11° 2020-2 --- Datos Abiertos Colombia}). Se le hizo un depurado previo:
+
+\begin{itemize}[leftmargin=1.2cm]
+  \item Se seleccionaron solo registros del \textbf{Eje Cafetero} (Risaralda, Caldas, Quindío).
+  \item Se eliminaron variables irrelevantes (códigos SNIES de colegios y variables similares).
+  \item Se hizo un submuestreo al 40\% para simplificar el procesamiento.
+\end{itemize}
+
+El archivo resultante, \texttt{\seqsplit{ICFES\_2020-2\_Eje\_Cafetero.csv}}, queda con \textbf{24999 registros} y \textbf{61 variables} (40 categóricas, 20 numéricas, 1 metadato de texto): puntajes y percentiles por competencia (lectura crítica, matemáticas, ciencias naturales, sociales y ciudadanas, inglés, y el puntaje global), variables socioeconómicas y del entorno familiar del estudiante, y variables del colegio.
+
+% ============================================================
+% PARTE 1
+% ============================================================
+\section{Parte 1 --- Carga y lectura general de los datos}
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item Abre Orange y crea un workflow nuevo. Arrastra el widget \textbf{File} y carga \texttt{ICFES\_2020-2\_Eje\_Cafetero.csv}. Confirma en el panel del widget que quedan \textbf{24999 filas, 40 categóricas, 20 numéricas, 1 meta}.
+  \item Agrega el widget \textbf{Feature Statistics} (categoría \textit{Data}) conectado a \textit{File} y revisa, variable por variable, la media, moda, mediana, dispersión, mínimo y máximo.
+  \item Fíjate en las tres primeras variables de código (\texttt{ESTU\_COD\_RESIDE\_DEPTO}, \texttt{ESTU\_MCPIO\_RESIDE}, \texttt{ESTU\_COD\_RESIDE\_MCPIO}): aunque Orange las detecta como \textbf{Numéricas} por estar hechas de dígitos, no tiene sentido promediarlas --- son códigos, no cantidades. Agrega un widget \textbf{Edit Domain} conectado a \textit{File} y cambia su tipo a \textbf{Categórica}.
+\end{enumerate}
+
+\begin{pregunta}
+¿Por qué un código numérico como \texttt{ESTU\_COD\_RESIDE\_MCPIO} no debería tratarse como variable numérica, aunque esté compuesto solo por dígitos? Den un ejemplo concreto de una conclusión sin sentido que se obtendría si se calculara su \textbf{media} o se le aplicara una \textbf{correlación}.
+\end{pregunta}
+
+% ============================================================
+% PARTE 2
+% ============================================================
+\section{Parte 2 --- Sanity check: ¿los datos son lo que deberían ser?}
+
+Antes de analizar, conviene verificar que no haya datos mal tomados o en un formato incorrecto --- a esto se le llama \textbf{sanity check}.
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item En \textit{Feature Statistics}, observa la variable \texttt{ESTU\_FECHANACIMIENTO}: su \textbf{dispersión} es de aproximadamente 74 años, con un mínimo en 1946 y un máximo en 2020.
+  \item Agrega el widget \textbf{Select Rows} conectado a \textit{File} con la condición \texttt{ESTU\_FECHANACIMIENTO is at most 1970-01-01}. Conecta la salida a un \textbf{Data Table} e inspecciona esos registros.
+  \item Conecta ahora un widget \textbf{Distributions} a la salida de \textit{Select Rows} y mira la variable \texttt{ESTU\_MCPIO\_RESIDE}. Notarás un eje X muy ruidoso, con muchas categorías sin barra: Orange sigue mostrando \textbf{todos} los municipios posibles del dataset completo, aunque esta selección casi no tenga datos en la mayoría. En el panel de \textit{Select Rows}, activa \textbf{Remove unused features} y observa cómo se limpia la visualización.
+\end{enumerate}
+
+\begin{pregunta}
+¿Por qué es importante hacer un sanity check \textbf{antes} de interpretar los resultados de un análisis exploratorio? En este dataset hay personas que, según la fecha de nacimiento, tenían 74 años al presentar la prueba, y otras que nacieron el mismo año en que la presentaron (2020). ¿Cuál de las dos situaciones les parece más plausible como dato real y cuál como posible error de captura? Justifiquen.
+\end{pregunta}
+
+% ============================================================
+% PARTE 3
+% ============================================================
+\section{Parte 3 --- Visualización de variables categóricas}
+
+\subsection{3.1 Distributions}
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item Conecta un widget \textbf{Distributions} a \textit{File} (sin el filtro de la Parte 2) y selecciona \texttt{ESTU\_GENERO}.
+  \item Usa \textbf{Split by} para condicionar la distribución de \texttt{FAMI\_ESTRATOVIVIENDA} según \texttt{ESTU\_GENERO}, y explora las opciones \textit{Sort categories by frequency}, \textit{Stack columns} y \textit{Show probabilities}.
+\end{enumerate}
+
+\begin{pregunta}
+¿Qué diferencia hay entre una distribución \textbf{marginal} (una sola variable, como el histograma de \texttt{ESTU\_GENERO}) y una distribución \textbf{condicional} (\textit{split by}, como \texttt{FAMI\_ESTRATOVIVIENDA} dividida por género)? ¿Qué pregunta puede responder la segunda que la primera no puede?
+\end{pregunta}
+
+\subsection{3.2 Mosaic}
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item \textit{Distributions} queda limitado a dos variables (una principal y un \textit{split by}). Agrega el widget \textbf{Mosaic} conectado a \textit{File} para visualizar más variables a la vez (hasta 5): selecciona \texttt{ESTU\_GENERO} y \texttt{ESTU\_MCPIO\_RESIDE}, con color interior \texttt{ESTU\_GENERO}.
+  \item Activa \textbf{Compare with total} y observa cómo cambia la lectura del gráfico.
+  \item Agrega una tercera variable (por ejemplo \texttt{ESTU\_FECHANACIMIENTO} discretizada, o cualquier otra categórica) y luego hasta una cuarta o quinta. Prueba el botón \textbf{Find Informative Mosaics} --- \textbf{con pocas variables y datos reducidos}, ya que puede tardar mucho con el dataset completo.
+\end{enumerate}
+
+\begin{pregunta}
+\textit{Mosaic} permite visualizar hasta 5 variables categóricas a la vez, mientras que \textit{Distributions} solo permite 2. ¿Qué ventaja ofrece poder ver más variables al tiempo? ¿Qué desventaja, en términos de qué tan fácil es \textbf{interpretar} el gráfico, aparece a medida que agregan más variables?
+\end{pregunta}
+
+% ============================================================
+% PARTE 4
+% ============================================================
+\section{Parte 4 --- Variables numéricas: atípicos y faltantes}
+
+\subsection{4.1 Box Plot}
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item Agrega un widget \textbf{Select Rows} conectado a \textit{File} para quedarte solo con estudiantes nacidos entre 2000 y 2004.
+  \item Conecta un \textbf{Box Plot} a esa salida: variable \texttt{PUNT\_GLOBAL}, \textbf{Subgroups} = \texttt{\seqsplit{ESTU\_COD\_RESIDE\_DEPTO}}, con \textbf{Compare means} activado. Observa el valor de \textbf{ANOVA} que reporta el widget.
+  \item Prueba también un \textit{Box Plot} con una variable \textbf{categórica} como variable principal (por ejemplo \texttt{COLE\_GENERO}) agrupada por otra categórica (\texttt{ESTU\_COD\_RESIDE\_DEPTO}): el widget reporta entonces un estadístico $\chi^2$ en vez de ANOVA.
+\end{enumerate}
+
+\begin{pregunta}
+El \textit{Box Plot} de \texttt{PUNT\_GLOBAL} por departamento reporta un ANOVA con cierto valor $p$. Si ese valor $p$ es mayor a 0.05, ¿pueden concluir que hay una diferencia \textbf{estadísticamente significativa} entre los departamentos al 95\% de confianza? ¿Qué significa, en términos simples, el valor $p$ de una prueba de significancia?
+\end{pregunta}
+
+\subsection{4.2 Outliers y valores faltantes}
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item Conecta un \textbf{Distributions} a \textit{File} con la variable \texttt{PUNT\_GLOBAL}. Observa las colas de la distribución: hay valores muy por debajo de 100 que no deberían ser posibles en una escala que llega a 500.
+  \item Agrega un \textbf{Select Rows} con la condición \texttt{PUNT\_GLOBAL is at most 100} y revisa esos registros en un \textit{Data Table}. Decide si te parecen datos reales o errores de captura.
+  \item Agrega el widget \textbf{Outliers} (categoría \textit{Unsupervised}) conectado a \textit{File} para detectar valores atípicos considerando \textbf{todas} las variables numéricas a la vez, no solo una.
+  \item Con un \textbf{Data Table} conectado a \textit{File}, identifica qué variables tienen valores faltantes --- notarás que están relacionadas con el entorno socioeconómico, no con los puntajes. Agrega un widget \textbf{Impute} para tratarlos.
+\end{enumerate}
+
+\begin{nota}
+El widget \textit{Outliers} es \textbf{pesado}: puede ser lento o bloquear Orange si se usa con muchos datos y muchas variables. Redúcelo primero (\textit{Select Columns} y/o una muestra con \textit{Data Sampler}) antes de usarlo sobre el dataset completo.
+\end{nota}
+
+\begin{pregunta}
+¿Cuál es la diferencia entre un \textbf{valor atípico legítimo} (una observación real, pero poco común) y un \textbf{error de captura de datos}? En el caso de los puntajes globales por debajo de 100, ¿qué evidencia usarían para decidir a cuál de los dos casos corresponde, en vez de simplemente eliminarlos sin revisar?
+\end{pregunta}
+
+% ============================================================
+% PARTE 5
+% ============================================================
+\section{Parte 5 --- Formulación de preguntas y significancia estadística}
+
+Una vez hecha la lectura general de los datos, el análisis exploratorio se vuelve más potente cuando parte de \textbf{preguntas concretas}. Algunos ejemplos:
+
+\begin{itemize}[leftmargin=1.2cm]
+  \item ¿Los estudiantes que sacan puntajes altos comparten características socioeconómicas similares?
+  \item ¿Tener buenos hábitos de lectura es indicador de que me va a ir bien en el ICFES?
+  \item ¿Estudiar en colegio privado es una variable que tiene correlación con sacar buenos puntajes?
+  \item ¿Las personas con mejores puntajes en competencias ciudadanas vienen de colegios públicos o privados?
+  \item ¿Hay relación entre el estrato y los resultados en competencias ciudadanas?
+  \item ¿La alimentación familiar podría tener que ver con los resultados de las pruebas?
+\end{itemize}
+
+Tomemos la pregunta \textbf{¿Estudiar en colegio privado tiene relación con sacar buenos puntajes?} \texttt{COLE\_NATURALEZA} es \textbf{categórica} y \texttt{PUNT\_GLOBAL} es \textbf{numérica}, así que \textbf{no podemos calcular directamente un coeficiente de correlación} entre ellas.
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item Conecta un \textbf{Distributions} a \textit{File}: variable \texttt{PUNT\_GLOBAL}, \textbf{Split by} = \texttt{COLE\_NATURALEZA}. Observa cómo se desplazan las dos distribuciones condicionales una respecto a la otra.
+  \item Conecta un \textbf{Box Plot}: variable \texttt{PUNT\_GLOBAL}, \textbf{Subgroups} = \texttt{COLE\_NATURALEZA}, con \textbf{Compare means}. Esta vez el widget sí reporta una prueba de significancia (t de Student) entre las dos medias.
+  \item Repite el mismo \textit{Box Plot} para la pregunta sobre competencias ciudadanas (\texttt{\seqsplit{PUNT\_SOCIALES\_CIUDADANAS}} por \texttt{COLE\_NATURALEZA}).
+\end{enumerate}
+
+\begin{pregunta}
+Podríamos codificar (\textit{Continuize}) la variable categórica \texttt{COLE\_NATURALEZA} como 0/1 y calcular su correlación de Pearson con \texttt{PUNT\_GLOBAL}. ¿Por qué el número resultante no significaría realmente lo que esperamos? Y aunque el \textit{Box Plot} muestre una diferencia de medias \textbf{estadísticamente significativa} entre colegios oficiales y no oficiales, ¿pueden concluir que estudiar en colegio privado \textbf{causa} mejores puntajes? ¿Qué otras explicaciones alternativas se les ocurren?
+\end{pregunta}
+
+% ============================================================
+% PARTE 6
+% ============================================================
+\section{Parte 6 --- Selección de variables y vecinos}
+
+\subsection{6.1 Selección de variables con Rank}
+
+Queremos identificar qué variables socioeconómicas distinguen mejor entre puntajes \textbf{altos}, \textbf{medios} y \textbf{bajos}. Para eso necesitamos una variable \textbf{Target} categórica.
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item Agrega el widget \textbf{Discretize} conectado a \textit{File}, y discretiza \texttt{PUNT\_GLOBAL} en tres categorías (por ejemplo, \textit{Equal frequency} con 3 intervalos: altos/medios/bajos).
+  \item Con \textbf{Select Columns}, separa por un lado todas las variables \textbf{menos} \texttt{PUNT\_GLOBAL}, y por otro solo \texttt{PUNT\_GLOBAL} discretizada. Une ambas de nuevo con \textbf{Merge Data}.
+  \item En el widget resultante (o con \textbf{Edit Domain}), marca la versión discretizada de \texttt{PUNT\_GLOBAL} como \textbf{Target}.
+  \item Conecta un widget \textbf{Rank} y revisa qué variables socioeconómicas quedan mejor rankeadas para distinguir altos/medios/bajos.
+\end{enumerate}
+
+\begin{pregunta}
+¿Por qué fue necesario discretizar \texttt{PUNT\_GLOBAL} (convertirla de numérica a categórica) antes de poder usarla como variable \textbf{Target} para el widget \textit{Rank}? ¿Qué le pasaría a Rank si le diéramos directamente la variable numérica como \textit{Target}?
+\end{pregunta}
+
+\subsection{6.2 Distancias y vecinos}
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item Con un \textbf{Select Rows}, separa el registro (o los registros) con el \textbf{mayor} \texttt{PUNT\_GLOBAL} de todo el dataset.
+  \item Conecta un widget \textbf{Neighbors}: como \textit{Data} usa el resto del dataset, y como \textit{Reference} el registro de mayor puntaje. Elige la métrica \textbf{Jaccard} (apropiada para variables categóricas binarias) y revisa qué estudiantes resultan más ``cercanos''.
+  \item Mira qué características socioeconómicas comparten esos vecinos con el estudiante de referencia.
+\end{enumerate}
+
+\begin{pregunta}
+¿Por qué la distancia \textbf{Jaccard} es más apropiada que la distancia \textbf{Euclídea} para comparar variables categóricas binarias (como las de Sí/No: ¿tiene internet?, ¿tiene computador?, etc.)? (Pista: piensen en qué significaría restar numéricamente dos categorías como ``Sí'' y ``No''.)
+\end{pregunta}
+
+% ============================================================
+% PARTE 7
+% ============================================================
+\section{Parte 7 --- Agrupamiento no supervisado}
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item \textbf{Con variables numéricas}: agrega \textbf{Select Columns} para quedarte solo con las variables numéricas de puntaje, luego \textbf{k-Means} (prueba varios $K$ y quédate con el mejor según el coeficiente \textbf{Silhouette}). Visualiza el resultado en un \textbf{Scatter Plot} coloreado por \texttt{Cluster}.
+  \item \textbf{Con variables categóricas}: repite el ejercicio usando solo variables socioeconómicas (categóricas). Recuerda que \textit{k-Means} en Orange preprocesa automáticamente las categóricas (\textit{continuize} con una columna por valor) si no le conectas ya datos preprocesados.
+  \item Un \textit{Scatter Plot} directo sobre dos variables categóricas es difícil de interpretar. Agrega un widget \textbf{MDS} (conectado a través de \textbf{Distances}) para proyectar esas variables a 2 dimensiones y visualizar los clústeres encontrados.
+  \item Conecta un \textbf{Distributions} a la salida del agrupamiento categórico: variable \texttt{PUNT\_GLOBAL}, \textbf{Split by} = \texttt{Cluster}. Observa si los dos clústeres (formados \textbf{solo} con variables socioeconómicas, sin usar el puntaje) se relacionan con el puntaje global.
+\end{enumerate}
+
+\begin{pregunta}[title={\faPencil\ Pregunta de concepto final}]
+Al agrupar usando \textbf{solo} las variables numéricas de puntaje, era esperable que \textit{k-Means} separara ``puntajes altos'' de ``puntajes bajos'' --- esas son justo las variables que usamos para agrupar. Pero al agrupar usando \textbf{solo} variables socioeconómicas (categóricas, sin usar el puntaje) y luego comparar esos clústeres con \texttt{PUNT\_GLOBAL}, ¿qué encontraron? ¿Qué les sugiere esto sobre la relación entre el contexto socioeconómico y el desempeño en las pruebas Saber 11? Y de nuevo: ¿esto es evidencia de que el contexto socioeconómico \textbf{causa} el desempeño, o solo de que están \textbf{correlacionados}?
+\end{pregunta}
+
+% ============================================================
+% ENTREGABLES
+% ============================================================
+\section{Entregables}
+
+\begin{enumerate}[leftmargin=1.2cm]
+  \item El archivo \textbf{\texttt{.ows}} del workflow completo armado durante la sesión, con las respuestas a las \textbf{8 preguntas de concepto} (\faPencil) escritas directamente sobre el lienzo, usando la herramienta de texto de Orange (clic derecho sobre un espacio vacío $\to$ \textit{Text}), junto a la parte correspondiente del workflow.
+  \item Sube el archivo \texttt{.ows} desde la página de entregas del curso, seleccionando la categoría \textbf{Otra} y especificando ``Taller guiado --- Cierre de capítulos'' --- o según indique el docente en clase.
+\end{enumerate}
+
+\begin{nota}
+Este es un taller \textbf{guiado en clase}: no hay un procedimiento único ni una única forma correcta de armar el workflow. Lo importante es que el flujo refleje las decisiones que se discutieron en cada parte y que las respuestas a las preguntas de concepto estén justificadas con lo que efectivamente se observó en Orange.
+\end{nota}
+
+\end{document}
