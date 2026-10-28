@@ -20,6 +20,9 @@
 \usepackage{hyperref}
 \usepackage{xurl}
 \usepackage{seqsplit}
+\usepackage{float}
+\usepackage{caption}
+\captionsetup{font=small, labelfont=bf, skip=4pt}
 
 % ---------- Colores del curso ----------
 \definecolor{brandblue}{HTML}{1F4E78}
@@ -151,7 +154,7 @@ Trabajaremos con un extracto de la base de datos de las \textbf{Pruebas Saber 11
   \item Se hizo un submuestreo al 40\% para simplificar el procesamiento.
 \end{itemize}
 
-El archivo resultante, \texttt{\seqsplit{ICFES\_2020-2\_Eje\_Cafetero.csv}}, queda con \textbf{24999 registros} y \textbf{61 variables} (40 categóricas, 20 numéricas, 1 metadato de texto): puntajes y percentiles por competencia (lectura crítica, matemáticas, ciencias naturales, sociales y ciudadanas, inglés, y el puntaje global), variables socioeconómicas y del entorno familiar del estudiante, y variables del colegio.
+El archivo resultante, \texttt{\protect\seqsplit{ICFES\_2020-2\_Eje\_Cafetero.csv}}, queda con \textbf{24999 registros} y \textbf{61 variables} (40 categóricas, 20 numéricas, 1 metadato de texto): puntajes y percentiles por competencia (lectura crítica, matemáticas, ciencias naturales, sociales y ciudadanas, inglés, y el puntaje global), variables socioeconómicas y del entorno familiar del estudiante, y variables del colegio.
 
 % ============================================================
 % PARTE 1
@@ -159,10 +162,16 @@ El archivo resultante, \texttt{\seqsplit{ICFES\_2020-2\_Eje\_Cafetero.csv}}, que
 \section{Parte 1 --- Carga y lectura general de los datos}
 
 \begin{enumerate}[leftmargin=1.2cm]
-  \item Abre Orange y crea un workflow nuevo. Arrastra el widget \textbf{File} y carga \texttt{ICFES\_2020-2\_Eje\_Cafetero.csv}. Confirma en el panel del widget que quedan \textbf{24999 filas, 40 categóricas, 20 numéricas, 1 meta}.
+  \item Abre Orange y crea un workflow nuevo. Arrastra el widget \textbf{File} y carga \texttt{\protect\seqsplit{ICFES\_2020-2\_Eje\_Cafetero.csv}}. Confirma en el panel del widget que quedan \textbf{24999 filas, 40 categóricas, 20 numéricas, 1 meta}.
   \item Agrega el widget \textbf{Feature Statistics} (categoría \textit{Data}) conectado a \textit{File} y revisa, variable por variable, la media, moda, mediana, dispersión, mínimo y máximo.
-  \item Fíjate en las tres primeras variables de código (\texttt{ESTU\_COD\_RESIDE\_DEPTO}, \texttt{ESTU\_MCPIO\_RESIDE}, \texttt{ESTU\_COD\_RESIDE\_MCPIO}): aunque Orange las detecta como \textbf{Numéricas} por estar hechas de dígitos, no tiene sentido promediarlas --- son códigos, no cantidades. Agrega un widget \textbf{Edit Domain} conectado a \textit{File} y cambia su tipo a \textbf{Categórica}.
+  \item Fíjate en las tres primeras variables de código (\texttt{\protect\seqsplit{ESTU\_COD\_RESIDE\_DEPTO}}, \texttt{\protect\seqsplit{ESTU\_MCPIO\_RESIDE}}, \texttt{\protect\seqsplit{ESTU\_COD\_RESIDE\_MCPIO}}): aunque Orange las detecta como \textbf{Numéricas} por estar hechas de dígitos, no tiene sentido promediarlas --- son códigos, no cantidades. Agrega un widget \textbf{Edit Domain} conectado a \textit{File} y cambia su tipo a \textbf{Categórica}.
 \end{enumerate}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.78\linewidth]{img/01_feature_statistics.png}
+\caption{\textit{Feature Statistics}: las tres primeras filas (\texttt{\protect\seqsplit{ESTU\_COD\_RESIDE\_DEPTO}}, \texttt{\protect\seqsplit{ESTU\_COD\_RESIDE\_MCPIO}}, \texttt{\protect\seqsplit{COLE\_CODIGO\_ICFES}}) aparecen como \textbf{N} (Numérica) aunque son códigos.}
+\end{figure}
 
 \begin{pregunta}
 ¿Por qué un código numérico como \texttt{ESTU\_COD\_RESIDE\_MCPIO} no debería tratarse como variable numérica, aunque esté compuesto solo por dígitos? Den un ejemplo concreto de una conclusión sin sentido que se obtendría si se calculara su \textbf{media} o se le aplicara una \textbf{correlación}.
@@ -181,6 +190,12 @@ Antes de analizar, conviene verificar que no haya datos mal tomados o en un form
   \item Conecta ahora un widget \textbf{Distributions} a la salida de \textit{Select Rows} y mira la variable \texttt{ESTU\_MCPIO\_RESIDE}. Notarás un eje X muy ruidoso, con muchas categorías sin barra: Orange sigue mostrando \textbf{todos} los municipios posibles del dataset completo, aunque esta selección casi no tenga datos en la mayoría. En el panel de \textit{Select Rows}, activa \textbf{Remove unused features} y observa cómo se limpia la visualización.
 \end{enumerate}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.78\linewidth]{img/02_dispersion_fecha.png}
+\caption{\textit{Feature Statistics} de \texttt{ESTU\_FECHANACIMIENTO}: dispersión $\approx$ 74 años, mínimo 1946-02-18 y máximo 2020-09-08.}
+\end{figure}
+
 \begin{pregunta}
 ¿Por qué es importante hacer un sanity check \textbf{antes} de interpretar los resultados de un análisis exploratorio? En este dataset hay personas que, según la fecha de nacimiento, tenían 74 años al presentar la prueba, y otras que nacieron el mismo año en que la presentaron (2020). ¿Cuál de las dos situaciones les parece más plausible como dato real y cuál como posible error de captura? Justifiquen.
 \end{pregunta}
@@ -197,6 +212,12 @@ Antes de analizar, conviene verificar que no haya datos mal tomados o en un form
   \item Usa \textbf{Split by} para condicionar la distribución de \texttt{FAMI\_ESTRATOVIVIENDA} según \texttt{ESTU\_GENERO}, y explora las opciones \textit{Sort categories by frequency}, \textit{Stack columns} y \textit{Show probabilities}.
 \end{enumerate}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\linewidth]{img/03_distributions_genero.png}
+\caption{\textit{Distributions} de \texttt{ESTU\_GENERO} sobre la selección de nacidos antes de 1970 (distribución marginal).}
+\end{figure}
+
 \begin{pregunta}
 ¿Qué diferencia hay entre una distribución \textbf{marginal} (una sola variable, como el histograma de \texttt{ESTU\_GENERO}) y una distribución \textbf{condicional} (\textit{split by}, como \texttt{FAMI\_ESTRATOVIVIENDA} dividida por género)? ¿Qué pregunta puede responder la segunda que la primera no puede?
 \end{pregunta}
@@ -208,6 +229,12 @@ Antes de analizar, conviene verificar que no haya datos mal tomados o en un form
   \item Activa \textbf{Compare with total} y observa cómo cambia la lectura del gráfico.
   \item Agrega una tercera variable (por ejemplo \texttt{ESTU\_FECHANACIMIENTO} discretizada, o cualquier otra categórica) y luego hasta una cuarta o quinta. Prueba el botón \textbf{Find Informative Mosaics} --- \textbf{con pocas variables y datos reducidos}, ya que puede tardar mucho con el dataset completo.
 \end{enumerate}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.78\linewidth]{img/04_mosaic_4var.png}
+\caption{\textit{Mosaic} con 4 variables: \texttt{FAMI\_TIENEINTERNET}, \texttt{FAMI\_TIENEAUTOMOVIL}, \texttt{ESTU\_GENERO} y \texttt{\protect\seqsplit{FAMI\_COMECARNEPESCADOHUEVO}}.}
+\end{figure}
 
 \begin{pregunta}
 \textit{Mosaic} permite visualizar hasta 5 variables categóricas a la vez, mientras que \textit{Distributions} solo permite 2. ¿Qué ventaja ofrece poder ver más variables al tiempo? ¿Qué desventaja, en términos de qué tan fácil es \textbf{interpretar} el gráfico, aparece a medida que agregan más variables?
@@ -222,9 +249,15 @@ Antes de analizar, conviene verificar que no haya datos mal tomados o en un form
 
 \begin{enumerate}[leftmargin=1.2cm]
   \item Agrega un widget \textbf{Select Rows} conectado a \textit{File} para quedarte solo con estudiantes nacidos entre 2000 y 2004.
-  \item Conecta un \textbf{Box Plot} a esa salida: variable \texttt{PUNT\_GLOBAL}, \textbf{Subgroups} = \texttt{\seqsplit{ESTU\_COD\_RESIDE\_DEPTO}}, con \textbf{Compare means} activado. Observa el valor de \textbf{ANOVA} que reporta el widget.
+  \item Conecta un \textbf{Box Plot} a esa salida: variable \texttt{PUNT\_GLOBAL}, \textbf{Subgroups} = \texttt{\protect\seqsplit{ESTU\_COD\_RESIDE\_DEPTO}}, con \textbf{Compare means} activado. Observa el valor de \textbf{ANOVA} que reporta el widget.
   \item Prueba también un \textit{Box Plot} con una variable \textbf{categórica} como variable principal (por ejemplo \texttt{COLE\_GENERO}) agrupada por otra categórica (\texttt{ESTU\_COD\_RESIDE\_DEPTO}): el widget reporta entonces un estadístico $\chi^2$ en vez de ANOVA.
 \end{enumerate}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{img/05_boxplot_departamento.png}
+\caption{\textit{Box Plot} de \texttt{PUNT\_GLOBAL} por \texttt{\protect\seqsplit{ESTU\_COD\_RESIDE\_DEPTO}}: ANOVA = 2.621 (p = 0.073, N = 9493).}
+\end{figure}
 
 \begin{pregunta}
 El \textit{Box Plot} de \texttt{PUNT\_GLOBAL} por departamento reporta un ANOVA con cierto valor $p$. Si ese valor $p$ es mayor a 0.05, ¿pueden concluir que hay una diferencia \textbf{estadísticamente significativa} entre los departamentos al 95\% de confianza? ¿Qué significa, en términos simples, el valor $p$ de una prueba de significancia?
@@ -239,6 +272,12 @@ El \textit{Box Plot} de \texttt{PUNT\_GLOBAL} por departamento reporta un ANOVA 
   \item Con un \textbf{Data Table} conectado a \textit{File}, identifica qué variables tienen valores faltantes --- notarás que están relacionadas con el entorno socioeconómico, no con los puntajes. Agrega un widget \textbf{Impute} para tratarlos.
 \end{enumerate}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.78\linewidth]{img/06_distributions_outliers.png}
+\caption{\textit{Distributions} de \texttt{PUNT\_GLOBAL}: colas con valores extremos (resaltadas en rojo) por debajo de 100 y por encima de 400.}
+\end{figure}
+
 \begin{nota}
 El widget \textit{Outliers} es \textbf{pesado}: puede ser lento o bloquear Orange si se usa con muchos datos y muchas variables. Redúcelo primero (\textit{Select Columns} y/o una muestra con \textit{Data Sampler}) antes de usarlo sobre el dataset completo.
 \end{nota}
@@ -246,6 +285,16 @@ El widget \textit{Outliers} es \textbf{pesado}: puede ser lento o bloquear Orang
 \begin{pregunta}
 ¿Cuál es la diferencia entre un \textbf{valor atípico legítimo} (una observación real, pero poco común) y un \textbf{error de captura de datos}? En el caso de los puntajes globales por debajo de 100, ¿qué evidencia usarían para decidir a cuál de los dos casos corresponde, en vez de simplemente eliminarlos sin revisar?
 \end{pregunta}
+
+\begin{nota}
+Como complemento opcional, el widget \textbf{Violin Plot} (categoría \textit{Visualize}) combina en un solo gráfico lo que muestran por separado el \textit{Box Plot} y un histograma: la silueta es la distribución completa, y dentro se puede superponer la caja del \textit{Box Plot}. Pruébalo con alguna variable de puntaje, agrupada por una variable categórica de interés.
+\end{nota}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.68\linewidth]{img/07_violin_plot.png}
+\caption{\textit{Violin Plot} de \texttt{PUNT\_INGLES}, agrupado por \texttt{\protect\seqsplit{FAMI\_TIENECONSOLAVIDEOJUEGOS}}.}
+\end{figure}
 
 % ============================================================
 % PARTE 5
@@ -268,8 +317,14 @@ Tomemos la pregunta \textbf{¿Estudiar en colegio privado tiene relación con sa
 \begin{enumerate}[leftmargin=1.2cm]
   \item Conecta un \textbf{Distributions} a \textit{File}: variable \texttt{PUNT\_GLOBAL}, \textbf{Split by} = \texttt{COLE\_NATURALEZA}. Observa cómo se desplazan las dos distribuciones condicionales una respecto a la otra.
   \item Conecta un \textbf{Box Plot}: variable \texttt{PUNT\_GLOBAL}, \textbf{Subgroups} = \texttt{COLE\_NATURALEZA}, con \textbf{Compare means}. Esta vez el widget sí reporta una prueba de significancia (t de Student) entre las dos medias.
-  \item Repite el mismo \textit{Box Plot} para la pregunta sobre competencias ciudadanas (\texttt{\seqsplit{PUNT\_SOCIALES\_CIUDADANAS}} por \texttt{COLE\_NATURALEZA}).
+  \item Repite el mismo \textit{Box Plot} para la pregunta sobre competencias ciudadanas (\texttt{\protect\seqsplit{PUNT\_SOCIALES\_CIUDADANAS}} por \texttt{COLE\_NATURALEZA}).
 \end{enumerate}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{img/08_boxplot_colegio.png}
+\caption{\textit{Box Plot} de \texttt{PUNT\_GLOBAL} por \texttt{COLE\_NATURALEZA}: Student's t = 11.446 (p = 0.000, N = 3000).}
+\end{figure}
 
 \begin{pregunta}
 Podríamos codificar (\textit{Continuize}) la variable categórica \texttt{COLE\_NATURALEZA} como 0/1 y calcular su correlación de Pearson con \texttt{PUNT\_GLOBAL}. ¿Por qué el número resultante no significaría realmente lo que esperamos? Y aunque el \textit{Box Plot} muestre una diferencia de medias \textbf{estadísticamente significativa} entre colegios oficiales y no oficiales, ¿pueden concluir que estudiar en colegio privado \textbf{causa} mejores puntajes? ¿Qué otras explicaciones alternativas se les ocurren?
@@ -291,6 +346,12 @@ Queremos identificar qué variables socioeconómicas distinguen mejor entre punt
   \item Conecta un widget \textbf{Rank} y revisa qué variables socioeconómicas quedan mejor rankeadas para distinguir altos/medios/bajos.
 \end{enumerate}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\linewidth]{img/09_workflow_rank.png}
+\caption{Workflow: \texttt{PUNT\_GLOBAL} se discretiza por un camino, el resto de variables sigue por otro, y se unen de nuevo con \textit{Merge Data} antes de llegar a \textit{Rank}.}
+\end{figure}
+
 \begin{pregunta}
 ¿Por qué fue necesario discretizar \texttt{PUNT\_GLOBAL} (convertirla de numérica a categórica) antes de poder usarla como variable \textbf{Target} para el widget \textit{Rank}? ¿Qué le pasaría a Rank si le diéramos directamente la variable numérica como \textit{Target}?
 \end{pregunta}
@@ -303,6 +364,12 @@ Queremos identificar qué variables socioeconómicas distinguen mejor entre punt
   \item Mira qué características socioeconómicas comparten esos vecinos con el estudiante de referencia.
 \end{enumerate}
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\linewidth]{img/10_workflow_neighbors.png}
+\caption{Workflow: se separa el registro de mayor puntaje (\textit{Data Table}) del resto (\textit{Select Rows}), y ambos alimentan el widget \textit{Neighbors}.}
+\end{figure}
+
 \begin{pregunta}
 ¿Por qué la distancia \textbf{Jaccard} es más apropiada que la distancia \textbf{Euclídea} para comparar variables categóricas binarias (como las de Sí/No: ¿tiene internet?, ¿tiene computador?, etc.)? (Pista: piensen en qué significaría restar numéricamente dos categorías como ``Sí'' y ``No''.)
 \end{pregunta}
@@ -314,10 +381,25 @@ Queremos identificar qué variables socioeconómicas distinguen mejor entre punt
 
 \begin{enumerate}[leftmargin=1.2cm]
   \item \textbf{Con variables numéricas}: agrega \textbf{Select Columns} para quedarte solo con las variables numéricas de puntaje, luego \textbf{k-Means} (prueba varios $K$ y quédate con el mejor según el coeficiente \textbf{Silhouette}). Visualiza el resultado en un \textbf{Scatter Plot} coloreado por \texttt{Cluster}.
+\end{enumerate}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\linewidth]{img/11_scatter_numeric_cluster.png}
+\caption{\textit{k-Means} sobre variables numéricas de puntaje: separa, de forma esperable, puntajes altos (rojo) de bajos (azul).}
+\end{figure}
+
+\begin{enumerate}[leftmargin=1.2cm, start=2]
   \item \textbf{Con variables categóricas}: repite el ejercicio usando solo variables socioeconómicas (categóricas). Recuerda que \textit{k-Means} en Orange preprocesa automáticamente las categóricas (\textit{continuize} con una columna por valor) si no le conectas ya datos preprocesados.
   \item Un \textit{Scatter Plot} directo sobre dos variables categóricas es difícil de interpretar. Agrega un widget \textbf{MDS} (conectado a través de \textbf{Distances}) para proyectar esas variables a 2 dimensiones y visualizar los clústeres encontrados.
   \item Conecta un \textbf{Distributions} a la salida del agrupamiento categórico: variable \texttt{PUNT\_GLOBAL}, \textbf{Split by} = \texttt{Cluster}. Observa si los dos clústeres (formados \textbf{solo} con variables socioeconómicas, sin usar el puntaje) se relacionan con el puntaje global.
 \end{enumerate}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.78\linewidth]{img/12_mds_scatter.png}
+\caption{Proyección \textit{MDS} del agrupamiento \textit{k-Means} sobre variables categóricas socioeconómicas: los dos clústeres quedan claramente separados en 2D.}
+\end{figure}
 
 \begin{pregunta}[title={\faPencil\ Pregunta de concepto final}]
 Al agrupar usando \textbf{solo} las variables numéricas de puntaje, era esperable que \textit{k-Means} separara ``puntajes altos'' de ``puntajes bajos'' --- esas son justo las variables que usamos para agrupar. Pero al agrupar usando \textbf{solo} variables socioeconómicas (categóricas, sin usar el puntaje) y luego comparar esos clústeres con \texttt{PUNT\_GLOBAL}, ¿qué encontraron? ¿Qué les sugiere esto sobre la relación entre el contexto socioeconómico y el desempeño en las pruebas Saber 11? Y de nuevo: ¿esto es evidencia de que el contexto socioeconómico \textbf{causa} el desempeño, o solo de que están \textbf{correlacionados}?
