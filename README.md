@@ -10,5 +10,6 @@ Curso de analítica de datos - teórico práctico
 - [`modulo-02-transformacion-visualizacion/`](modulo-02-transformacion-visualizacion/) — Materiales del Módulo 2: Transformación y visualización de datos.
 - [`modulo-03-no-supervisado/`](modulo-03-no-supervisado/) — Materiales del Módulo 3: Modelado y evaluación de enfoques no supervisados.
 - [`talleres-monitoria/`](talleres-monitoria/) — Talleres prácticos complementarios orientados por el monitor del curso.
+- [`taller-guiado-cierre-capitulos/`](taller-guiado-cierre-capitulos/) — Taller guiado en clase por el docente: repaso de extremo a extremo de las técnicas del curso sobre un único dataset real, en Orange Data Mining.
 
 Los materiales de cada módulo se irán agregando en carpetas propias (`modulo-01-introduccion/`, `modulo-02-.../`, ...) a medida que avance el curso.
