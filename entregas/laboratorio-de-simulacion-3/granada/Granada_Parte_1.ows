@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='utf-8'?>
+<scheme version="2.0" title="" description="">
+	<nodes>
+		<node id="0" name="File" qualified_name="Orange.widgets.data.owfile.OWFile" project_name="Orange3" version="" title="File" position="(129.5, -238.96428571428572)" />
+		<node id="1" name="Data Table" qualified_name="Orange.widgets.data.owtable.OWTable" project_name="Orange3" version="" title="Data Table" position="(301.89285714285717, -331.82142857142867)" />
+		<node id="2" name="PCA" qualified_name="Orange.widgets.unsupervised.owpca.OWPCA" project_name="Orange3" version="" title="PCA" position="(374.75, -174.0)" />
+		<node id="3" name="Scatter Plot" qualified_name="Orange.widgets.visualize.owscatterplot.OWScatterPlot" project_name="Orange3" version="" title="Scatter Plot" position="(556.6785714285714, 179.78571428571428)" />
+	</nodes>
+	<links>
+		<link id="0" source_node_id="0" sink_node_id="1" source_channel="Data" sink_channel="Data" enabled="true" source_channel_id="data" sink_channel_id="data" />
+		<link id="1" source_node_id="0" sink_node_id="2" source_channel="Data" sink_channel="Data" enabled="true" source_channel_id="data" sink_channel_id="data" />
+		<link id="2" source_node_id="2" sink_node_id="3" source_channel="Transformed Data" sink_channel="Data" enabled="true" source_channel_id="transformed_data" sink_channel_id="data" />
+	</links>
+	<annotations>
+		<text id="0" type="text/plain" rect="(544.8928571428571, -433.0, 622.0, 320.0)" font-family="Segoe UI" font-size="16">Actividad 1 – Varianza explicada por PCA.
+
+Con las variables normalizadas, PC1 explica el 73 % de la varianza y PC2 el 23 %, de modo que los dos primeros componentes acumulan el 95,8 % de la varianza total de Iris. Es decir, con 2 de las 4 variables originales ya se supera el umbral del 95 %; PC3 y PC4 solo aportan cerca del 4 % restante.
+En Wine ocurre lo contrario: 2 componentes conservan solo el 55,4 % de la varianza y se necesitan 10 de los 13 componentes para llegar al 95 %, porque la información química está repartida entre muchas variables poco correlacionadas.
+En Iris no se necesitan más componentes: sus variables (sobre todo largo y ancho del pétalo y largo del sépalo) están muy correlacionadas y miden en buena parte el “tamaño” de la flor, que PC1 resume casi por completo. Iris es un dataset mucho más compresible que Wine, y 2 componentes bastan tanto para reducir la dimensión como para visualizar.</text>
+		<text id="1" type="text/plain" rect="(723.0357142857142, 16.428571428571445, 820.0, 311.25)" font-family="Segoe UI" font-size="16">Actividad 2 – Scatter Plot PC1 vs PC2 coloreado por especie
+Usando solo los dos primeros componentes, las especies se separan en gran medida, aunque no por completo. Iris-setosa queda totalmente aislada PC1 entre −2,8 y −1,8, con un hueco amplio respecto al resto. Iris-versicolor e Iris-virginica forman una nube continua: versicolor a la izquierda y virginica a la derecha, con una zona de solapamiento aproximadamente entre PC1 = 0,4 y 1,4.
+Casi toda la separación ocurre sobre PC1, que combina largo y ancho del pétalo y largo del sépalo, es decir, el tamaño de la flor. PC2 dominado por el ancho del sépalo aporta poco a distinguir especies.
+Igual que en Wine, PCA no usó las etiquetas y aun así revela la estructura de clases. Pero allí los tres cultivares quedaron claramente separados usando los dos componentes PC1 y PC2  con solo el 55,4 % de la varianza. En Iris, con el 95,8 % de la varianza, dos especies siguen solapándose. 
+
+PCA maximiza la varianza, no la separación entre clases; que coincidan depende de qué tan distintas sean las clases en las variables de mayor variabilidad.</text>
+		<arrow id="2" start="(415.7142857142857, -221.42857142857144)" end="(512.8571428571429, -264.2857142857143)" fill="#C1272D" />
+		<arrow id="3" start="(598.5714285714286, 164.28571428571428)" end="(691.4285714285714, 135.71428571428572)" fill="#C1272D" />
+	</annotations>
+	<thumbnail />
+	<node_properties>
+		<properties node_id="0" format="pickle">gASVZggAAAAAAAB9lCiMEmNvbnRyb2xBcmVhVmlzaWJsZZSIjAxyZWNlbnRfcGF0aHOUXZQojB5v
+cmFuZ2V3aWRnZXQudXRpbHMuZmlsZWRpYWxvZ3OUjApSZWNlbnRQYXRolJOUKYGUfZQojAdhYnNw
+YXRolIxCRDovUHJvZ3JhbWFzL0RhdGFvcmFuZ2UvTGliL3NpdGUtcGFja2FnZXMvT3JhbmdlL2Rh
+dGFzZXRzL2lyaXMudGFilIwGcHJlZml4lIwPc2FtcGxlLWRhdGFzZXRzlIwHcmVscGF0aJSMCGly
+aXMudGFilIwFdGl0bGWUjACUjAVzaGVldJRoEIwLZmlsZV9mb3JtYXSUTnViaAYpgZR9lChoCYxE
+RDovQW5hbGl0aWNhX0RhdG9zL0N1cnNvL1RhbGxlcnRHdWlhZG8vSUNGRVNfMjAyMC0yX0VqZV9D
+YWZldGVyby5jc3aUaAtOaA1OaA9oEGgRaBBoEk51YmgGKYGUfZQoaAmMNkM6L1VzZXJzL2p1YW5l
+L0Rvd25sb2Fkcy9JQ0ZFU18yMDIwLTJfRWplX0NhZmV0ZXJvLmNzdpRoC05oDU5oD2gQaBFoEGgS
+TnViaAYpgZR9lChoCYw9RDovQW5hbGl0aWNhX0RhdG9zL0RhdGFfT3JhbmdlX01pbmUvTGFib3Jh
+dG9yaW9fMi92Z3NhbGVzLmNzdpRoC05oDU5oD2gQaBFoEGgSTnViaAYpgZR9lChoCYxFRDovQW5h
+bGl0aWNhX0RhdG9zL0RhdGFfT3JhbmdlX01pbmUvTGFib3JhdG9yaW9fMi9UaXRhbmljLURhdGFz
+ZXQuY3N2lGgLTmgNTmgPaBBoEWgQaBJOdWJoBimBlH2UKGgJjEVEOi9BbmFsaXRpY2FfRGF0b3Mv
+RGF0YV9PcmFuZ2VfTWluZS9MYWJvcmF0b3Jpb18xL2RhdGFzZXRfc3BvdGlmeS5jc3aUaAtOaA1O
+aA9oEGgRaBBoEk51YmgGKYGUfZQoaAmMQkQ6L0FuYWxpdGljYV9EYXRvcy9EYXRhX09yYW5nZV9N
+aW5lL0xhYm9yYXRvcmlvXzEvYXV0b3NfbGltcGlvLmNzdpRoC05oDU5oD2gQaBFoEGgSTnViaAYp
+gZR9lChoCYxFRDovUHJvZ3JhbWFzL0RhdGFvcmFuZ2UvTGliL3NpdGUtcGFja2FnZXMvT3Jhbmdl
+L2RhdGFzZXRzL3RpdGFuaWMudGFilGgLaAxoDYwLdGl0YW5pYy50YWKUaA9oEGgRaBBoEk51YmgG
+KYGUfZQoaAmMRUQ6L1Byb2dyYW1hcy9EYXRhb3JhbmdlL0xpYi9zaXRlLXBhY2thZ2VzL09yYW5n
+ZS9kYXRhc2V0cy9ob3VzaW5nLnRhYpRoC2gMaA2MC2hvdXNpbmcudGFilGgPaBBoEWgQaBJOdWJo
+BimBlH2UKGgJjEtEOi9Qcm9ncmFtYXMvRGF0YW9yYW5nZS9MaWIvc2l0ZS1wYWNrYWdlcy9PcmFu
+Z2UvZGF0YXNldHMvaGVhcnRfZGlzZWFzZS50YWKUaAtoDGgNjBFoZWFydF9kaXNlYXNlLnRhYpRo
+D2gQaBFoEGgSTnViaAYpgZR9lChoCYxMRDovUHJvZ3JhbWFzL0RhdGFvcmFuZ2UvTGliL3NpdGUt
+cGFja2FnZXMvT3JhbmdlL2RhdGFzZXRzL2Jyb3duLXNlbGVjdGVkLnRhYpRoC2gMaA2MEmJyb3du
+LXNlbGVjdGVkLnRhYpRoD2gQaBFoEGgSTnViaAYpgZR9lChoCYxBRDovUHJvZ3JhbWFzL0RhdGFv
+cmFuZ2UvTGliL3NpdGUtcGFja2FnZXMvT3JhbmdlL2RhdGFzZXRzL3pvby50YWKUaAtoDGgNjAd6
+b28udGFilGgPaBBoEWgQaBJOdWJljAtyZWNlbnRfdXJsc5RdlIwTc2F2ZWRXaWRnZXRHZW9tZXRy
+eZRDQgHZ0MsAAwAAAAAAaQAAAEoAAAMEAAACyQAAAGoAAABoAAADAwAAAsgAAAAAAAAAAAYAAAAA
+agAAAGgAAAMDAAACyJSMC3NoZWV0X25hbWVzlH2UjAZzb3VyY2WUSwCMA3VybJRoEIwNZG9tYWlu
+X2VkaXRvcpR9lIwLX192ZXJzaW9uX1+USwGMEGNvbnRleHRfc2V0dGluZ3OUXZSMFW9yYW5nZXdp
+ZGdldC5zZXR0aW5nc5SMB0NvbnRleHSUk5QpgZR9lCiMBnZhbHVlc5R9lCiMCXZhcmlhYmxlc5Rd
+lGhBfZRoTV2UKF2UKIwMc2VwYWwgbGVuZ3RolIwUT3JhbmdlLmRhdGEudmFyaWFibGWUjBJDb250
+aW51b3VzVmFyaWFibGWUk5RLAGgQiGVdlCiMC3NlcGFsIHdpZHRolGhVSwBoEIhlXZQojAxwZXRh
+bCBsZW5ndGiUaFVLAGgQiGVdlCiMC3BldGFsIHdpZHRolGhVSwBoEIhlXZQojARpcmlzlGhTjBBE
+aXNjcmV0ZVZhcmlhYmxllJOUSwGMLElyaXMtc2V0b3NhLCBJcmlzLXZlcnNpY29sb3IsIElyaXMt
+dmlyZ2luaWNhlIllZXNoQ0sBdYwKYXR0cmlidXRlc5QojAxzZXBhbCBsZW5ndGiUSwKGlIwLc2Vw
+YWwgd2lkdGiUSwKGlIwMcGV0YWwgbGVuZ3RolEsChpSMC3BldGFsIHdpZHRolEsChpR0lIwFbWV0
+YXOUKYwKY2xhc3NfdmFyc5SMBGlyaXOUXZQojAtJcmlzLXNldG9zYZSMD0lyaXMtdmVyc2ljb2xv
+cpSMDklyaXMtdmlyZ2luaWNhlGWGlIWUjBJtb2RpZmllZF92YXJpYWJsZXOUXZR1YmF1Lg==
+</properties>
+		<properties node_id="1" format="literal">{'auto_commit': True, 'color_by_class': True, 'controlAreaVisible': True, 'savedWidgetGeometry': b'\x01\xd9\xd0\xcb\x00\x03\x00\x00\xff\xff\xff\xff\xff\xff\xff\xf9\x00\x00\x06\x00\x00\x00\x038\x00\x00\x00\x00\x00\x00\x00\x17\x00\x00\x05\xff\x00\x00\x037\x00\x00\x00\x00\x02\x00\x00\x00\x06\x00\x00\x00\x00\x00\x00\x00\x00\x17\x00\x00\x05\xff\x00\x00\x037', 'select_rows': True, 'show_attribute_labels': True, 'show_distributions': False, 'stored_selection': {'rows': [], 'columns': []}, 'stored_sort': [], '__version__': 1}</properties>
+		<properties node_id="2" format="literal">{'auto_commit': True, 'axis_labels': 10, 'controlAreaVisible': True, 'maxp': 20, 'ncomponents': 2, 'normalize': True, 'savedWidgetGeometry': b'\x01\xd9\xd0\xcb\x00\x03\x00\x00\x00\x00\x01\xc2\x00\x00\x01.\x00\x00\x04\xab\x00\x00\x03@\x00\x00\x01\xc3\x00\x00\x01L\x00\x00\x04\xaa\x00\x00\x03?\x00\x00\x00\x00\x00\x00\x00\x00\x06\x00\x00\x00\x01\xc3\x00\x00\x01L\x00\x00\x04\xaa\x00\x00\x03?', 'variance_covered': 95, '__version__': 1}</properties>
+		<properties node_id="3" format="pickle">gASVAAQAAAAAAAB9lCiMDWF0dHJfeF9pc19hYnOUiYwNYXR0cl95X2lzX2Fic5SJjAthdXRvX2Nv
+bW1pdJSIjAthdXRvX3NhbXBsZZSIjBJjb250cm9sQXJlYVZpc2libGWUiIwTc2F2ZWRXaWRnZXRH
+ZW9tZXRyeZRDQgHZ0MsAAwAAAAAAvAAAAE0AAAUoAAADEAAAAL0AAABrAAAFJwAAAw8AAAAAAAAA
+AAYAAAAAvQAAAGsAAAUnAAADD5SMCXNlbGVjdGlvbpROjBF0b29sdGlwX3Nob3dzX2FsbJSIjA92
+aXN1YWxfc2V0dGluZ3OUfZSMBWdyYXBolH2UKIwLYWxwaGFfdmFsdWWUS/OMDWNsYXNzX2RlbnNp
+dHmUiYwRaml0dGVyX2NvbnRpbnVvdXOUiYwLaml0dGVyX3NpemWUSwCME2xhYmVsX29ubHlfc2Vs
+ZWN0ZWSUiYwWb3J0aG9ub3JtYWxfcmVncmVzc2lvbpSJjAtwb2ludF93aWR0aJRLAYwMc2hvd19l
+bGxpcHNllImMCXNob3dfZ3JpZJSJjAtzaG93X2xlZ2VuZJSIjA1zaG93X3JlZ19saW5llIl1jAtf
+X3ZlcnNpb25fX5RLBYwQY29udGV4dF9zZXR0aW5nc5RdlCiMFW9yYW5nZXdpZGdldC5zZXR0aW5n
+c5SMB0NvbnRleHSUk5QpgZR9lCiMBnZhbHVlc5R9lCiMCmF0dHJfY29sb3KUjARpcmlzlEtlhpSM
+CmF0dHJfbGFiZWyUTkr+////hpSMCmF0dHJfc2hhcGWUTkr+////hpSMCWF0dHJfc2l6ZZROSv7/
+//+GlIwGYXR0cl94lIwDUEMxlEtmhpSMDGF0dHJfeF9sb3dlcpROSv7///+GlIwMYXR0cl94X3Vw
+cGVylE5K/v///4aUjAZhdHRyX3mUjANQQzKUS2aGlIwMYXR0cl95X2xvd2VylE5K/v///4aUjAxh
+dHRyX3lfdXBwZXKUTkr+////hpRoDH2UaBlLBXWMCmF0dHJpYnV0ZXOUfZQoaC1LAmg0SwJoJEsB
+dYwFbWV0YXOUfZR1YmgeKYGUfZQoaCF9lChoI2gkS2WGlGgmTkr+////hpRoKE5K/v///4aUaCpO
+Sv7///+GlGgsaC1LZoaUaC9OSv7///+GlGgxTkr+////hpRoM2g0S2aGlGg2Tkr+////hpRoOE5K
+/v///4aUaAx9lGgZSwV1aDt9lCiMDHNlcGFsIGxlbmd0aJRLAowLc2VwYWwgd2lkdGiUSwKMDHBl
+dGFsIGxlbmd0aJRLAowLcGV0YWwgd2lkdGiUSwKMBGlyaXOUSwF1aD19lCiMA1BDMZRLAowDUEMy
+lEsCdXViZXUu
+</properties>
+	</node_properties>
+	<session_state>
+		<window_groups />
+	</session_state>
+</scheme>
